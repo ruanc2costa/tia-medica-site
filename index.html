@@ -1,447 +1,2182 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tia Médica – Assistente de Saúde pelo WhatsApp</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <style>
-        :root{--mint:#2EC4B6;--mint-light:#3EDECF;--mint-dark:#1A9E92;--coral:#FF6B6B;--navy:#1B2A4A;--navy-light:#2D4470;--cream:#FFF8F0;--white:#FFFFFF;--gray-100:#F7F7F8;--gray-200:#E8E8EC;--gray-400:#9898A6;--gray-600:#5A5A6E;--shadow-sm:0 2px 8px rgba(27,42,74,.06);--shadow-md:0 8px 30px rgba(27,42,74,.1);--shadow-lg:0 20px 60px rgba(27,42,74,.12);--shadow-glow:0 0 40px rgba(46,196,182,.2)}
-        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'DM Sans',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden;line-height:1.6}
+        :root {
+            --mint: #2EC4B6;
+            --mint-light: #3EDECF;
+            --mint-dark: #1A9E92;
+            --coral: #FF6B6B;
+            --navy: #1B2A4A;
+            --navy-light: #2D4470;
+            --cream: #FFF8F0;
+            --white: #FFFFFF;
+            --gray-100: #F7F7F8;
+            --gray-200: #E8E8EC;
+            --gray-400: #9898A6;
+            --gray-600: #5A5A6E;
+            --shadow-sm: 0 2px 8px rgba(27, 42, 74, .06);
+            --shadow-md: 0 8px 30px rgba(27, 42, 74, .1);
+            --shadow-lg: 0 20px 60px rgba(27, 42, 74, .12);
+            --shadow-glow: 0 0 40px rgba(46, 196, 182, .2)
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--navy);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6
+        }
 
         /* NAV */
-        nav{position:fixed;top:0;width:100%;z-index:100;padding:1rem 2rem;transition:all .4s;background:transparent}
-        nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(20px);box-shadow:var(--shadow-sm);padding:.7rem 2rem}
-        .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-        .logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
-        .logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--mint),var(--mint-dark));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;box-shadow:0 4px 12px rgba(46,196,182,.3)}
-        .logo-text{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--navy)}
-        .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
-        .nav-links a{text-decoration:none;color:var(--navy);font-weight:500;font-size:.95rem;transition:color .3s;position:relative}
-        .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--mint);transition:width .3s}
-        .nav-links a:hover::after{width:100%}
-        .btn-wpp-nav{background:#25D366;color:#fff!important;padding:.6rem 1.4rem;border-radius:50px;font-weight:600;font-size:.9rem;display:flex;align-items:center;gap:.5rem;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 15px rgba(37,211,102,.3)}
-        .btn-wpp-nav:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.4)}
-        .btn-wpp-nav::after{display:none!important}
-        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-        .hamburger span{width:24px;height:2px;background:var(--navy);border-radius:2px}
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1rem 2rem;
+            transition: all .4s;
+            background: transparent
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, .92);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-sm);
+            padding: .7rem 2rem
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            text-decoration: none
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(46, 196, 182, .3)
+        }
+
+        .logo-text {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--navy)
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 500;
+            font-size: .95rem;
+            transition: color .3s;
+            position: relative
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--mint);
+            transition: width .3s
+        }
+
+        .nav-links a:hover::after {
+            width: 100%
+        }
+
+        .btn-wpp-nav {
+            background: #25D366;
+            color: #fff !important;
+            padding: .6rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: .9rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            transition: transform .3s, box-shadow .3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, .3)
+        }
+
+        .btn-wpp-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, .4)
+        }
+
+        .btn-wpp-nav::after {
+            display: none !important
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px
+        }
 
         /* HERO */
-        .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--cream) 0%,var(--white) 40%,#E8F8F5 100%)}
-        .hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(46,196,182,.08),transparent 70%);border-radius:50%;animation:float 8s ease-in-out infinite}
-        .hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,107,107,.06),transparent 70%);border-radius:50%;animation:float 10s ease-in-out infinite reverse}
-        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
-        .hero-inner{max-width:1200px;margin:0 auto;padding:8rem 2rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:2}
-        .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(46,196,182,.1);border:1px solid rgba(46,196,182,.2);padding:.4rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600;color:var(--mint-dark);margin-bottom:1.5rem;animation:fadeInUp .8s ease}
-        .hero-badge .dot{width:8px;height:8px;background:var(--mint);border-radius:50%;animation:pulse 2s infinite}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-        .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.5rem,5vw,3.8rem);line-height:1.15;margin-bottom:1.5rem;animation:fadeInUp .8s ease .1s both}
-        .hero h1 .highlight{background:linear-gradient(135deg,var(--mint),var(--mint-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .hero-sub{font-size:1.15rem;color:var(--gray-600);max-width:480px;line-height:1.7;margin-bottom:2.5rem;animation:fadeInUp .8s ease .2s both}
-        .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeInUp .8s ease .3s both}
-        .btn-p{background:#25D366;color:#fff;padding:1rem 2rem;border-radius:60px;font-weight:700;font-size:1.05rem;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;transition:all .3s;box-shadow:0 6px 25px rgba(37,211,102,.35);border:none;cursor:pointer}
-        .btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(37,211,102,.45)}
-        .btn-s{background:transparent;color:var(--navy);padding:1rem 2rem;border-radius:60px;font-weight:600;font-size:1.05rem;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;transition:all .3s;border:2px solid var(--gray-200)}
-        .btn-s:hover{border-color:var(--mint);color:var(--mint-dark)}
-        .hero-stats{display:flex;gap:2rem;margin-top:3rem;animation:fadeInUp .8s ease .4s both}
-        .h-stat{text-align:center}
-        .h-stat .num{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--navy)}
-        .h-stat .lbl{font-size:.8rem;color:var(--gray-400);font-weight:500;text-transform:uppercase;letter-spacing:.5px}
-        @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(160deg, var(--cream) 0%, var(--white) 40%, #E8F8F5 100%)
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(46, 196, 182, .08), transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 107, .06), transparent 70%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-30px)
+            }
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(46, 196, 182, .1);
+            border: 1px solid rgba(46, 196, 182, .2);
+            padding: .4rem 1rem;
+            border-radius: 50px;
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--mint-dark);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp .8s ease
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--mint);
+            border-radius: 50%;
+            animation: pulse 2s infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .4
+            }
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp .8s ease .1s both
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--mint), var(--mint-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--gray-600);
+            max-width: 480px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp .8s ease .2s both
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp .8s ease .3s both
+        }
+
+        .btn-p {
+            background: #25D366;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            transition: all .3s;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, .35);
+            border: none;
+            cursor: pointer
+        }
+
+        .btn-p:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(37, 211, 102, .45)
+        }
+
+        .btn-s {
+            background: transparent;
+            color: var(--navy);
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            transition: all .3s;
+            border: 2px solid var(--gray-200)
+        }
+
+        .btn-s:hover {
+            border-color: var(--mint);
+            color: var(--mint-dark)
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp .8s ease .4s both
+        }
+
+        .h-stat {
+            text-align: center
+        }
+
+        .h-stat .num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            color: var(--navy)
+        }
+
+        .h-stat .lbl {
+            font-size: .8rem;
+            color: var(--gray-400);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .5px
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
 
         /* PHONE */
-        .hero-visual{position:relative;display:flex;justify-content:center;animation:fadeInUp 1s ease .3s both}
-        .phone{width:300px;background:var(--white);border-radius:36px;box-shadow:var(--shadow-lg),0 0 0 1px rgba(0,0,0,.05);overflow:hidden}
-        .phone-notch{width:120px;height:28px;background:var(--navy);border-radius:0 0 16px 16px;margin:0 auto;position:relative;z-index:3}
-        .phone-screen{padding:.5rem 1rem 1.5rem;background:#ECE5DD;min-height:500px}
-        .ch-hdr{display:flex;align-items:center;gap:.7rem;padding:.8rem;background:#075E54;border-radius:12px;margin-bottom:1rem}
-        .ch-av{width:36px;height:36px;background:linear-gradient(135deg,var(--mint),var(--mint-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff}
-        .ch-name{color:#fff;font-weight:600;font-size:.9rem}
-        .ch-st{color:rgba(255,255,255,.7);font-size:.72rem}
-        .msg{max-width:85%;padding:.6rem .9rem;border-radius:12px;margin-bottom:.5rem;font-size:.82rem;line-height:1.5;animation:msgIn .5s ease both}
-        .msg-b{background:#fff;border-top-left-radius:4px;margin-right:auto}
-        .msg-u{background:#DCF8C6;border-top-right-radius:4px;margin-left:auto}
-        .msg:nth-child(2){animation-delay:.5s}.msg:nth-child(3){animation-delay:1.2s}.msg:nth-child(4){animation-delay:1.9s}.msg:nth-child(5){animation-delay:2.6s}
-        @keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-        .msg-t{font-size:.65rem;color:var(--gray-400);text-align:right;margin-top:2px}
-        .fpill{position:absolute;background:#fff;border-radius:16px;padding:.7rem 1.2rem;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:.6rem;font-size:.85rem;font-weight:500;animation:fp 4s ease-in-out infinite;z-index:5}
-        .fpill.p1{top:10%;right:-10%}.fpill.p2{bottom:20%;left:-15%;animation-delay:2s}
-        .pi{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem}
-        .pi.g{background:rgba(46,196,182,.15)}.pi.r{background:rgba(255,107,107,.15)}
-        @keyframes fp{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            animation: fadeInUp 1s ease .3s both
+        }
+
+        .phone {
+            width: 300px;
+            background: var(--white);
+            border-radius: 36px;
+            box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0, 0, 0, .05);
+            overflow: hidden
+        }
+
+        .phone-notch {
+            width: 120px;
+            height: 28px;
+            background: var(--navy);
+            border-radius: 0 0 16px 16px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3
+        }
+
+        .phone-screen {
+            padding: .5rem 1rem 1.5rem;
+            background: #ECE5DD;
+            min-height: 500px
+        }
+
+        .ch-hdr {
+            display: flex;
+            align-items: center;
+            gap: .7rem;
+            padding: .8rem;
+            background: #075E54;
+            border-radius: 12px;
+            margin-bottom: 1rem
+        }
+
+        .ch-av {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--mint), var(--mint-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #fff
+        }
+
+        .ch-name {
+            color: #fff;
+            font-weight: 600;
+            font-size: .9rem
+        }
+
+        .ch-st {
+            color: rgba(255, 255, 255, .7);
+            font-size: .72rem
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: .6rem .9rem;
+            border-radius: 12px;
+            margin-bottom: .5rem;
+            font-size: .82rem;
+            line-height: 1.5;
+            animation: msgIn .5s ease both
+        }
+
+        .msg-b {
+            background: #fff;
+            border-top-left-radius: 4px;
+            margin-right: auto
+        }
+
+        .msg-u {
+            background: #DCF8C6;
+            border-top-right-radius: 4px;
+            margin-left: auto
+        }
+
+        .msg:nth-child(2) {
+            animation-delay: .5s
+        }
+
+        .msg:nth-child(3) {
+            animation-delay: 1.2s
+        }
+
+        .msg:nth-child(4) {
+            animation-delay: 1.9s
+        }
+
+        .msg:nth-child(5) {
+            animation-delay: 2.6s
+        }
+
+        @keyframes msgIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .msg-t {
+            font-size: .65rem;
+            color: var(--gray-400);
+            text-align: right;
+            margin-top: 2px
+        }
+
+        .fpill {
+            position: absolute;
+            background: #fff;
+            border-radius: 16px;
+            padding: .7rem 1.2rem;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            font-size: .85rem;
+            font-weight: 500;
+            animation: fp 4s ease-in-out infinite;
+            z-index: 5
+        }
+
+        .fpill.p1 {
+            top: 10%;
+            right: -10%
+        }
+
+        .fpill.p2 {
+            bottom: 20%;
+            left: -15%;
+            animation-delay: 2s
+        }
+
+        .pi {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem
+        }
+
+        .pi.g {
+            background: rgba(46, 196, 182, .15)
+        }
+
+        .pi.r {
+            background: rgba(255, 107, 107, .15)
+        }
+
+        @keyframes fp {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-10px)
+            }
+        }
 
         /* TRUST */
-        .trust{background:var(--navy);padding:2.5rem 2rem;text-align:center}
-        .trust p{color:rgba(255,255,255,.5);font-size:.85rem;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1.5rem}
-        .trust-logos{display:flex;justify-content:center;align-items:center;gap:3rem;flex-wrap:wrap}
-        .trust-i{color:rgba(255,255,255,.4);font-weight:600;font-size:.95rem;display:flex;align-items:center;gap:.5rem;transition:color .3s}
-        .trust-i:hover{color:rgba(255,255,255,.7)}
+        .trust {
+            background: var(--navy);
+            padding: 2.5rem 2rem;
+            text-align: center
+        }
+
+        .trust p {
+            color: rgba(255, 255, 255, .5);
+            font-size: .85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.5rem
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap
+        }
+
+        .trust-i {
+            color: rgba(255, 255, 255, .4);
+            font-weight: 600;
+            font-size: .95rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            transition: color .3s
+        }
+
+        .trust-i:hover {
+            color: rgba(255, 255, 255, .7)
+        }
 
         /* SECTIONS COMMON */
-        .si{max-width:1100px;margin:0 auto}
-        .sl{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--mint-dark);margin-bottom:1rem}
-        .st{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);color:var(--navy);margin-bottom:1rem;max-width:600px}
-        .ss{font-size:1.1rem;color:var(--gray-600);max-width:550px;margin-bottom:3rem}
-        .centered .sl,.centered .st,.centered .ss{text-align:center;margin-left:auto;margin-right:auto}
+        .si {
+            max-width: 1100px;
+            margin: 0 auto
+        }
+
+        .sl {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            font-size: .8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--mint-dark);
+            margin-bottom: 1rem
+        }
+
+        .st {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            color: var(--navy);
+            margin-bottom: 1rem;
+            max-width: 600px
+        }
+
+        .ss {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 550px;
+            margin-bottom: 3rem
+        }
+
+        .centered .sl,
+        .centered .st,
+        .centered .ss {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto
+        }
 
         /* PROBLEM */
-        .problem{padding:6rem 2rem;background:var(--white)}
-        .p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-        .p-card{background:var(--gray-100);border-radius:20px;padding:2rem;border:1px solid var(--gray-200);transition:all .3s}
-        .p-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-        .p-ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem}
-        .p-ico.red{background:rgba(255,107,107,.12)}.p-ico.org{background:rgba(255,165,0,.12)}.p-ico.blu{background:rgba(70,130,240,.12)}
-        .p-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.6rem}
-        .p-card p{font-size:.92rem;color:var(--gray-600);line-height:1.6}
-        .p-stat{margin-top:1rem;font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--coral)}
+        .problem {
+            padding: 6rem 2rem;
+            background: var(--white)
+        }
+
+        .p-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem
+        }
+
+        .p-card {
+            background: var(--gray-100);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--gray-200);
+            transition: all .3s
+        }
+
+        .p-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md)
+        }
+
+        .p-ico {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem
+        }
+
+        .p-ico.red {
+            background: rgba(255, 107, 107, .12)
+        }
+
+        .p-ico.org {
+            background: rgba(255, 165, 0, .12)
+        }
+
+        .p-ico.blu {
+            background: rgba(70, 130, 240, .12)
+        }
+
+        .p-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: .6rem
+        }
+
+        .p-card p {
+            font-size: .92rem;
+            color: var(--gray-600);
+            line-height: 1.6
+        }
+
+        .p-stat {
+            margin-top: 1rem;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            color: var(--coral)
+        }
 
         /* VALUE PROPS */
-        .vp{padding:6rem 2rem;background:linear-gradient(180deg,var(--cream),var(--white))}
-        .v-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-        .v-card{background:var(--white);border-radius:20px;padding:2.2rem;border:1px solid var(--gray-200);text-align:center;transition:all .4s;position:relative;overflow:hidden}
-        .v-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--mint),var(--mint-dark));opacity:0;transition:opacity .3s}
-        .v-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent}
-        .v-card:hover::before{opacity:1}
-        .v-emoji{font-size:2.5rem;margin-bottom:1rem;display:block}
-        .v-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.6rem}
-        .v-card p{font-size:.9rem;color:var(--gray-600);line-height:1.6}
+        .vp {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--cream), var(--white))
+        }
+
+        .v-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem
+        }
+
+        .v-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.2rem;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all .4s;
+            position: relative;
+            overflow: hidden
+        }
+
+        .v-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--mint), var(--mint-dark));
+            opacity: 0;
+            transition: opacity .3s
+        }
+
+        .v-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent
+        }
+
+        .v-card:hover::before {
+            opacity: 1
+        }
+
+        .v-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block
+        }
+
+        .v-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: .6rem
+        }
+
+        .v-card p {
+            font-size: .9rem;
+            color: var(--gray-600);
+            line-height: 1.6
+        }
 
         /* HOW IT WORKS */
-        .hiw{padding:6rem 2rem;background:var(--white)}
-        .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
-        .steps::before{content:'';position:absolute;top:48px;left:12.5%;width:75%;height:2px;background:linear-gradient(90deg,var(--mint),var(--mint-dark));opacity:.3}
-        .step{text-align:center;position:relative}
-        .step-n{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--mint-dark));color:#fff;font-family:'DM Serif Display',serif;font-size:1.5rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 8px 25px rgba(46,196,182,.3);position:relative;z-index:2}
-        .step-ico{font-size:2rem;margin-bottom:.8rem}
-        .step h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
-        .step p{font-size:.88rem;color:var(--gray-600);max-width:240px;margin:0 auto;line-height:1.6}
+        .hiw {
+            padding: 6rem 2rem;
+            background: var(--white)
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            position: relative
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 48px;
+            left: 12.5%;
+            width: 75%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--mint), var(--mint-dark));
+            opacity: .3
+        }
+
+        .step {
+            text-align: center;
+            position: relative
+        }
+
+        .step-n {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--mint), var(--mint-dark));
+            color: #fff;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 25px rgba(46, 196, 182, .3);
+            position: relative;
+            z-index: 2
+        }
+
+        .step-ico {
+            font-size: 2rem;
+            margin-bottom: .8rem
+        }
+
+        .step h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: .5rem
+        }
+
+        .step p {
+            font-size: .88rem;
+            color: var(--gray-600);
+            max-width: 240px;
+            margin: 0 auto;
+            line-height: 1.6
+        }
 
         /* FEATURES */
-        .feat{padding:6rem 2rem;background:var(--gray-100)}
-        .f-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
-        .f-card{display:flex;gap:1.2rem;padding:1.8rem;border-radius:18px;border:1px solid var(--gray-200);transition:all .3s;background:var(--white)}
-        .f-card:hover{border-color:var(--mint);box-shadow:var(--shadow-glow);transform:translateY(-2px)}
-        .f-ico{width:48px;height:48px;min-width:48px;border-radius:14px;background:linear-gradient(135deg,rgba(46,196,182,.1),rgba(46,196,182,.05));display:flex;align-items:center;justify-content:center;font-size:1.3rem}
-        .f-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.3rem}
-        .f-card p{font-size:.88rem;color:var(--gray-600);line-height:1.5}
+        .feat {
+            padding: 6rem 2rem;
+            background: var(--gray-100)
+        }
+
+        .f-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem
+        }
+
+        .f-card {
+            display: flex;
+            gap: 1.2rem;
+            padding: 1.8rem;
+            border-radius: 18px;
+            border: 1px solid var(--gray-200);
+            transition: all .3s;
+            background: var(--white)
+        }
+
+        .f-card:hover {
+            border-color: var(--mint);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px)
+        }
+
+        .f-ico {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(46, 196, 182, .1), rgba(46, 196, 182, .05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem
+        }
+
+        .f-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: .3rem
+        }
+
+        .f-card p {
+            font-size: .88rem;
+            color: var(--gray-600);
+            line-height: 1.5
+        }
 
         /* FOR WHO */
-        .fw{padding:6rem 2rem;background:var(--navy);color:#fff;position:relative;overflow:hidden}
-        .fw::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(46,196,182,.1),transparent 70%);border-radius:50%}
-        .fw .sl{color:var(--mint-light)}.fw .st{color:#fff}.fw .ss{color:rgba(255,255,255,.6)}
-        .pw{position:relative;z-index:2}
-        .ps-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--mint-light);margin-bottom:1.2rem;text-align:center}
-        .personas{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem}
-        .pe-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2rem;transition:all .3s;backdrop-filter:blur(10px)}
-        .pe-card:hover{background:rgba(255,255,255,.1);border-color:var(--mint);transform:translateY(-4px)}
-        .pe-emoji{font-size:2.5rem;margin-bottom:1rem}
-        .pe-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.5rem}
-        .pe-card p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.6}
-        .pe-card ul{list-style:none;margin-top:1rem}
-        .pe-card li{font-size:.85rem;color:rgba(255,255,255,.7);padding:.3rem 0;display:flex;align-items:center;gap:.5rem}
-        .pe-card li::before{content:'✓';color:var(--mint);font-weight:700}
-        .personas-b2b{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:700px;margin:0 auto}
+        .fw {
+            padding: 6rem 2rem;
+            background: var(--navy);
+            color: #fff;
+            position: relative;
+            overflow: hidden
+        }
+
+        .fw::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(46, 196, 182, .1), transparent 70%);
+            border-radius: 50%
+        }
+
+        .fw .sl {
+            color: var(--mint-light)
+        }
+
+        .fw .st {
+            color: #fff
+        }
+
+        .fw .ss {
+            color: rgba(255, 255, 255, .6)
+        }
+
+        .pw {
+            position: relative;
+            z-index: 2
+        }
+
+        .ps-title {
+            font-size: .75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--mint-light);
+            margin-bottom: 1.2rem;
+            text-align: center
+        }
+
+        .personas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem
+        }
+
+        .pe-card {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all .3s;
+            backdrop-filter: blur(10px)
+        }
+
+        .pe-card:hover {
+            background: rgba(255, 255, 255, .1);
+            border-color: var(--mint);
+            transform: translateY(-4px)
+        }
+
+        .pe-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem
+        }
+
+        .pe-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: .5rem
+        }
+
+        .pe-card p {
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .6);
+            line-height: 1.6
+        }
+
+        .pe-card ul {
+            list-style: none;
+            margin-top: 1rem
+        }
+
+        .pe-card li {
+            font-size: .85rem;
+            color: rgba(255, 255, 255, .7);
+            padding: .3rem 0;
+            display: flex;
+            align-items: center;
+            gap: .5rem
+        }
+
+        .pe-card li::before {
+            content: '✓';
+            color: var(--mint);
+            font-weight: 700
+        }
+
+        .personas-b2b {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto
+        }
 
         /* TESTIMONIALS */
-        .testi{padding:6rem 2rem;background:linear-gradient(180deg,var(--white),var(--cream))}
-        .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-        .t-card{background:var(--white);border-radius:20px;padding:2rem;box-shadow:var(--shadow-sm);border:1px solid var(--gray-200);transition:all .3s}
-        .t-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
-        .t-stars{color:#FFC107;font-size:1rem;margin-bottom:1rem;letter-spacing:2px}
-        .t-card blockquote{font-size:.95rem;color:var(--gray-600);line-height:1.7;font-style:italic;margin-bottom:1.2rem}
-        .t-author{display:flex;align-items:center;gap:.8rem}
-        .t-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--coral));display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:.85rem}
-        .t-name{font-weight:700;font-size:.9rem}
-        .t-role{font-size:.8rem;color:var(--gray-400)}
+        .testi {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--white), var(--cream))
+        }
+
+        .t-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem
+        }
+
+        .t-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            transition: all .3s
+        }
+
+        .t-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px)
+        }
+
+        .t-stars {
+            color: #FFC107;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px
+        }
+
+        .t-card blockquote {
+            font-size: .95rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 1.2rem
+        }
+
+        .t-author {
+            display: flex;
+            align-items: center;
+            gap: .8rem
+        }
+
+        .t-av {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--mint), var(--coral));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+            font-size: .85rem
+        }
+
+        .t-name {
+            font-weight: 700;
+            font-size: .9rem
+        }
+
+        .t-role {
+            font-size: .8rem;
+            color: var(--gray-400)
+        }
 
         /* ROADMAP */
-        .roadmap{padding:6rem 2rem;background:var(--white)}
-        .r-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
-        .r-card{background:var(--gray-100);border:2px dashed var(--gray-200);border-radius:18px;padding:1.8rem;text-align:center;transition:all .3s}
-        .r-card:hover{border-color:var(--mint);background:rgba(46,196,182,.04);transform:translateY(-3px)}
-        .r-tag{display:inline-block;background:rgba(46,196,182,.1);color:var(--mint-dark);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:.25rem .8rem;border-radius:50px;margin-bottom:1rem}
-        .r-emoji{font-size:2rem;margin-bottom:.8rem;display:block}
-        .r-card h3{font-size:1rem;font-weight:700;margin-bottom:.4rem}
-        .r-card p{font-size:.82rem;color:var(--gray-600);line-height:1.5}
+        .roadmap {
+            padding: 6rem 2rem;
+            background: var(--white)
+        }
+
+        .r-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem
+        }
+
+        .r-card {
+            background: var(--gray-100);
+            border: 2px dashed var(--gray-200);
+            border-radius: 18px;
+            padding: 1.8rem;
+            text-align: center;
+            transition: all .3s
+        }
+
+        .r-card:hover {
+            border-color: var(--mint);
+            background: rgba(46, 196, 182, .04);
+            transform: translateY(-3px)
+        }
+
+        .r-tag {
+            display: inline-block;
+            background: rgba(46, 196, 182, .1);
+            color: var(--mint-dark);
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: .25rem .8rem;
+            border-radius: 50px;
+            margin-bottom: 1rem
+        }
+
+        .r-emoji {
+            font-size: 2rem;
+            margin-bottom: .8rem;
+            display: block
+        }
+
+        .r-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: .4rem
+        }
+
+        .r-card p {
+            font-size: .82rem;
+            color: var(--gray-600);
+            line-height: 1.5
+        }
 
         /* FAQ */
-        .faq{padding:6rem 2rem;background:var(--gray-100)}
-        .faq-list{max-width:700px;margin:0 auto}
-        .faq-item{background:var(--white);border-radius:14px;margin-bottom:.8rem;border:1px solid var(--gray-200);overflow:hidden;transition:all .3s}
-        .faq-item:hover{border-color:var(--mint)}
-        .faq-q{width:100%;background:none;border:none;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:1rem;font-weight:600;color:var(--navy);text-align:left;font-family:'DM Sans',sans-serif}
-        .faq-q .arrow{font-size:1.2rem;transition:transform .3s;color:var(--mint)}
-        .faq-item.active .faq-q .arrow{transform:rotate(180deg)}
-        .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
-        .faq-ai{padding:0 1.5rem 1.3rem;font-size:.92rem;color:var(--gray-600);line-height:1.7}
+        .faq {
+            padding: 6rem 2rem;
+            background: var(--gray-100)
+        }
+
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 14px;
+            margin-bottom: .8rem;
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: all .3s
+        }
+
+        .faq-item:hover {
+            border-color: var(--mint)
+        }
+
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.3rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+            text-align: left;
+            font-family: 'DM Sans', sans-serif
+        }
+
+        .faq-q .arrow {
+            font-size: 1.2rem;
+            transition: transform .3s;
+            color: var(--mint)
+        }
+
+        .faq-item.active .faq-q .arrow {
+            transform: rotate(180deg)
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease
+        }
+
+        .faq-ai {
+            padding: 0 1.5rem 1.3rem;
+            font-size: .92rem;
+            color: var(--gray-600);
+            line-height: 1.7
+        }
 
         /* CTA FINAL */
-        .cta{padding:6rem 2rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));text-align:center;position:relative;overflow:hidden}
-        .cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(46,196,182,.1),transparent 60%);border-radius:50%}
-        .cta .si{position:relative;z-index:2}
-        .cta h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;margin-bottom:1rem}
-        .cta>div p{color:rgba(255,255,255,.6);font-size:1.1rem;max-width:500px;margin:0 auto 1rem}
-        .cta-tag{display:inline-block;background:rgba(46,196,182,.15);border:1px solid rgba(46,196,182,.3);color:var(--mint-light);font-weight:700;font-size:.9rem;padding:.5rem 1.5rem;border-radius:50px;margin-bottom:2rem}
-        .cta .btn-p{padding:1.2rem 2.8rem;font-size:1.15rem}
+        .cta {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(46, 196, 182, .1), transparent 60%);
+            border-radius: 50%
+        }
+
+        .cta .si {
+            position: relative;
+            z-index: 2
+        }
+
+        .cta h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #fff;
+            margin-bottom: 1rem
+        }
+
+        .cta>div p {
+            color: rgba(255, 255, 255, .6);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 1rem
+        }
+
+        .cta-tag {
+            display: inline-block;
+            background: rgba(46, 196, 182, .15);
+            border: 1px solid rgba(46, 196, 182, .3);
+            color: var(--mint-light);
+            font-weight: 700;
+            font-size: .9rem;
+            padding: .5rem 1.5rem;
+            border-radius: 50px;
+            margin-bottom: 2rem
+        }
+
+        .cta .btn-p {
+            padding: 1.2rem 2.8rem;
+            font-size: 1.15rem
+        }
 
         /* FOOTER */
-        footer{background:#0F1B33;padding:3rem 2rem 1.5rem}
-        .fi{max-width:1100px;margin:0 auto}
-        .ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.08)}
-        .fb p{font-size:.88rem;color:rgba(255,255,255,.4);line-height:1.6;max-width:280px;margin-top:.8rem}
-        .fc h4{color:#fff;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem}
-        .fc a{display:block;color:rgba(255,255,255,.4);text-decoration:none;font-size:.88rem;padding:.25rem 0;transition:color .3s}
-        .fc a:hover{color:var(--mint)}
-        .fbot{display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem}
-        .fbot p{font-size:.8rem;color:rgba(255,255,255,.3)}
-        .fsoc{display:flex;gap:1rem}
-        .fsoc a{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;transition:all .3s;font-size:.9rem}
-        .fsoc a:hover{background:var(--mint);color:#fff}
+        footer {
+            background: #0F1B33;
+            padding: 3rem 2rem 1.5rem
+        }
+
+        .fi {
+            max-width: 1100px;
+            margin: 0 auto
+        }
+
+        .ft {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .08)
+        }
+
+        .fb p {
+            font-size: .88rem;
+            color: rgba(255, 255, 255, .4);
+            line-height: 1.6;
+            max-width: 280px;
+            margin-top: .8rem
+        }
+
+        .fc h4 {
+            color: #fff;
+            font-size: .85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem
+        }
+
+        .fc a {
+            display: block;
+            color: rgba(255, 255, 255, .4);
+            text-decoration: none;
+            font-size: .88rem;
+            padding: .25rem 0;
+            transition: color .3s
+        }
+
+        .fc a:hover {
+            color: var(--mint)
+        }
+
+        .fbot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem
+        }
+
+        .fbot p {
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .3)
+        }
+
+        .fsoc {
+            display: flex;
+            gap: 1rem
+        }
+
+        .fsoc a {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .4);
+            text-decoration: none;
+            transition: all .3s;
+            font-size: .9rem
+        }
+
+        .fsoc a:hover {
+            background: var(--mint);
+            color: #fff
+        }
 
         /* WPP FLOAT */
-        .wpp-float{position:fixed;bottom:2rem;right:2rem;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;text-decoration:none;box-shadow:0 6px 25px rgba(37,211,102,.4);z-index:99;transition:all .3s;animation:bounceIn 1s ease 2s both}
-        .wpp-float:hover{transform:scale(1.1);box-shadow:0 8px 35px rgba(37,211,102,.5)}
-        @keyframes bounceIn{0%{opacity:0;transform:scale(0)}60%{transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
+        .wpp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, .4);
+            z-index: 99;
+            transition: all .3s;
+            animation: bounceIn 1s ease 2s both
+        }
+
+        .wpp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 35px rgba(37, 211, 102, .5)
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0)
+            }
+
+            60% {
+                transform: scale(1.15)
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--white), var(--cream))
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem
+        }
+
+        .about-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.2rem;
+            border: 1px solid var(--gray-200);
+            transition: all .4s;
+            position: relative;
+            overflow: hidden
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--mint), var(--mint-dark));
+            opacity: 0;
+            transition: opacity .3s
+        }
+
+        .about-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent
+        }
+
+        .about-card:hover::before {
+            opacity: 1
+        }
+
+        .about-ico {
+            font-size: 2.5rem;
+            margin-bottom: 1rem
+        }
+
+        .about-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: .6rem;
+            color: var(--navy)
+        }
+
+        .about-card p {
+            font-size: .92rem;
+            color: var(--gray-600);
+            line-height: 1.7
+        }
+
+        /* PLATFORM */
+        .platform {
+            padding: 6rem 2rem;
+            background: var(--navy);
+            color: #fff;
+            position: relative;
+            overflow: hidden
+        }
+
+        .platform::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(46, 196, 182, .1), transparent 70%);
+            border-radius: 50%
+        }
+
+        .platform .sl {
+            color: var(--mint-light)
+        }
+
+        .platform .st {
+            color: #fff
+        }
+
+        .platform .ss {
+            color: rgba(255, 255, 255, .6)
+        }
+
+        .plat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2
+        }
+
+        .plat-card {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all .4s;
+            backdrop-filter: blur(10px)
+        }
+
+        .plat-card:hover {
+            background: rgba(255, 255, 255, .12);
+            border-color: var(--mint);
+            transform: translateY(-4px)
+        }
+
+        .plat-ico {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem
+        }
+
+        .plat-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: .6rem
+        }
+
+        .plat-card p {
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .6);
+            line-height: 1.6;
+            margin-bottom: 1rem
+        }
+
+        .plat-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            color: var(--mint-light);
+            font-weight: 600;
+            font-size: .9rem;
+            text-decoration: none;
+            transition: color .3s
+        }
+
+        .plat-link:hover {
+            color: #fff
+        }
+
+        .plat-tag {
+            display: inline-block;
+            background: rgba(46, 196, 182, .15);
+            color: var(--mint-light);
+            font-size: .75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: .25rem .8rem;
+            border-radius: 50px
+        }
+
+        /* NEWSLETTER */
+        .newsletter {
+            padding: 5rem 2rem;
+            background: var(--gray-100)
+        }
+
+        .nl-form {
+            display: flex;
+            gap: .8rem;
+            max-width: 480px;
+            margin: 0 auto
+        }
+
+        .nl-input {
+            flex: 1;
+            padding: .9rem 1.3rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: .95rem;
+            font-family: 'DM Sans', sans-serif;
+            transition: border-color .3s;
+            outline: none;
+            background: var(--white)
+        }
+
+        .nl-input:focus {
+            border-color: var(--mint)
+        }
+
+        .nl-btn {
+            background: linear-gradient(135deg, var(--mint), var(--mint-dark));
+            color: #fff;
+            border: none;
+            padding: .9rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: .95rem;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: all .3s;
+            box-shadow: 0 4px 15px rgba(46, 196, 182, .3)
+        }
+
+        .nl-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 196, 182, .4)
+        }
 
         /* RESPONSIVE */
-        @media(max-width:900px){
-            .hero-inner{grid-template-columns:1fr;text-align:center}
-            .hero-sub{margin-left:auto;margin-right:auto}
-            .hero-ctas{justify-content:center}
-            .hero-stats{justify-content:center}
-            .hero-visual{margin-top:2rem}
-            .fpill{display:none}
-            .p-grid,.steps,.personas,.personas-b2b,.f-grid,.v-grid,.t-grid,.r-grid{grid-template-columns:1fr;max-width:500px;margin-left:auto;margin-right:auto}
-            .steps::before{display:none}
-            .ft{grid-template-columns:1fr 1fr}
-            .nav-links{display:none}
-            .hamburger{display:flex}
-            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:1.5rem 2rem;box-shadow:var(--shadow-md);border-radius:0 0 16px 16px}
+        @media(max-width:900px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center
+            }
+
+            .hero-sub {
+                margin-left: auto;
+                margin-right: auto
+            }
+
+            .hero-ctas {
+                justify-content: center
+            }
+
+            .hero-stats {
+                justify-content: center
+            }
+
+            .hero-visual {
+                margin-top: 2rem
+            }
+
+            .fpill {
+                display: none
+            }
+
+            .p-grid,
+            .steps,
+            .personas,
+            .personas-b2b,
+            .f-grid,
+            .v-grid,
+            .t-grid,
+            .r-grid,
+            .about-grid,
+            .plat-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto
+            }
+
+            .steps::before {
+                display: none
+            }
+
+            .ft {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .nav-links {
+                display: none
+            }
+
+            .hamburger {
+                display: flex
+            }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #fff;
+                padding: 1.5rem 2rem;
+                box-shadow: var(--shadow-md);
+                border-radius: 0 0 16px 16px
+            }
+
+            .nl-form {
+                flex-direction: column
+            }
         }
-        @media(min-width:901px) and (max-width:1100px){
-            .p-grid,.personas,.t-grid,.v-grid{grid-template-columns:repeat(2,1fr)}
-            .r-grid{grid-template-columns:repeat(2,1fr)}
+
+        @media(min-width:901px) and (max-width:1100px) {
+
+            .p-grid,
+            .personas,
+            .t-grid,
+            .v-grid,
+            .about-grid,
+            .plat-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .r-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
         }
     </style>
 </head>
+
 <body>
 
-<nav id="nav">
-    <div class="nav-inner">
-        <a href="#" class="logo">
-            <div class="logo-icon">🩺</div>
-            <span class="logo-text">Tia Médica</span>
-        </a>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#problema">O Problema</a></li>
-            <li><a href="#como-funciona">Como Funciona</a></li>
-            <li><a href="#funcionalidades">Funcionalidades</a></li>
-            <li><a href="#para-quem">Para Quem</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="https://wa.me/5500000000000" class="btn-wpp-nav">📱 Comece Grátis</a></li>
-        </ul>
-        <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</nav>
-
-<section class="hero">
-    <div class="hero-inner">
-        <div>
-            <div class="hero-badge"><span class="dot"></span> Gratuito pelo WhatsApp</div>
-            <h1>Cuidar da saúde da sua família ficou <span class="highlight">mais simples</span></h1>
-            <p class="hero-sub">A Tia Médica é uma assistente inteligente que ajuda idosos e cuidadores a nunca mais esquecer um medicamento. Tudo pelo WhatsApp, sem instalar nada.</p>
-            <div class="hero-ctas">
-                <a href="https://wa.me/5500000000000" class="btn-p">📱 Começar grátis pelo WhatsApp</a>
-                <a href="#como-funciona" class="btn-s">Saiba mais →</a>
-            </div>
-            <div class="hero-stats">
-                <div class="h-stat"><div class="num">24/7</div><div class="lbl">Disponível</div></div>
-                <div class="h-stat"><div class="num">0</div><div class="lbl">Apps extras</div></div>
-                <div class="h-stat"><div class="num">100%</div><div class="lbl">Gratuito</div></div>
-            </div>
+    <nav id="nav">
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <img src="assets/logo.png" alt="Tia Médica" class="logo-icon">
+                <span class="logo-text">Tia Médica</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#como-funciona">Como Funciona</a></li>
+                <li><a href="#plataforma">Plataforma</a></li>
+                <li><a href="#para-quem">Para Quem</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="https://wa.me/551150394938" class="btn-wpp-nav">📱 Acesse a Tia</a></li>
+            </ul>
+            <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-        <div class="hero-visual">
-            <div class="fpill p1"><div class="pi g">💊</div><span>Lembrete enviado!</span></div>
-            <div class="fpill p2"><div class="pi r">❤️</div><span>Mamãe tomou o remédio</span></div>
-            <div class="phone">
-                <div class="phone-notch"></div>
-                <div class="phone-screen">
-                    <div class="ch-hdr"><div class="ch-av">🩺</div><div><div class="ch-name">Tia Médica</div><div class="ch-st">online</div></div></div>
-                    <div class="msg msg-b">Oi, Dona Maria! 😊 Já são 8h da manhã. Hora de tomar o Losartana 50mg.<div class="msg-t">08:00</div></div>
-                    <div class="msg msg-u">Ah é verdade! Vou tomar agora<div class="msg-t">08:02</div></div>
-                    <div class="msg msg-b">Ótimo! ✅ Já anotei aqui. Seu próximo remédio é o AAS às 12h. Bom dia!<div class="msg-t">08:02</div></div>
-                    <div class="msg msg-b">📋 Resumo de hoje:<br>✅ Losartana 50mg — 8h<br>⏰ AAS 100mg — 12h<br>⏰ Metformina 850mg — 20h<div class="msg-t">08:03</div></div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-badge"><span class="dot"></span> Sua saúde, nosso propósito</div>
+                <h1>Cuidamos de quem você ama com <span class="highlight">carinho e tecnologia</span></h1>
+                <p class="hero-sub">Atendemos suas necessidades de saúde com cuidado e carinho. A Tia Médica é uma
+                    extensão do seu afeto — ajudando na medicação, rotinas e bem-estar, tudo pelo WhatsApp.</p>
+                <div class="hero-ctas">
+                    <a href="https://wa.me/551150394938" class="btn-p">📱 Acesse a Tia pelo WhatsApp</a>
+                    <a href="#sobre" class="btn-s">Conheça nossa missão →</a>
+                </div>
+                <p style="margin-top:1rem;animation:fadeInUp .8s ease .4s both"><span
+                        style="display:inline-block;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;font-weight:700;font-size:.9rem;padding:.5rem 1.2rem;border-radius:50px;box-shadow:0 4px 15px rgba(37,211,102,.3)">🎉
+                        100% GRATUITO pelo celular · Sem instalar nada</span></p>
+                <div class="hero-stats">
+                    <div class="h-stat">
+                        <div class="num">24/7</div>
+                        <div class="lbl">Disponível</div>
+                    </div>
+                    <div class="h-stat">
+                        <div class="num">0</div>
+                        <div class="lbl">Apps extras</div>
+                    </div>
+                    <div class="h-stat">
+                        <div class="num">100%</div>
+                        <div class="lbl">Gratuito</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="fpill p1">
+                    <div class="pi g">💊</div><span>Lembrete enviado!</span>
+                </div>
+                <div class="fpill p2">
+                    <div class="pi r">❤️</div><span>Mamãe tomou o remédio</span>
+                </div>
+                <div class="phone">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="ch-hdr">
+                            <div class="ch-av">🩺</div>
+                            <div>
+                                <div class="ch-name">Tia Médica</div>
+                                <div class="ch-st">online</div>
+                            </div>
+                        </div>
+                        <div class="msg msg-b">Oi, Dona Maria! 😊 Já são 8h da manhã. Hora de tomar o Losartana 50mg.
+                            <div class="msg-t">08:00</div>
+                        </div>
+                        <div class="msg msg-u">Ah é verdade! Vou tomar agora<div class="msg-t">08:02</div>
+                        </div>
+                        <div class="msg msg-b">Ótimo! ✅ Já anotei aqui. Seu próximo remédio é o AAS às 12h. Bom dia!<div
+                                class="msg-t">08:02</div>
+                        </div>
+                        <div class="msg msg-b">📋 Resumo de hoje:<br>✅ Losartana 50mg — 8h<br>⏰ AAS 100mg — 12h<br>⏰
+                            Metformina 850mg — 20h<div class="msg-t">08:03</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<div class="trust">
-    <p>Tecnologia de confiança</p>
-    <div class="trust-logos">
-        <div class="trust-i">🔒 Criptografia WhatsApp</div>
-        <div class="trust-i">☁️ AWS Cloud</div>
-        <div class="trust-i">🤖 Google Gemini AI</div>
-        <div class="trust-i">📋 LGPD Compliant</div>
-    </div>
-</div>
 
-<section class="problem" id="problema">
-    <div class="si">
-        <div class="sl">⚠️ O Problema</div>
-        <h2 class="st">A falta de adesão aos medicamentos é uma crise silenciosa</h2>
-        <p class="ss">No Brasil, milhões de idosos esquecem de tomar seus remédios, gerando internações e custos desnecessários.</p>
-        <div class="p-grid">
-            <div class="p-card"><div class="p-ico red">💊</div><h3>Esquecimento de Medicamentos</h3><p>Idosos com múltiplos medicamentos frequentemente confundem horários, doses e até mesmo qual remédio tomar.</p><div class="p-stat">50%</div><p style="font-size:.8rem;color:var(--gray-400);margin-top:.3rem">dos idosos não tomam medicamentos corretamente</p></div>
-            <div class="p-card"><div class="p-ico org">🏥</div><h3>Internações Evitáveis</h3><p>A falta de adesão medicamentosa é uma das principais causas de reinternação hospitalar no Brasil.</p><div class="p-stat">R$ 7,6 bi</div><p style="font-size:.8rem;color:var(--gray-400);margin-top:.3rem">gastos anuais com internações evitáveis</p></div>
-            <div class="p-card"><div class="p-ico blu">👨‍👩‍👧</div><h3>Sobrecarga dos Cuidadores</h3><p>Filhos e cuidadores precisam monitorar constantemente, gerando ansiedade e desgaste emocional.</p><div class="p-stat">73%</div><p style="font-size:.8rem;color:var(--gray-400);margin-top:.3rem">dos cuidadores relatam estresse elevado</p></div>
-        </div>
-    </div>
-</section>
-
-<section class="vp">
-    <div class="si centered">
-        <div class="sl">💎 Nossa Proposta</div>
-        <h2 class="st">Mais que um lembrete. Um ecossistema de cuidado.</h2>
-        <p class="ss">Cada detalhe da Tia Médica foi pensado para trazer confiança, proximidade e constância no cuidado com a saúde.</p>
-        <div class="v-grid">
-            <div class="v-card"><span class="v-emoji">📸</span><h3>Reconhecimento de Receitas</h3><p>Envie a foto da receita médica e a Tia Médica identifica remédios, doses e horários automaticamente.</p></div>
-            <div class="v-card"><span class="v-emoji">🤝</span><h3>Confiabilidade no Cuidado</h3><p>Um sistema que funciona todos os dias, nos horários certos, sem falhar. Sua família pode confiar.</p></div>
-            <div class="v-card"><span class="v-emoji">❤️</span><h3>Aproximar Pessoas</h3><p>Conecta pacientes e cuidadores com notificações em tempo real, mesmo à distância.</p></div>
-            <div class="v-card"><span class="v-emoji">🗣️</span><h3>Humanizada e Empática</h3><p>Conversa com carinho, paciência e respeito — como uma tia de verdade faria.</p></div>
-            <div class="v-card"><span class="v-emoji">⚙️</span><h3>Lembretes Personalizados</h3><p>Os lembretes se adaptam aos horários e preferências de cada paciente.</p></div>
-            <div class="v-card"><span class="v-emoji">🔄</span><h3>Consistência de Hábitos</h3><p>A repetição gera o hábito. A Tia Médica ajuda a criar uma rotina saudável e sustentável.</p></div>
-        </div>
-    </div>
-</section>
-
-<section class="hiw" id="como-funciona">
-    <div class="si centered">
-        <div class="sl">🚀 Como Funciona</div>
-        <h2 class="st">Simples como mandar uma mensagem</h2>
-        <p class="ss">Em 4 passos, sua família está protegida. Sem downloads, sem cadastros complicados.</p>
-        <div class="steps">
-            <div class="step"><div class="step-n">1</div><div class="step-ico">📱</div><h3>Mande um "oi"</h3><p>Inicie a conversa pelo WhatsApp. A Tia Médica te guia de forma acolhedora.</p></div>
-            <div class="step"><div class="step-n">2</div><div class="step-ico">📸</div><h3>Envie a receita</h3><p>Tire uma foto da receita médica ou diga os remédios por mensagem.</p></div>
-            <div class="step"><div class="step-n">3</div><div class="step-ico">🔔</div><h3>Receba lembretes</h3><p>Na hora certa, aviso com nome do remédio, dose e instruções.</p></div>
-            <div class="step"><div class="step-n">4</div><div class="step-ico">👨‍👩‍👧</div><h3>Família conectada</h3><p>Cuidadores recebem alertas e relatórios sobre a adesão.</p></div>
-        </div>
-    </div>
-</section>
-
-<section class="feat" id="funcionalidades">
-    <div class="si centered">
-        <div class="sl">✨ Funcionalidades</div>
-        <h2 class="st">Tudo pelo WhatsApp</h2>
-        <p class="ss">Sem instalar nada. Sem aprender nada novo. Só conversar.</p>
-        <div class="f-grid">
-            <div class="f-card"><div class="f-ico">⏰</div><div><h3>Lembretes Inteligentes</h3><p>Notificações no horário exato, com nome do remédio, dose e instruções personalizadas.</p></div></div>
-            <div class="f-card"><div class="f-ico">📸</div><div><h3>Leitura de Receitas por Foto</h3><p>Envie uma foto da receita e a IA cadastra todos os medicamentos automaticamente.</p></div></div>
-            <div class="f-card"><div class="f-ico">👨‍👩‍👧</div><div><h3>Notificações para Cuidadores</h3><p>Familiares recebem alertas em tempo real quando o remédio é tomado ou esquecido.</p></div></div>
-            <div class="f-card"><div class="f-ico">🗣️</div><div><h3>Conversa Natural com IA</h3><p>Entende linguagem do dia a dia em português. Sem menus, botões ou comandos.</p></div></div>
-            <div class="f-card"><div class="f-ico">📊</div><div><h3>Relatórios de Adesão</h3><p>Histórico completo de medicamentos para compartilhar com o médico.</p></div></div>
-            <div class="f-card"><div class="f-ico">🔒</div><div><h3>Privacidade e Segurança</h3><p>Criptografia do WhatsApp + servidores AWS. 100% compatível com a LGPD.</p></div></div>
-        </div>
-    </div>
-</section>
-
-<section class="fw" id="para-quem">
-    <div class="si centered">
-        <div class="sl">👥 Para Quem</div>
-        <h2 class="st">Feita para quem mais precisa</h2>
-        <p class="ss">A Tia Médica atende diferentes realidades do cuidado com a saúde.</p>
-        <div class="pw">
-            <div class="ps-title">Para Pessoas — B2C</div>
-            <div class="personas">
-                <div class="pe-card"><div class="pe-emoji">👴</div><h3>Idosos</h3><p>Para quem toma vários medicamentos e precisa de um lembrete amigável.</p><ul><li>Zero apps para instalar</li><li>Interface familiar do WhatsApp</li><li>Tom carinhoso e paciente</li></ul></div>
-                <div class="pe-card"><div class="pe-emoji">👩‍💼</div><h3>Cuidadores e Filhos</h3><p>Para quem cuida à distância e quer tranquilidade sobre os remédios.</p><ul><li>Alertas de remédio esquecido</li><li>Relatórios automáticos</li><li>Gestão de múltiplos pacientes</li></ul></div>
-                <div class="pe-card"><div class="pe-emoji">💊</div><h3>Pessoas em Uso Contínuo</h3><p>Para qualquer pessoa que toma medicação diária e precisa de consistência.</p><ul><li>Lembretes personalizados</li><li>Acompanhamento de hábitos</li><li>Histórico para o médico</li></ul></div>
-            </div>
-            <div class="ps-title">Para Empresas — B2B</div>
-            <div class="personas-b2b">
-                <div class="pe-card"><div class="pe-emoji">🏥</div><h3>Clínicas</h3><p>Melhore a adesão dos seus pacientes e reduza reinternações.</p><ul><li>Dashboard de acompanhamento</li><li>Relatórios por paciente</li><li>Integração com sistemas</li></ul></div>
-                <div class="pe-card"><div class="pe-emoji">🏠</div><h3>Casas de Repouso</h3><p>Organize a medicação de múltiplos residentes com controle centralizado.</p><ul><li>Gestão de múltiplos pacientes</li><li>Controle de estoque de remédios</li><li>Comunicação com familiares</li></ul></div>
+    <section class="about" id="sobre">
+        <div class="si centered">
+            <div class="sl">💜 Sobre a Tia Médica</div>
+            <h2 class="st">Mais do que tecnologia. Um ato de cuidado.</h2>
+            <p class="ss">Somos uma extensão do afeto e da responsabilidade, oferecendo suporte diário para a saúde de
+                quem você ama.</p>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-ico">🎯</div>
+                    <h3>Nossa Missão</h3>
+                    <p>Cuidar de quem amamos, mesmo quando não podemos estar perto. Oferecemos suporte diário para a
+                        saúde com carinho, tecnologia e constância — porque todo mundo merece ter uma Tia por perto.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-ico">🌟</div>
+                    <h3>Nossa Visão</h3>
+                    <p>Ser a principal referência em cuidado inteligente e humanizado no Brasil, conectando famílias e
+                        profissionais de saúde através de tecnologia acessível e empática.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-ico">❤️</div>
+                    <h3>Nossos Valores</h3>
+                    <p>Empatia em cada interação. Confiança em cada lembrete. Simplicidade em cada etapa. Acreditamos
+                        que cuidar da saúde pode ser simples, carinhoso e gratuito.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="testi">
-    <div class="si centered">
-        <div class="sl">💬 Depoimentos</div>
-        <h2 class="st">O que dizem sobre a Tia Médica</h2>
-        <p class="ss">Histórias reais de quem já usa.</p>
-        <div class="t-grid">
-            <div class="t-card"><div class="t-stars">★★★★★</div><blockquote>"Minha mãe tem 82 anos e nunca mais esqueceu um remédio. A Tia Médica fala com ela de um jeito que ela entende."</blockquote><div class="t-author"><div class="t-av">CF</div><div><div class="t-name">Carla F.</div><div class="t-role">Filha e cuidadora</div></div></div></div>
-            <div class="t-card"><div class="t-stars">★★★★★</div><blockquote>"Como geriatra, recomendo para todos os meus pacientes. Enviar a foto da receita e ter tudo cadastrado é fantástico."</blockquote><div class="t-author"><div class="t-av">DR</div><div><div class="t-name">Dr. Ricardo M.</div><div class="t-role">Geriatra</div></div></div></div>
-            <div class="t-card"><div class="t-stars">★★★★★</div><blockquote>"Eu não gosto de app novo, mas o WhatsApp eu já uso todo dia. Foi muito fácil e a Tia é muito educada!"</blockquote><div class="t-author"><div class="t-av">JA</div><div><div class="t-name">Seu José A.</div><div class="t-role">Paciente, 76 anos</div></div></div></div>
+    <section class="problem" id="problema">
+        <div class="si">
+            <div class="sl">💡 Por que a Tia Médica?</div>
+            <h2 class="st">Cuidar da saúde não deveria ser tão difícil</h2>
+            <p class="ss">Milhões de pessoas enfrentam desafios diários para manter sua saúde em dia. A Tia Médica
+                nasceu para mudar isso.</p>
+            <div class="p-grid">
+                <div class="p-card">
+                    <div class="p-ico red">🤯</div>
+                    <h3>Saúde sem plataforma</h3>
+                    <p>Não existe um lugar simples para organizar remédios, hábitos e rotinas de saúde. Cada pessoa se
+                        vira como pode — com alarmes, papéis ou memória.</p>
+                </div>
+                <div class="p-card">
+                    <div class="p-ico org">🤖</div>
+                    <h3>Automação fria e impessoal</h3>
+                    <p>Apps de saúde existem, mas são frios, genéricos e complicados. Falta conexão humana, empatia e
+                        simplicidade no cuidado automatizado.</p>
+                </div>
+                <div class="p-card">
+                    <div class="p-ico blu">💔</div>
+                    <h3>Distância de quem amamos</h3>
+                    <p>Famílias vivem separadas e não conseguem acompanhar a saúde uns dos outros. A preocupação existe,
+                        mas faltam as ferramentas certas.</p>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="roadmap">
-    <div class="si centered">
-        <div class="sl">🔮 Em Breve</div>
-        <h2 class="st">A Tia Médica está só começando</h2>
-        <p class="ss">Estamos construindo um ecossistema completo de cuidado e bem-estar.</p>
-        <div class="r-grid">
-            <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">📅</span><h3>Agendamento de Consultas</h3><p>Marque e acompanhe consultas direto pelo WhatsApp.</p></div>
-            <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">🔬</span><h3>Acesso a Exames</h3><p>Receba resultados de exames e acompanhe seu histórico.</p></div>
-            <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">📦</span><h3>Controle de Estoque</h3><p>Aviso quando o remédio estiver acabando.</p></div>
-            <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">👨‍⚕️</span><h3>Relatório ao Médico</h3><p>Dados do paciente enviados automaticamente ao médico.</p></div>
+    <section class="vp">
+        <div class="si centered">
+            <div class="sl">💎 Nossa Proposta</div>
+            <h2 class="st">Mais que um lembrete. Uma companhia para sua saúde.</h2>
+            <p class="ss">A Tia Médica foi pensada para qualquer pessoa que quer cuidar melhor de si mesma ou de quem
+                ama — com simplicidade, carinho e inteligência.</p>
+            <div class="v-grid">
+                <div class="v-card"><span class="v-emoji">📸</span>
+                    <h3>Receitas por Foto</h3>
+                    <p>Tire uma foto da receita médica e a Tia entende tudo — remédios, doses e horários. Sem digitar
+                        nada.</p>
+                </div>
+                <div class="v-card"><span class="v-emoji">🤗</span>
+                    <h3>Cuidado com Empatia</h3>
+                    <p>Nada de mensagens genéricas. A Tia conversa com carinho, paciência e respeito — como alguém que
+                        realmente se importa.</p>
+                </div>
+                <div class="v-card"><span class="v-emoji">🔗</span>
+                    <h3>Conexão Familiar</h3>
+                    <p>Conecta quem cuida e quem é cuidado. Familiares acompanham a saúde uns dos outros em tempo real,
+                        mesmo à distância.</p>
+                </div>
+                <div class="v-card"><span class="v-emoji">✨</span>
+                    <h3>Simplicidade Radical</h3>
+                    <p>Sem apps novos, sem cadastros complicados. Funciona no WhatsApp que você já usa todo dia.</p>
+                </div>
+                <div class="v-card"><span class="v-emoji">🌱</span>
+                    <h3>Hábitos Saudáveis</h3>
+                    <p>Além de remédios, ajuda a criar rotinas de bem-estar — beber água, atividade física, sono e muito
+                        mais.</p>
+                </div>
+                <div class="v-card"><span class="v-emoji">🔒</span>
+                    <h3>Privacidade e Segurança</h3>
+                    <p>Seus dados são seus. Conversas protegidas pela criptografia do WhatsApp e conformidade total com
+                        a LGPD.</p>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="faq" id="faq">
-    <div class="si centered">
-        <div class="sl">❓ FAQ</div>
-        <h2 class="st">Perguntas Frequentes</h2>
-        <p class="ss">Tire suas dúvidas sobre a Tia Médica.</p>
-        <div class="faq-list">
-            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Preciso instalar algum aplicativo?<span class="arrow">▼</span></button><div class="faq-a"><div class="faq-ai">Não! A Tia Médica funciona 100% pelo WhatsApp. Se você já tem WhatsApp, está pronto. Basta enviar uma mensagem para nosso número.</div></div></div>
-            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">É realmente gratuito?<span class="arrow">▼</span></button><div class="faq-a"><div class="faq-ai">Sim! O uso da Tia Médica é totalmente gratuito. Cadastre medicamentos, receba lembretes e conecte cuidadores sem pagar nada.</div></div></div>
-            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">É seguro compartilhar dados de saúde?<span class="arrow">▼</span></button><div class="faq-a"><div class="faq-ai">Sim! Seguimos a LGPD. Conversas criptografadas pelo WhatsApp e servidores seguros na AWS.</div></div></div>
-            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Meu pai/mãe não sabe usar tecnologia. Vai conseguir?<span class="arrow">▼</span></button><div class="faq-a"><div class="faq-ai">Com certeza! Se a pessoa já troca mensagens no WhatsApp, ela consegue usar a Tia Médica. Linguagem simples, carinhosa e paciente. Sem menus complicados.</div></div></div>
-            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Como funciona o reconhecimento de receitas?<span class="arrow">▼</span></button><div class="faq-a"><div class="faq-ai">Tire uma foto da receita e envie pelo WhatsApp. Nossa IA analisa a imagem, identifica medicamentos, doses e frequências, e cadastra tudo. Depois é só confirmar!</div></div></div>
-            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Sou profissional de saúde. Como usar para meus pacientes?<span class="arrow">▼</span></button><div class="faq-a"><div class="faq-ai">Oferecemos soluções para clínicas e casas de repouso com dashboard e relatórios de adesão. Entre em contato pelo WhatsApp!</div></div></div>
+    <section class="hiw" id="como-funciona">
+        <div class="si centered">
+            <div class="sl">🚀 Como Funciona</div>
+            <h2 class="st">Simples como mandar uma mensagem</h2>
+            <p class="ss">Em 4 passos, sua saúde está organizada. Sem downloads, sem cadastros complicados.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-n">1</div>
+                    <div class="step-ico">📱</div>
+                    <h3>Mande um "oi"</h3>
+                    <p>Inicie a conversa pelo WhatsApp. A Tia Médica te guia de forma acolhedora.</p>
+                </div>
+                <div class="step">
+                    <div class="step-n">2</div>
+                    <div class="step-ico">📸</div>
+                    <h3>Envie a receita</h3>
+                    <p>Tire uma foto da receita médica ou diga os remédios por mensagem.</p>
+                </div>
+                <div class="step">
+                    <div class="step-n">3</div>
+                    <div class="step-ico">🔔</div>
+                    <h3>Receba lembretes</h3>
+                    <p>Na hora certa, aviso com nome do remédio, dose e instruções.</p>
+                </div>
+                <div class="step">
+                    <div class="step-n">4</div>
+                    <div class="step-ico">👨‍👩‍👧</div>
+                    <h3>Família conectada</h3>
+                    <p>Cuidadores recebem alertas e relatórios sobre a adesão.</p>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="cta">
-    <div class="si">
-        <h2>Comece a cuidar de quem você ama</h2>
-        <p>Mande um "oi" para a Tia Médica e nunca mais se preocupe com remédios esquecidos.</p>
-        <div class="cta-tag">✨ 100% Gratuito para começar</div><br><br>
-        <a href="https://wa.me/5500000000000" class="btn-p">📱 Começar agora pelo WhatsApp</a>
-    </div>
-</section>
-
-<footer>
-    <div class="fi">
-        <div class="ft">
-            <div class="fb"><a href="#" class="logo"><div class="logo-icon">🩺</div><span class="logo-text" style="color:#fff">Tia Médica</span></a><p>Assistente de saúde inteligente pelo WhatsApp. Cuidando de quem você ama, com carinho e tecnologia.</p></div>
-            <div class="fc"><h4>Produto</h4><a href="#como-funciona">Como Funciona</a><a href="#funcionalidades">Funcionalidades</a><a href="#para-quem">Para Quem</a><a href="#faq">FAQ</a></div>
-            <div class="fc"><h4>Empresa</h4><a href="#">Sobre Nós</a><a href="#">Blog</a><a href="#">Contato</a></div>
-            <div class="fc"><h4>Legal</h4><a href="#">Termos de Uso</a><a href="#">Privacidade</a><a href="#">LGPD</a></div>
+    <section class="feat" id="funcionalidades">
+        <div class="si centered">
+            <div class="sl">✨ Funcionalidades</div>
+            <h2 class="st">Tudo pelo WhatsApp</h2>
+            <p class="ss">Sem instalar nada. Sem aprender nada novo. Só conversar.</p>
+            <div class="f-grid">
+                <div class="f-card">
+                    <div class="f-ico">⏰</div>
+                    <div>
+                        <h3>Lembretes Inteligentes</h3>
+                        <p>Notificações no horário exato, com nome do remédio, dose e instruções personalizadas.</p>
+                    </div>
+                </div>
+                <div class="f-card">
+                    <div class="f-ico">📸</div>
+                    <div>
+                        <h3>Leitura de Receitas por Foto</h3>
+                        <p>Envie uma foto da receita e a IA cadastra todos os medicamentos automaticamente.</p>
+                    </div>
+                </div>
+                <div class="f-card">
+                    <div class="f-ico">👨‍👩‍👧</div>
+                    <div>
+                        <h3>Notificações para Cuidadores</h3>
+                        <p>Familiares recebem alertas em tempo real quando o remédio é tomado ou esquecido.</p>
+                    </div>
+                </div>
+                <div class="f-card">
+                    <div class="f-ico">🗣️</div>
+                    <div>
+                        <h3>Conversa Natural com IA</h3>
+                        <p>Entende linguagem do dia a dia em português. Sem menus, botões ou comandos.</p>
+                    </div>
+                </div>
+                <div class="f-card">
+                    <div class="f-ico">📊</div>
+                    <div>
+                        <h3>Relatórios de Adesão</h3>
+                        <p>Histórico completo de medicamentos para compartilhar com o médico.</p>
+                    </div>
+                </div>
+                <div class="f-card">
+                    <div class="f-ico">🔒</div>
+                    <div>
+                        <h3>Privacidade e Segurança</h3>
+                        <p>Criptografia do WhatsApp + servidores AWS. 100% compatível com a LGPD.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="fbot"><p>&copy; 2026 Tia Médica. Todos os direitos reservados.</p><div class="fsoc"><a href="#" title="Instagram">📷</a><a href="#" title="LinkedIn">💼</a><a href="#" title="YouTube">▶️</a></div></div>
-    </div>
-</footer>
+    </section>
 
-<a href="https://wa.me/5500000000000" class="wpp-float" title="WhatsApp">💬</a>
+    <section class="platform" id="plataforma">
+        <div class="si centered">
+            <div class="sl">🖥️ Plataforma</div>
+            <h2 class="st">Estamos onde você precisa</h2>
+            <p class="ss">Suporte diário, 24x7, gratuito. Tecnologia humanizada com recursos avançados.</p>
+            <div class="plat-grid">
+                <div class="plat-card">
+                    <div class="plat-ico">💬</div>
+                    <h3>WhatsApp</h3>
+                    <p>Acesse a Tia de forma gratuita pelo WhatsApp. Converse naturalmente, envie fotos de receitas e
+                        receba lembretes personalizados — tudo na interface que você já conhece.</p>
+                    <a href="https://wa.me/551150394938" class="plat-link">Envie uma mensagem →</a>
+                </div>
+                <div class="plat-card">
+                    <div class="plat-ico">🌐</div>
+                    <h3>Portal do Cuidado</h3>
+                    <p>Para clínicas e casas de repouso, utilizamos tecnologia de ponta para monitorar a saúde dos
+                        pacientes de forma eficaz e personalizada com dashboards inteligentes.</p>
+                    <span class="plat-tag">Em breve para todos</span>
+                </div>
+                <div class="plat-card">
+                    <div class="plat-ico">📱</div>
+                    <h3>App Tia Médica</h3>
+                    <p>Cuidadores, pacientes e clientes que se preocupam com sua plena saúde podem ter recursos que
+                        potencializam seu bem-estar na palma da mão.</p>
+                    <span class="plat-tag">Em breve</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)});
-function toggleFaq(b){const i=b.parentElement,a=i.querySelector('.faq-a'),x=i.classList.contains('active');document.querySelectorAll('.faq-item').forEach(e=>{e.classList.remove('active');e.querySelector('.faq-a').style.maxHeight='0'});if(!x){i.classList.add('active');a.style.maxHeight=a.scrollHeight+'px'}}
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}})},{threshold:.1});
-document.querySelectorAll('.p-card,.step,.f-card,.v-card,.pe-card,.t-card,.r-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='all .6s ease';obs.observe(el)});
-</script>
+    <section class="fw" id="para-quem">
+        <div class="si centered">
+            <div class="sl">👥 Para Quem</div>
+            <h2 class="st">Feita para quem mais precisa</h2>
+            <p class="ss">A Tia Médica atende diferentes realidades do cuidado com a saúde.</p>
+            <div class="pw">
+                <div class="ps-title">Para Pessoas — B2C</div>
+                <div class="personas">
+                    <div class="pe-card">
+                        <div class="pe-emoji">🧘</div>
+                        <h3>Quem cuida da própria saúde</h3>
+                        <p>Para você que toma medicamentos ou suplementos e quer manter a rotina em dia sem complicação.
+                        </p>
+                        <ul>
+                            <li>Lembretes personalizados</li>
+                            <li>Acompanhamento de hábitos</li>
+                            <li>Histórico completo</li>
+                        </ul>
+                    </div>
+                    <div class="pe-card">
+                        <div class="pe-emoji">👨‍👩‍👧</div>
+                        <h3>Famílias e Cuidadores</h3>
+                        <p>Para quem cuida de pais, avós ou qualquer pessoa querida e quer tranquilidade, mesmo à
+                            distância.</p>
+                        <ul>
+                            <li>Alertas de medicamento esquecido</li>
+                            <li>Relatórios automáticos</li>
+                            <li>Gestão de múltiplos perfis</li>
+                        </ul>
+                    </div>
+                    <div class="pe-card">
+                        <div class="pe-emoji">👴</div>
+                        <h3>Idosos</h3>
+                        <p>Para quem toma vários remédios e valoriza um lembrete simples, carinhoso e sem complicação.
+                        </p>
+                        <ul>
+                            <li>Zero apps para instalar</li>
+                            <li>Interface familiar do WhatsApp</li>
+                            <li>Tom carinhoso e paciente</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ps-title">Para Empresas — B2B</div>
+                <div class="personas-b2b">
+                    <div class="pe-card">
+                        <div class="pe-emoji">🏥</div>
+                        <h3>Clínicas</h3>
+                        <p>Melhore a adesão dos seus pacientes e reduza reinternações.</p>
+                        <ul>
+                            <li>Dashboard de acompanhamento</li>
+                            <li>Relatórios por paciente</li>
+                            <li>Integração com sistemas</li>
+                        </ul>
+                    </div>
+                    <div class="pe-card">
+                        <div class="pe-emoji">🏠</div>
+                        <h3>Casas de Repouso</h3>
+                        <p>Organize a medicação de múltiplos residentes com controle centralizado.</p>
+                        <ul>
+                            <li>Gestão de múltiplos pacientes</li>
+                            <li>Controle de estoque de remédios</li>
+                            <li>Comunicação com familiares</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="roadmap">
+        <div class="si centered">
+            <div class="sl">🔮 Em Breve</div>
+            <h2 class="st">A Tia Médica está só começando</h2>
+            <p class="ss">Estamos construindo um ecossistema completo de cuidado e bem-estar.</p>
+            <div class="r-grid">
+                <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">📅</span>
+                    <h3>Agendamento de Consultas</h3>
+                    <p>Marque e acompanhe consultas direto pelo WhatsApp.</p>
+                </div>
+                <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">🔬</span>
+                    <h3>Acesso a Exames</h3>
+                    <p>Receba resultados de exames e acompanhe seu histórico.</p>
+                </div>
+                <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">📦</span>
+                    <h3>Controle de Estoque</h3>
+                    <p>Aviso quando o remédio estiver acabando.</p>
+                </div>
+                <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">👨‍⚕️</span>
+                    <h3>Relatório ao Médico</h3>
+                    <p>Dados do paciente enviados automaticamente ao médico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="si centered">
+            <div class="sl">❓ FAQ</div>
+            <h2 class="st">Perguntas Frequentes</h2>
+            <p class="ss">Tire suas dúvidas sobre a Tia Médica.</p>
+            <div class="faq-list">
+                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Preciso instalar algum
+                        aplicativo?<span class="arrow">▼</span></button>
+                    <div class="faq-a">
+                        <div class="faq-ai">Não! A Tia Médica funciona 100% pelo WhatsApp. Se você já tem WhatsApp, está
+                            pronto. Basta enviar uma mensagem para nosso número.</div>
+                    </div>
+                </div>
+                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">É realmente gratuito?<span
+                            class="arrow">▼</span></button>
+                    <div class="faq-a">
+                        <div class="faq-ai">Sim! O uso da Tia Médica é totalmente gratuito. Cadastre medicamentos,
+                            receba lembretes e conecte cuidadores sem pagar nada.</div>
+                    </div>
+                </div>
+                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">É seguro compartilhar dados de
+                        saúde?<span class="arrow">▼</span></button>
+                    <div class="faq-a">
+                        <div class="faq-ai">Sim! Seguimos a LGPD. Conversas criptografadas pelo WhatsApp e servidores
+                            seguros na AWS.</div>
+                    </div>
+                </div>
+                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Meu pai/mãe não sabe usar
+                        tecnologia. Vai conseguir?<span class="arrow">▼</span></button>
+                    <div class="faq-a">
+                        <div class="faq-ai">Com certeza! Se a pessoa já troca mensagens no WhatsApp, ela consegue usar a
+                            Tia Médica. Linguagem simples, carinhosa e paciente. Sem menus complicados.</div>
+                    </div>
+                </div>
+                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Como funciona o reconhecimento de
+                        receitas?<span class="arrow">▼</span></button>
+                    <div class="faq-a">
+                        <div class="faq-ai">Tire uma foto da receita e envie pelo WhatsApp. Nossa IA analisa a imagem,
+                            identifica medicamentos, doses e frequências, e cadastra tudo. Depois é só confirmar!</div>
+                    </div>
+                </div>
+                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Sou profissional de saúde. Como
+                        usar para meus pacientes?<span class="arrow">▼</span></button>
+                    <div class="faq-a">
+                        <div class="faq-ai">Oferecemos soluções para clínicas e casas de repouso com dashboard e
+                            relatórios de adesão. Entre em contato pelo WhatsApp!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="si">
+            <h2>A Tia no WhatsApp. De graça.</h2>
+            <p>Acesse a Tia pelo WhatsApp de forma gratuita e comece já a cuidar da sua saúde ou de quem você deseja
+                cuidado.</p>
+            <div class="cta-tag">✨ Gratuito, 24x7, com carinho</div><br><br>
+            <a href="https://wa.me/551150394938" class="btn-p">📱 Envie uma mensagem para a Tia</a>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="si centered">
+            <div class="sl">📬 Fique por Dentro</div>
+            <h2 class="st">Novidades da Tia Médica</h2>
+            <p class="ss">Informe seu email para ter notícias da Tia e fique atualizado das novidades.</p>
+            <form class="nl-form"
+                onsubmit="event.preventDefault();this.querySelector('.nl-btn').textContent='✅ Cadastrado!';this.querySelector('input').disabled=true">
+                <input type="email" placeholder="Seu melhor email" class="nl-input" required>
+                <button type="submit" class="nl-btn">Cadastrar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="fi">
+            <div class="ft">
+                <div class="fb"><a href="#" class="logo">
+                        <img src="assets/logo.png" alt="Tia Médica" class="logo-icon"><span class="logo-text"
+                            style="color:#fff">Tia Médica</span>
+                    </a>
+                    <p>Assistente de saúde inteligente pelo WhatsApp. Cuidando de quem você ama, com carinho e
+                        tecnologia.</p>
+                </div>
+                <div class="fc">
+                    <h4>Produto</h4><a href="#sobre">Sobre</a><a href="#como-funciona">Como Funciona</a><a
+                        href="#plataforma">Plataforma</a><a href="#para-quem">Para Quem</a><a href="#faq">FAQ</a>
+                </div>
+                <div class="fc">
+                    <h4>Empresa</h4><a href="#">Sobre Nós</a><a href="#">Blog</a><a href="#">Contato</a>
+                </div>
+                <div class="fc">
+                    <h4>Legal</h4><a href="#">Termos de Uso</a><a href="#">Privacidade</a><a href="#">LGPD</a>
+                </div>
+            </div>
+            <div class="fbot">
+                <p>&copy; 2026 Tia Médica. Todos os direitos reservados.</p>
+                <div class="fsoc"><a href="#" title="Instagram">📷</a><a href="#" title="LinkedIn">💼</a><a href="#"
+                        title="YouTube">▶️</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/551150394938" class="wpp-float" title="WhatsApp">💬</a>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50) });
+        function toggleFaq(b) { const i = b.parentElement, a = i.querySelector('.faq-a'), x = i.classList.contains('active'); document.querySelectorAll('.faq-item').forEach(e => { e.classList.remove('active'); e.querySelector('.faq-a').style.maxHeight = '0' }); if (!x) { i.classList.add('active'); a.style.maxHeight = a.scrollHeight + 'px' } }
+        const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) { x.target.style.opacity = '1'; x.target.style.transform = 'translateY(0)' } }) }, { threshold: .1 });
+        document.querySelectorAll('.p-card,.step,.f-card,.v-card,.pe-card,.t-card,.r-card,.about-card,.plat-card').forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'all .6s ease'; obs.observe(el) });
+    </script>
 </body>
+
 </html>
