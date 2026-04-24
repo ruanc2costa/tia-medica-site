@@ -40,8 +40,8 @@
             line-height: 1.6
         }
 
-        /* NAV — matches index.html */
-        nav {
+        /* NAV — matches index.html (scoped to page nav so TOC isn't affected) */
+        nav#nav {
             position: fixed;
             top: 0;
             width: 100%;
@@ -52,7 +52,7 @@
             backdrop-filter: blur(20px);
             box-shadow: var(--shadow-sm)
         }
-        nav.scrolled { padding: .7rem 2rem }
+        nav#nav.scrolled { padding: .7rem 2rem }
         .nav-inner {
             max-width: 1200px;
             margin: 0 auto;
@@ -166,13 +166,14 @@
             margin-bottom: 1rem
         }
         .pp-toc ol {
-            list-style: decimal inside;
+            list-style: decimal;
+            padding-left: 1.5rem;
             columns: 2;
-            column-gap: 1.5rem;
+            column-gap: 2rem;
             font-size: .92rem;
             line-height: 1.9
         }
-        .pp-toc li { break-inside: avoid }
+        .pp-toc li { break-inside: avoid; padding-left: .25rem }
         .pp-toc a {
             color: var(--mint-dark);
             text-decoration: none;
@@ -352,7 +353,7 @@
                 conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei 13.709/2018 — "LGPD").
             </div>
 
-            <nav class="pp-toc" aria-label="Sumário">
+            <aside class="pp-toc" aria-label="Sumário">
                 <h2>Sumário</h2>
                 <ol>
                     <li><a href="#s1">Identificação do Controlador</a></li>
@@ -377,7 +378,7 @@
                     <li><a href="#s20">Contato</a></li>
                     <li><a href="#s21">Histórico de versões</a></li>
                 </ol>
-            </nav>
+            </aside>
 
             <article class="pp-body">
                 <section id="s1" class="pp-section">
