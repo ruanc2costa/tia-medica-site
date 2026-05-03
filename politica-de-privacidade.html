@@ -141,6 +141,15 @@
         }
         .pp-meta { color: var(--gray-600); font-size: .95rem; margin-bottom: .4rem }
         .pp-meta strong { color: var(--navy) }
+        .pp-version-note {
+            background: var(--white);
+            border-left: 3px solid var(--mint, #2bb673);
+            padding: .8rem 1rem;
+            margin-top: .8rem;
+            font-size: .9rem;
+            color: var(--gray-700, #4a5568);
+            border-radius: 0 8px 8px 0;
+        }
         .pp-intro {
             background: var(--white);
             border: 1px solid var(--gray-200);
@@ -343,7 +352,8 @@
 
             <header class="pp-header">
                 <h1>Política de Privacidade</h1>
-                <p class="pp-meta"><strong>Versão 1.0 — vigente desde 24/04/2026.</strong></p>
+                <p class="pp-meta"><strong>Versão 1.1 — vigente desde 02/05/2026.</strong></p>
+                <blockquote class="pp-version-note">Esta versão consolida a implementação dos itens da Seção 13 (consentimento explícito, automação dos direitos do titular e audit log dedicado). Histórico completo na Seção 21.</blockquote>
             </header>
 
             <div class="pp-intro">
@@ -514,9 +524,26 @@
 
                 <section id="s11" class="pp-section">
                     <h2>11. Como exercer seus direitos</h2>
-                    <p>O titular pode exercer os direitos previstos na Seção 10 enviando solicitação para o email <a href="mailto:admin@tiamedica.com">admin@tiamedica.com</a>.</p>
-                    <p>As solicitações recebidas são respondidas em até <strong>15 (quinze) dias</strong>, nos termos do art. 19, §3º, da LGPD. O Encarregado pode requerer informações razoáveis para verificar a identidade do titular antes do atendimento.</p>
-                    <p>A automação programática desses direitos (endpoints de consulta e exclusão diretamente pelo aplicativo) encontra-se em desenvolvimento, conforme descrito na Seção 13.</p>
+                    <p>O titular pode exercer os direitos previstos na Seção 10 por dois canais:</p>
+
+                    <h3>1. Pelo próprio WhatsApp ou simulador web (resposta imediata)</h3>
+                    <div class="pp-table-wrap">
+                        <table class="pp-table">
+                            <thead><tr><th>Comando ao bot</th><th>O que acontece</th></tr></thead>
+                            <tbody>
+                                <tr><td>"ver política", "termos", "privacidade", "detalhes"</td><td>Recebe esta política completa via mensagem.</td></tr>
+                                <tr><td>"exportar meus dados", "baixar dados", "portabilidade"</td><td>Recebe pacote JSON com todos os seus dados.</td></tr>
+                                <tr><td>"revogar consentimento", "cancelar autorização"</td><td>Confirma e tem dados desativados (soft-delete; reversível em 30 dias).</td></tr>
+                                <tr><td>"apagar tudo", "deletar minha conta"</td><td>Confirma e tem dados apagados em definitivo (irreversível).</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>A Tia mostra resumo das consequências antes de revogação ou exclusão; só executa após confirmação explícita do titular ("sim, revogar" / "sim, apagar tudo").</p>
+
+                    <h3>2. Por email ao Encarregado</h3>
+                    <p>Solicitação para <a href="mailto:admin@tiamedica.com">admin@tiamedica.com</a>, com resposta em até <strong>15 (quinze) dias</strong>, nos termos do art. 19, §3º, da LGPD. O Encarregado pode requerer informações razoáveis para verificar a identidade do titular antes do atendimento.</p>
+
+                    <p>Toda operação dos canais 1 e 2 é registrada em audit log dedicado (<code>lgpd_audit_log</code>), com tipo de evento, data/hora, canal e versão da política — em conformidade com o princípio de accountability (art. 6º, X, LGPD).</p>
                 </section>
 
                 <section id="s12" class="pp-section">
@@ -535,18 +562,32 @@
 
                 <section id="s13" class="pp-section">
                     <h2>13. Em andamento</h2>
-                    <p>Em conformidade com o princípio de transparência da LGPD (art. 6º, VI), listamos abaixo as iniciativas de segurança e de garantia de direitos do titular que se encontram em desenvolvimento priorizado, sem prazo contratual garantido:</p>
+                    <p>Em conformidade com o princípio de transparência da LGPD (art. 6º, VI), listamos abaixo as iniciativas de segurança e de garantia de direitos do titular.</p>
+
+                    <h3>Implementadas (versão 1.1)</h3>
                     <ul>
-                        <li><strong>Consentimento explícito no cadastro</strong>, com registro de versão da Política aceita e carimbo de data e hora.</li>
-                        <li><strong>Automação programática dos direitos do titular</strong>: endpoints de acesso aos dados, portabilidade (exportação), exclusão com soft-delete e auditoria, e revogação granular de consentimento.</li>
+                        <li>✅ <strong>Consentimento explícito no cadastro</strong> — Etapa obrigatória do onboarding com registro de versão da Política aceita, carimbo de data e hora, e comando para visualização da política completa antes da aceitação.</li>
+                        <li>✅ <strong>Automação programática dos direitos do titular</strong> — quatro ferramentas acessíveis pelo próprio canal de uso (WhatsApp/simulador):
+                            <ul>
+                                <li><code>view_privacy_policy</code>: retorna esta política em forma resumida.</li>
+                                <li><code>export_user_data</code>: exporta dados pessoais em JSON (Art. 18, II e V).</li>
+                                <li><code>revoke_consent</code>: revoga consentimento com soft-delete de 30 dias (Art. 8º, §5º).</li>
+                                <li><code>delete_user_data</code>: apaga dados em definitivo, preservando apenas comprovante de exclusão (Art. 18, VI + Art. 16).</li>
+                            </ul>
+                        </li>
+                        <li>✅ <strong>Registro dedicado de auditoria</strong> para operações sensíveis — eventos <code>consent_granted</code>, <code>consent_revoked</code>, <code>data_exported</code>, <code>data_deleted</code> e <code>policy_viewed</code> são preservados mesmo após hard-delete do usuário (Art. 37 — Registro das Operações de Tratamento).</li>
+                        <li>✅ <strong>Plano formal de resposta a incidentes</strong> (Art. 48), com runbook documentado.</li>
+                    </ul>
+
+                    <h3>Em desenvolvimento priorizado, sem prazo contratual garantido</h3>
+                    <ul>
                         <li><strong>Extensão da criptografia em repouso</strong> a todos os campos sensíveis, incluindo texto extraído por OCR de receitas, tornando a chave de criptografia obrigatória no ambiente de produção.</li>
                         <li><strong>Autenticação adicional</strong> por senha única temporária (OTP) no primeiro acesso ao simulador web.</li>
                         <li><strong>Consentimento granular para cuidadores</strong>, com permissões por categoria de dado no vínculo paciente-cuidador.</li>
                         <li><strong>Verificação automática de idade</strong> no cadastro e fluxo de consentimento parental para menores.</li>
                         <li><strong>Banner de consentimento de tecnologias similares</strong> no simulador web.</li>
-                        <li><strong>Rotina de eliminação definitiva</strong> de dados após o período de soft-delete.</li>
-                        <li><strong>Registro dedicado de auditoria</strong> para operações sensíveis.</li>
-                        <li><strong>Plano formal de resposta a incidentes</strong>, com alertas automatizados para padrões anômalos de acesso.</li>
+                        <li><strong>Rotina automatizada de eliminação definitiva</strong> de dados após o período de 30 dias de soft-delete (atualmente realizada manualmente).</li>
+                        <li><strong>Alertas automatizados</strong> para padrões anômalos de acesso ao audit log.</li>
                     </ul>
                 </section>
 
@@ -602,6 +643,7 @@
                             <thead><tr><th>Versão</th><th>Data de vigência</th><th>Alterações</th></tr></thead>
                             <tbody>
                                 <tr><td>1.0</td><td>24/04/2026</td><td>Publicação inicial.</td></tr>
+                                <tr><td>1.1</td><td>02/05/2026</td><td>Implementação de consentimento explícito no onboarding; automação programática dos direitos do titular (<code>view_privacy_policy</code>, <code>export_user_data</code>, <code>revoke_consent</code>, <code>delete_user_data</code>); audit log dedicado (<code>lgpd_audit_log</code>); runbook formal de resposta a incidentes. Atualização da Seção 11 com canal direto via WhatsApp. Itens da Seção 13 marcados como concluídos.</td></tr>
                             </tbody>
                         </table>
                     </div>
