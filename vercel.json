@@ -7,6 +7,10 @@
             "destination": "/politica-de-privacidade.html"
         },
         {
+            "source": "/excluir-conta",
+            "destination": "/excluir-conta.html"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }
