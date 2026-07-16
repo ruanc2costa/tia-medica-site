@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excluir conta e dados – Tia Médica</title>
-    <meta name="description" content="Como solicitar a exclusão da sua conta Tia Médica e dos dados pessoais, em conformidade com a LGPD.">
+    <title>Excluir conta e dados — Tia Médica</title>
+    <meta name="description" content="Como solicitar a exclusão da sua conta Tia Médica e exercer seus direitos sobre dados pessoais.">
     <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://www.tiamedica.com/excluir-conta">
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -38,6 +41,14 @@
             background: var(--white);
             line-height: 1.6
         }
+
+        .skip-link {
+            position: fixed; top: -5rem; left: 1rem; z-index: 1000;
+            padding: .75rem 1rem; border-radius: 10px;
+            background: var(--navy); color: var(--white);
+            font-weight: 700; text-decoration: none
+        }
+        .skip-link:focus { top: 1rem }
 
         nav#nav {
             position: fixed; top: 0; width: 100%; z-index: 100;
@@ -158,24 +169,25 @@
 </head>
 
 <body>
-    <nav id="nav">
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+    <nav id="nav" aria-label="Navegação principal">
         <div class="nav-inner">
             <a href="/" class="logo">
                 <img src="assets/logo.png" alt="Tia Médica" class="logo-icon">
                 <span class="logo-text">Tia Médica</span>
             </a>
-            <a href="/politica-de-privacidade" style="color:var(--navy);text-decoration:none;font-weight:500">Política de Privacidade</a>
+            <a href="/privacidade" style="color:var(--navy);text-decoration:none;font-weight:500">Política de Privacidade</a>
         </div>
     </nav>
 
-    <main>
+    <main id="conteudo-principal">
         <a href="/" class="back-link">← Voltar para a home</a>
 
         <h1>Excluir conta e dados</h1>
         <p class="meta">Como solicitar a exclusão da sua conta Tia Médica.</p>
 
         <div class="intro">
-            A <strong>TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.)</strong> garante a você, usuário do app <strong>Tia Médica</strong>, o direito de excluir sua conta e os dados pessoais associados, conforme previsto pela Lei Geral de Proteção de Dados (LGPD, art. 18, VI).
+            A <strong>TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.)</strong> oferece ao titular dos dados canais para solicitar a exclusão da conta e dos dados pessoais associados ao serviço <strong>Tia Médica</strong>, nos termos da Lei Geral de Proteção de Dados (LGPD).
         </div>
 
         <section>
@@ -184,33 +196,31 @@
             <div class="steps">
                 <ol>
                     <li>
-                        <strong>Envie um e-mail para <a href="mailto:admin@tiamedica.com?subject=Exclus%C3%A3o%20de%20conta%20-%20Tia%20M%C3%A9dica">admin@tiamedica.com</a></strong> com o assunto <em>"Exclusão de conta – Tia Médica"</em>.
+                        <strong>Pelo WhatsApp:</strong> envie <em>"excluir minha conta"</em> ou <em>"apagar meus dados"</em> para o <a href="https://wa.me/551150394938?text=Quero%20excluir%20minha%20conta">canal oficial da Tia Médica</a>. A Tia mostrará o que será removido e pedirá uma confirmação explícita antes de executar a exclusão.
                     </li>
                     <li>
-                        <strong>Informe o número de telefone</strong> (WhatsApp) que você usou para se cadastrar no app. É como verificamos sua identidade.
+                        <strong>Por e-mail:</strong> escreva para <a href="mailto:admin@tiamedica.com?subject=Exclus%C3%A3o%20de%20conta%20-%20Tia%20M%C3%A9dica">admin@tiamedica.com</a> com o assunto <em>"Exclusão de conta — Tia Médica"</em> e informe o número de WhatsApp usado no cadastro. Não envie informações sobre medicamentos ou condições de saúde.
                     </li>
                     <li>
-                        <strong>Aguarde a confirmação</strong>: respondemos em até <strong>5 dias úteis</strong> confirmando a exclusão. O prazo máximo legal de resposta é de 15 dias (LGPD, art. 19).
+                        <strong>Verificação e resposta:</strong> a equipe pode solicitar uma confirmação pelo canal cadastrado antes da exclusão. As solicitações são respondidas em até <strong>15 dias</strong>, conforme indicado na Política de Privacidade.
                     </li>
                 </ol>
             </div>
-
-            <p>Você também pode iniciar a solicitação pelo nosso WhatsApp oficial: <a href="https://wa.me/551150394938">+55 (11) 5039-4938</a>.</p>
         </section>
 
         <section>
             <h2>O que é excluído</h2>
-            <p>Ao confirmarmos sua solicitação, removemos <strong>todos</strong> os seguintes dados pessoais:</p>
+            <p>Após a confirmação explícita e a conclusão da operação, são eliminados os dados associados à conta no serviço Tia Médica, conforme aplicável, incluindo:</p>
             <ul>
                 <li>Identificação: nome, número de telefone, data de nascimento, papel (paciente/cuidador)</li>
-                <li>Conteúdo de saúde: medicações cadastradas, horários, hábitos, metas, registros de adesão</li>
+                <li>Conteúdo de saúde: medicamentos cadastrados, horários, hábitos, metas e confirmações reportadas</li>
                 <li>Histórico de conversas com a assistente Tia (chat)</li>
-                <li>Tracking emocional, preferências e memórias armazenadas</li>
+                <li>Preferências e memórias associadas ao atendimento</li>
                 <li>Compromissos médicos (consultas) que você cadastrou</li>
                 <li>Uploads (fotos de receitas, documentos médicos) e seus metadados</li>
-                <li>Tokens de autenticação e push notification</li>
                 <li>Vínculos com cuidadores ou pacientes pareados</li>
             </ul>
+            <p>A exclusão pode deixar de abranger um registro quando sua conservação for permitida ou exigida por lei. Esses casos são limitados ao necessário e descritos abaixo.</p>
         </section>
 
         <section>
@@ -223,9 +233,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Log de auditoria da exclusão (registro de que e quando você solicitou)</td>
-                        <td>5 anos</td>
-                        <td>LGPD art. 16, II — cumprimento de obrigação legal</td>
+                        <td>Registros de auditoria e comprovantes do atendimento da solicitação</td>
+                        <td>Pelo prazo necessário à prestação de contas, ao cumprimento de obrigação legal ou ao exercício regular de direitos</td>
+                        <td>LGPD, arts. 16 e 37</td>
                     </tr>
                     <tr>
                         <td>Registros fiscais e contábeis (se houve pagamento)</td>
@@ -233,14 +243,14 @@
                         <td>Código Tributário Nacional, art. 173</td>
                     </tr>
                     <tr>
-                        <td>Logs de comunicação anonimizados (telemetria de IA, performance)</td>
-                        <td>12 meses</td>
-                        <td>Legítimo interesse — operação do serviço (LGPD art. 7º, IX)</td>
+                        <td>Logs técnicos necessários à segurança e auditoria</td>
+                        <td>Conforme os prazos e critérios descritos na Política de Privacidade</td>
+                        <td>Segurança, prevenção a fraude e exercício regular de direitos</td>
                     </tr>
                 </tbody>
             </table>
 
-            <p>Esses registros <strong>não contêm dados de saúde nem permitem identificar o titular</strong> após a exclusão.</p>
+            <p>Esses registros são limitados ao mínimo necessário, têm acesso restrito e podem conter identificadores técnicos ou de contato quando isso for necessário para comprovar o atendimento da solicitação. Eles não devem conservar conteúdo clínico além do estritamente necessário para a finalidade legal aplicável.</p>
         </section>
 
         <section>
@@ -250,7 +260,7 @@
 
         <section>
             <h2>Outros direitos LGPD</h2>
-            <p>Além da exclusão, você tem direito a acesso, correção, portabilidade, anonimização e revogação de consentimento. Veja a <a href="/politica-de-privacidade#s10">Seção 10 da nossa Política de Privacidade</a> para detalhes.</p>
+            <p>Além da exclusão, você pode solicitar acesso, correção, portabilidade, anonimização e revogação de consentimento, quando aplicável. Veja a <a href="/privacidade#s10">Seção 10 da nossa Política de Privacidade</a> para detalhes.</p>
         </section>
 
         <div class="contact-box">
@@ -259,21 +269,16 @@
         </div>
 
         <p class="meta" style="font-size:.9rem;margin-top:2rem">
-            Página vigente desde 21/05/2026. Última atualização: 21/05/2026.<br>
+            Página vigente desde 21/05/2026. Última atualização: 16/07/2026.<br>
             Controlador: TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.) — CNPJ 66.404.598/0001-92.
         </p>
     </main>
 
     <footer>
         <p>&copy; 2026 TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.). Todos os direitos reservados.</p>
-        <p style="margin-top:.5rem"><a href="/politica-de-privacidade">Política de Privacidade</a> · <a href="mailto:admin@tiamedica.com">Contato</a></p>
+        <p style="margin-top:.5rem"><a href="/privacidade">Política de Privacidade</a> · <a href="mailto:admin@tiamedica.com">Contato</a></p>
     </footer>
 
-    <script>
-        window.addEventListener('scroll', () => {
-            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-        });
-    </script>
 </body>
 
 </html>

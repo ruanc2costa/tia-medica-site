@@ -1,7 +1,7 @@
 {
     "name": "tia-medica-site",
     "version": "1.0.0",
-    "description": "Landing page da Tia Médica – Assistente de Saúde pelo WhatsApp",
+    "description": "Site institucional da Tia Médica — organização da rotina de cuidados com a saúde pelo WhatsApp",
     "private": true,
     "scripts": {
         "dev": "npx serve .",

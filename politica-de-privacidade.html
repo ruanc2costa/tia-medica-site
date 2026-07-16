@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade – Tia Médica</title>
-    <meta name="description" content="Como a Tia Médica coleta, usa e protege seus dados pessoais. Política em conformidade com a LGPD (Lei 13.709/2018).">
+    <title>Política de Privacidade — Tia Médica</title>
+    <meta name="description" content="Como a Tia Médica trata dados pessoais e como você pode exercer seus direitos previstos na LGPD.">
     <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://www.tiamedica.com/privacidade">
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -39,6 +42,20 @@
             background: var(--white);
             line-height: 1.6
         }
+
+        .skip-link {
+            position: fixed;
+            top: -5rem;
+            left: 1rem;
+            z-index: 1000;
+            padding: .75rem 1rem;
+            border-radius: 10px;
+            background: var(--navy);
+            color: var(--white);
+            font-weight: 700;
+            text-decoration: none
+        }
+        .skip-link:focus { top: 1rem }
 
         /* NAV — matches index.html (scoped to page nav so TOC isn't affected) */
         nav#nav {
@@ -326,7 +343,8 @@
 </head>
 
 <body>
-    <nav id="nav" class="scrolled">
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+    <nav id="nav" class="scrolled" aria-label="Navegação principal">
         <div class="nav-inner">
             <a href="/" class="logo">
                 <img src="assets/logo.png" alt="Tia Médica" class="logo-icon">
@@ -335,25 +353,27 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="/#sobre">Sobre</a></li>
                 <li><a href="/#como-funciona">Como Funciona</a></li>
-                <li><a href="/#plataforma">Plataforma</a></li>
+                <li><a href="/#plataforma">Canais</a></li>
                 <li><a href="/#para-quem">Para Quem</a></li>
                 <li><a href="/#faq">FAQ</a></li>
-                <li><a href="https://wa.me/551150394938" class="btn-wpp-nav">📱 Acesse a Tia</a></li>
+                <li><a href="mailto:admin@tiamedica.com?subject=Interesse%20no%20piloto%20da%20Tia%20M%C3%A9dica"
+                        class="btn-wpp-nav">✉️ Fale com a equipe</a></li>
             </ul>
-            <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+            <button class="hamburger" type="button" aria-label="Abrir menu" aria-controls="navLinks"
+                aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <main class="pp-page">
+    <main class="pp-page" id="conteudo-principal">
         <div class="pp-container">
             <a href="/" class="pp-back">← Voltar para a home</a>
 
             <header class="pp-header">
                 <h1>Política de Privacidade</h1>
-                <p class="pp-meta"><strong>Versão 1.1 — vigente desde 02/05/2026.</strong></p>
-                <blockquote class="pp-version-note">Esta versão consolida a implementação dos itens da Seção 13 (consentimento explícito, automação dos direitos do titular e audit log dedicado). Histórico completo na Seção 21.</blockquote>
+                <p class="pp-meta"><strong>Versão 1.2 — vigente desde 16/07/2026.</strong></p>
+                <blockquote class="pp-version-note">Esta versão alinha a política ao piloto pelo WhatsApp, diferencia confirmações reportadas de adesão clínica, atualiza a comunicação de incidentes e descreve as medidas de segurança sem promessas absolutas. Histórico completo na Seção 21.</blockquote>
             </header>
 
             <div class="pp-intro">
@@ -434,7 +454,7 @@
                     <h3>4.1. Dados cadastrais</h3>
                     <p>Nome, número de telefone e data de nascimento, fornecidos pelo titular durante o cadastro.</p>
                     <h3>4.2. Dados pessoais sensíveis de saúde (art. 11 da LGPD)</h3>
-                    <p>Informações sobre medicamentos em uso, alergias, condições de saúde declaradas, metas de saúde, histórico de adesão a tratamento e imagens de receitas médicas submetidas pelo titular, incluindo o texto extraído dessas imagens por reconhecimento óptico de caracteres (OCR).</p>
+                    <p>Informações sobre medicamentos em uso, alergias, condições de saúde declaradas, metas de saúde, confirmações reportadas sobre a rotina de cuidado e imagens de receitas médicas submetidas pelo titular, incluindo o texto extraído dessas imagens por reconhecimento óptico de caracteres (OCR).</p>
                     <h3>4.3. Histórico de conversas</h3>
                     <p>Registro das interações entre o titular e a Tia Médica por WhatsApp ou pelo simulador web, incluindo mensagens enviadas, respostas da assistente e lembretes gerados.</p>
                     <h3>4.4. Dados técnicos</h3>
@@ -445,9 +465,9 @@
                     <h2>5. Finalidades do tratamento</h2>
                     <ul>
                         <li><strong>Dados cadastrais:</strong> identificação do titular, envio de lembretes e comunicações relacionadas ao serviço.</li>
-                        <li><strong>Dados de saúde:</strong> personalização das respostas da assistente, geração de lembretes de medicação, verificação de interações medicamentosas, elaboração de relatórios de adesão.</li>
-                        <li><strong>Imagens de receitas e texto OCR:</strong> extração automatizada de medicamentos prescritos, posologia e duração.</li>
-                        <li><strong>Histórico de conversas:</strong> manutenção do contexto para respostas coerentes e acompanhamento de evolução do titular no serviço.</li>
+                        <li><strong>Dados de saúde:</strong> organização da rotina informada pelo titular, geração de lembretes, verificação de interações medicamentosas e elaboração de históricos de confirmações reportadas.</li>
+                        <li><strong>Imagens de receitas e texto OCR:</strong> extração assistida de medicamentos, posologia e duração, com revisão e confirmação do titular antes do cadastro.</li>
+                        <li><strong>Histórico de conversas:</strong> manutenção do contexto para respostas coerentes e continuidade da organização da rotina reportada pelo titular.</li>
                         <li><strong>Dados técnicos:</strong> segurança do serviço, prevenção de fraude, diagnóstico de falhas, auditoria interna.</li>
                     </ul>
                 </section>
@@ -484,8 +504,9 @@
 
                 <section id="s8" class="pp-section">
                     <h2>8. Transferência internacional de dados</h2>
-                    <p>Os operadores listados na Seção 7 estão sediados nos Estados Unidos. O tratamento por esses operadores, portanto, envolve transferência internacional de dados, nos termos do art. 33 da LGPD.</p>
-                    <p>A transferência é realizada com fundamento no consentimento específico e destacado do titular (art. 33, VIII) e nas cláusulas contratuais padrão de proteção de dados adotadas pelos respectivos operadores em seus termos de serviço.</p>
+                    <p>Os operadores listados na Seção 7 têm sede nos Estados Unidos e podem tratar dados ou disponibilizar acesso a eles fora do Brasil, conforme a configuração e os termos de cada serviço. Essas operações podem caracterizar transferência internacional de dados.</p>
+                    <p>No piloto, a base declarada para as transferências necessárias é o consentimento específico e destacado do titular, previsto no art. 33, VIII, da LGPD. Essa autorização deve ser solicitada de forma separada e clara no fluxo de cadastro; o simples acesso a este site ou a leitura desta Política não constitui consentimento.</p>
+                    <p>A Tia também deve observar os mecanismos e as salvaguardas contratuais aplicáveis a cada operador, nos termos da <a href="https://www.gov.br/anpd/pt-br/acesso-a-informacao/institucional/atos-normativos/regulamentacoes_anpd/resolucao-cd-anpd-no-19-de-23-de-agosto-de-2024">Resolução CD/ANPD nº 19/2024</a>.</p>
                 </section>
 
                 <section id="s9" class="pp-section">
@@ -495,11 +516,12 @@
                             <thead><tr><th>Categoria de dados</th><th>Prazo</th></tr></thead>
                             <tbody>
                                 <tr><td>Histórico de conversas com a Tia</td><td>90 dias</td></tr>
-                                <tr><td>Logs de adesão a medicação</td><td>180 dias</td></tr>
+                                <tr><td>Registros de lembretes e confirmações reportadas</td><td>180 dias</td></tr>
                                 <tr><td>Imagens de receitas médicas e texto OCR</td><td>365 dias</td></tr>
                                 <tr><td>Dados cadastrais</td><td>Enquanto a conta estiver ativa; após solicitação de exclusão, até 30 dias para eliminação definitiva</td></tr>
                                 <tr><td>Dados pessoais sensíveis de saúde (condições, alergias, metas)</td><td>Enquanto a conta estiver ativa; após solicitação de exclusão, até 30 dias para eliminação definitiva</td></tr>
                                 <tr><td>Logs técnicos de acesso e auditoria</td><td>180 dias</td></tr>
+                                <tr><td>Registros necessários para comprovar o atendimento de direitos do titular</td><td>Pelo prazo necessário ao cumprimento de obrigação legal, ao exercício regular de direitos e à prestação de contas, com acesso restrito</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -548,15 +570,14 @@
 
                 <section id="s12" class="pp-section">
                     <h2>12. Segurança</h2>
-                    <p>A TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.) adota, no estado atual do serviço, as seguintes medidas técnicas e administrativas de segurança:</p>
+                    <p>A TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.) adota medidas técnicas e administrativas proporcionais ao estado atual do serviço. A cobertura pode variar entre componentes e é revisada à medida que o piloto evolui. Entre as medidas atualmente adotadas, conforme aplicável, estão:</p>
                     <ul>
-                        <li><strong>Transmissão de dados criptografada</strong> por HTTPS/TLS em todas as comunicações entre usuário e servidor em produção.</li>
-                        <li><strong>Validação de assinatura criptográfica</strong> das requisições recebidas do provedor de mensageria (Twilio), prevenindo fraude por origem não autorizada.</li>
-                        <li><strong>Limitação de taxa de requisições</strong> (rate limiting) nos servidores de aplicação, mitigando ataques de uso abusivo.</li>
-                        <li><strong>Sanitização de logs</strong>, com mascaramento automático de dados pessoais identificáveis (como números de telefone) e de termos médicos sensíveis antes do registro.</li>
-                        <li><strong>Criptografia em repouso</strong> (AES-256-GCM), aplicada a campos sensíveis de saúde (condições declaradas, alergias, metas) quando a chave de criptografia está configurada no ambiente de produção.</li>
-                        <li><strong>Consultas parametrizadas</strong> em todas as interações com o banco de dados, prevenindo vetores de injeção.</li>
+                        <li><strong>Proteção de conexões</strong> por HTTPS/TLS no site, nas APIs e nas integrações que trafegam pela internet.</li>
+                        <li><strong>Validação de assinatura</strong> nos endpoints que recebem requisições do provedor de mensageria, para reduzir o risco de origem não autorizada.</li>
+                        <li><strong>Limitação de taxa de requisições</strong> (rate limiting) em endpoints expostos, mitigando uso abusivo.</li>
+                        <li><strong>Consultas parametrizadas</strong> nas camadas de acesso a dados que suportam esse mecanismo, reduzindo vetores de injeção.</li>
                         <li><strong>Validação técnica de arquivos</strong> enviados pelo titular (verificação de cabeçalhos binários, tipo MIME e limite de tamanho de 5 MB) antes do processamento.</li>
+                        <li><strong>Confirmação explícita e registros de auditoria</strong> para operações sensíveis relacionadas aos direitos do titular.</li>
                     </ul>
                 </section>
 
@@ -564,7 +585,7 @@
                     <h2>13. Em andamento</h2>
                     <p>Em conformidade com o princípio de transparência da LGPD (art. 6º, VI), listamos abaixo as iniciativas de segurança e de garantia de direitos do titular.</p>
 
-                    <h3>Implementadas (versão 1.1)</h3>
+                    <h3>Medidas e rotinas já disponíveis</h3>
                     <ul>
                         <li>✅ <strong>Consentimento explícito no cadastro</strong> — Etapa obrigatória do onboarding com registro de versão da Política aceita, carimbo de data e hora, e comando para visualização da política completa antes da aceitação.</li>
                         <li>✅ <strong>Automação programática dos direitos do titular</strong> — quatro ferramentas acessíveis pelo próprio canal de uso (WhatsApp/simulador):
@@ -581,7 +602,8 @@
 
                     <h3>Em desenvolvimento priorizado, sem prazo contratual garantido</h3>
                     <ul>
-                        <li><strong>Extensão da criptografia em repouso</strong> a todos os campos sensíveis, incluindo texto extraído por OCR de receitas, tornando a chave de criptografia obrigatória no ambiente de produção.</li>
+                        <li><strong>Minimização e mascaramento de dados em logs e rastreamentos</strong>, com testes que reduzam a persistência indevida de identificadores e conteúdo clínico.</li>
+                        <li><strong>Obrigatoriedade e ampliação da criptografia em nível de aplicação</strong> para campos sensíveis, incluindo texto extraído por OCR, além do tratamento seguro dos dados históricos.</li>
                         <li><strong>Autenticação adicional</strong> por senha única temporária (OTP) no primeiro acesso ao simulador web.</li>
                         <li><strong>Consentimento granular para cuidadores</strong>, com permissões por categoria de dado no vínculo paciente-cuidador.</li>
                         <li><strong>Verificação automática de idade</strong> no cadastro e fluxo de consentimento parental para menores.</li>
@@ -612,7 +634,7 @@
 
                 <section id="s17" class="pp-section">
                     <h2>17. Incidentes de segurança</h2>
-                    <p>Em caso de incidente de segurança que possa acarretar risco relevante aos direitos e liberdades dos titulares, a TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.) comunicará o fato à Autoridade Nacional de Proteção de Dados (ANPD) e aos titulares afetados em prazo razoável, nos termos do art. 48 da LGPD.</p>
+                    <p>Em caso de incidente de segurança que possa ocasionar risco ou dano relevante aos titulares, a TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.) comunicará o fato à Autoridade Nacional de Proteção de Dados (ANPD) e aos titulares afetados no prazo de até <strong>3 (três) dias úteis</strong>, ressalvada a existência de prazo específico previsto em legislação, conforme a <a href="https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/comunicado-de-incidente-de-seguranca-cis">Resolução CD/ANPD nº 15/2024</a>.</p>
                     <p>A comunicação aos titulares pode ocorrer pelos canais de contato do próprio serviço (WhatsApp, SMS ou email vinculado à conta) e conterá, no mínimo: descrição da natureza dos dados afetados, informações sobre os titulares envolvidos, medidas técnicas e de segurança adotadas, riscos relacionados e medidas que foram ou podem ser tomadas para mitigar os efeitos.</p>
                 </section>
 
@@ -644,6 +666,7 @@
                             <tbody>
                                 <tr><td>1.0</td><td>24/04/2026</td><td>Publicação inicial.</td></tr>
                                 <tr><td>1.1</td><td>02/05/2026</td><td>Implementação de consentimento explícito no onboarding; automação programática dos direitos do titular (<code>view_privacy_policy</code>, <code>export_user_data</code>, <code>revoke_consent</code>, <code>delete_user_data</code>); audit log dedicado (<code>lgpd_audit_log</code>); runbook formal de resposta a incidentes. Atualização da Seção 11 com canal direto via WhatsApp. Itens da Seção 13 marcados como concluídos.</td></tr>
+                                <tr><td>1.2</td><td>16/07/2026</td><td>Alinhamento com o piloto pelo WhatsApp e com a versão registrada pelo backend; substituição de alegações de adesão por confirmações reportadas; atualização das seções de transferência internacional, segurança, retenção e comunicação de incidentes.</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -660,45 +683,37 @@
                         <img src="assets/logo.png" alt="Tia Médica" class="logo-icon">
                         <span class="logo-text" style="color:#fff">Tia Médica</span>
                     </a>
-                    <p>Assistente de saúde inteligente pelo WhatsApp. Cuidando de quem você ama, com carinho e tecnologia.</p>
+                    <p>Assistente para organizar rotinas de cuidado pelo WhatsApp. A Tia organiza, lembra e registra; não substitui profissionais de saúde.</p>
                 </div>
                 <div class="fc">
                     <h4>Produto</h4>
                     <a href="/#sobre">Sobre</a>
                     <a href="/#como-funciona">Como Funciona</a>
-                    <a href="/#plataforma">Plataforma</a>
+                    <a href="/#plataforma">Canais</a>
                     <a href="/#para-quem">Para Quem</a>
                     <a href="/#faq">FAQ</a>
                 </div>
                 <div class="fc">
                     <h4>Empresa</h4>
-                    <a href="/">Sobre Nós</a>
-                    <a href="#">Blog</a>
+                    <a href="/#sobre">Sobre Nós</a>
                     <a href="mailto:admin@tiamedica.com">Contato</a>
                 </div>
                 <div class="fc">
                     <h4>Legal</h4>
-                    <a href="#">Termos de Uso</a>
-                    <a href="/politica-de-privacidade">Privacidade</a>
-                    <a href="/politica-de-privacidade#s10">LGPD</a>
+                    <a href="/privacidade">Privacidade</a>
+                    <a href="/privacidade#s10">Seus direitos</a>
+                    <a href="/excluir-conta">Excluir conta</a>
                 </div>
             </div>
             <div class="fbot">
                 <p>&copy; 2026 TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.). Todos os direitos reservados.</p>
-                <div class="fsoc">
-                    <a href="#" title="Instagram">📷</a>
-                    <a href="#" title="LinkedIn">💼</a>
-                    <a href="#" title="YouTube">▶️</a>
-                </div>
+                <div class="fsoc"><a href="mailto:admin@tiamedica.com" title="Enviar email"
+                        aria-label="Enviar email para a Tia Médica">✉️</a></div>
             </div>
         </div>
     </footer>
 
-    <script>
-        window.addEventListener('scroll', () => {
-            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-        });
-    </script>
+    <script src="/assets/site.js" defer></script>
 </body>
 
 </html>

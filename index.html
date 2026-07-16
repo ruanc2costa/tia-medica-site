@@ -4,7 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tia Médica – Assistente de Saúde pelo WhatsApp</title>
+    <title>Tia Médica — Sua rotina de cuidados com a saúde pelo WhatsApp</title>
+    <meta name="description"
+        content="Organize medicamentos, hábitos, consultas e o acompanhamento de quem você cuida pelo WhatsApp, com uma experiência simples e acolhedora.">
+    <meta property="og:title" content="Tia Médica — Cuidado diário pelo WhatsApp">
+    <meta property="og:description"
+        content="A Tia Médica ajuda pacientes e cuidadores a organizar a rotina de cuidados com a saúde pelo WhatsApp.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="https://www.tiamedica.com/">
+    <meta property="og:image" content="https://www.tiamedica.com/assets/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Tia Médica — Cuidado diário pelo WhatsApp">
+    <meta name="twitter:description"
+        content="Organize medicamentos, hábitos, consultas e o acompanhamento de cuidadores pelo WhatsApp.">
+    <meta name="twitter:image" content="https://www.tiamedica.com/assets/logo.png">
+    <meta name="theme-color" content="#2EC4B6">
+    <link rel="canonical" href="https://www.tiamedica.com/">
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -46,6 +64,23 @@
             background: var(--white);
             overflow-x: hidden;
             line-height: 1.6
+        }
+
+        .skip-link {
+            position: fixed;
+            top: -5rem;
+            left: 1rem;
+            z-index: 1000;
+            padding: .75rem 1rem;
+            border-radius: 10px;
+            background: var(--navy);
+            color: var(--white);
+            font-weight: 700;
+            text-decoration: none
+        }
+
+        .skip-link:focus {
+            top: 1rem
         }
 
         /* NAV */
@@ -1320,14 +1355,14 @@
             color: #fff
         }
 
-        /* WPP FLOAT */
-        .wpp-float {
+        /* CONTACT FLOAT */
+        .contact-float {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
             width: 60px;
             height: 60px;
-            background: #25D366;
+            background: linear-gradient(135deg, var(--mint), var(--mint-dark));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1335,15 +1370,15 @@
             font-size: 1.8rem;
             color: #fff;
             text-decoration: none;
-            box-shadow: 0 6px 25px rgba(37, 211, 102, .4);
+            box-shadow: 0 6px 25px rgba(46, 196, 182, .4);
             z-index: 99;
             transition: all .3s;
             animation: bounceIn 1s ease 2s both
         }
 
-        .wpp-float:hover {
+        .contact-float:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 35px rgba(37, 211, 102, .5)
+            box-shadow: 0 8px 35px rgba(46, 196, 182, .5)
         }
 
         @keyframes bounceIn {
@@ -1665,66 +1700,85 @@
                 grid-template-columns: repeat(2, 1fr)
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important
+            }
+        }
     </style>
 </head>
 
 <body>
-
-    <nav id="nav">
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+    <nav id="nav" aria-label="Navegação principal">
         <div class="nav-inner">
-            <a href="#" class="logo">
+            <a href="/" class="logo">
                 <img src="assets/logo.png" alt="Tia Médica" class="logo-icon">
                 <span class="logo-text">Tia Médica</span>
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#como-funciona">Como Funciona</a></li>
-                <li><a href="#plataforma">Plataforma</a></li>
+                <li><a href="#plataforma">Canais</a></li>
                 <li><a href="#para-quem">Para Quem</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="https://wa.me/551150394938" class="btn-wpp-nav">📱 Acesse a Tia</a></li>
+                <li><a href="mailto:admin@tiamedica.com?subject=Interesse%20no%20piloto%20da%20Tia%20M%C3%A9dica"
+                        class="btn-wpp-nav">✉️ Fale com a equipe</a></li>
             </ul>
-            <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+            <button class="hamburger" type="button" aria-label="Abrir menu" aria-controls="navLinks"
+                aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
+    <main id="conteudo-principal">
     <section class="hero">
         <div class="hero-inner">
             <div>
-                <div class="hero-badge"><span class="dot"></span> Sua saúde, nosso propósito</div>
-                <h1>Cuidamos de quem você ama com <span class="highlight">carinho e tecnologia</span></h1>
-                <p class="hero-sub">Atendemos suas necessidades de saúde com cuidado e carinho. A Tia Médica é uma
-                    extensão do seu afeto — ajudando na medicação, rotinas e bem-estar, tudo pelo WhatsApp.</p>
+                <div class="hero-badge"><span class="dot"></span> Cuidado diário, direto no WhatsApp</div>
+                <h1>Organize sua rotina de cuidados com a saúde <span class="highlight">pelo WhatsApp</span></h1>
+                <p class="hero-sub">A Tia Médica reúne medicamentos, hábitos, consultas e o acompanhamento de
+                    cuidadores em uma conversa simples e acolhedora — sem instalar outro aplicativo.</p>
                 <div class="hero-ctas">
-                    <a href="https://wa.me/551150394938" class="btn-p">📱 Acesse a Tia pelo WhatsApp</a>
-                    <a href="#sobre" class="btn-s">Conheça nossa missão →</a>
+                    <a href="mailto:admin@tiamedica.com?subject=Interesse%20no%20piloto%20da%20Tia%20M%C3%A9dica"
+                        class="btn-p">✉️ Quero conhecer o piloto</a>
+                    <a href="#como-funciona" class="btn-s">Veja como funciona →</a>
                 </div>
                 <p style="margin-top:1rem;animation:fadeInUp .8s ease .4s both"><span
                         style="display:inline-block;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;font-weight:700;font-size:.9rem;padding:.5rem 1.2rem;border-radius:50px;box-shadow:0 4px 15px rgba(37,211,102,.3)">🎉
-                        100% GRATUITO pelo celular · Sem instalar nada</span></p>
+                        Piloto supervisionado pelo WhatsApp · Sem instalar outro app</span></p>
                 <div class="hero-stats">
                     <div class="h-stat">
-                        <div class="num">24/7</div>
-                        <div class="lbl">Disponível</div>
+                        <div class="num">💬</div>
+                        <div class="lbl">Canal do piloto</div>
                     </div>
                     <div class="h-stat">
-                        <div class="num">0</div>
-                        <div class="lbl">Apps extras</div>
+                        <div class="num">📲</div>
+                        <div class="lbl">Sem novo app</div>
                     </div>
                     <div class="h-stat">
-                        <div class="num">100%</div>
-                        <div class="lbl">Gratuito</div>
+                        <div class="num">🤝</div>
+                        <div class="lbl">Cuidador autorizado</div>
                     </div>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="fpill p1">
-                    <div class="pi g">💊</div><span>Lembrete enviado!</span>
+                    <div class="pi g">🌿</div><span>Rotina organizada</span>
                 </div>
                 <div class="fpill p2">
-                    <div class="pi r">❤️</div><span>Mamãe tomou o remédio</span>
+                    <div class="pi r">❤️</div><span>Confirmação registrada</span>
                 </div>
                 <div class="phone">
                     <div class="phone-notch"></div>
@@ -1733,19 +1787,20 @@
                             <div class="ch-av">🩺</div>
                             <div>
                                 <div class="ch-name">Tia Médica</div>
-                                <div class="ch-st">online</div>
+                                <div class="ch-st">organização do cuidado</div>
                             </div>
                         </div>
-                        <div class="msg msg-b">Oi, Dona Maria! 😊 Já são 8h da manhã. Hora de tomar o Losartana 50mg.
+                        <div class="msg msg-b">Oi, Dona Maria! 😊 Já são 8h. Este é o lembrete da Losartana 50mg que
+                            você cadastrou.
                             <div class="msg-t">08:00</div>
                         </div>
-                        <div class="msg msg-u">Ah é verdade! Vou tomar agora<div class="msg-t">08:02</div>
+                        <div class="msg msg-u">Já tomei<div class="msg-t">08:02</div>
                         </div>
-                        <div class="msg msg-b">Ótimo! ✅ Já anotei aqui. Seu próximo remédio é o AAS às 12h. Bom dia!<div
-                                class="msg-t">08:02</div>
+                        <div class="msg msg-b">Registrei sua confirmação. ✅ Seu próximo lembrete está programado para
+                            12h.<div class="msg-t">08:02</div>
                         </div>
-                        <div class="msg msg-b">📋 Resumo de hoje:<br>✅ Losartana 50mg — 8h<br>⏰ AAS 100mg — 12h<br>⏰
-                            Metformina 850mg — 20h<div class="msg-t">08:03</div>
+                        <div class="msg msg-b">📋 Sua rotina de hoje:<br>✅ Confirmação registrada — 8h<br>⏰ Próximo
+                            medicamento — 12h<br>💧 Hábito de hidratação — 15h<div class="msg-t">08:03</div>
                         </div>
                     </div>
                 </div>
@@ -1758,26 +1813,26 @@
         <div class="si centered">
             <div class="sl">💜 Sobre a Tia Médica</div>
             <h2 class="st">Mais do que tecnologia. Um ato de cuidado.</h2>
-            <p class="ss">Somos uma extensão do afeto e da responsabilidade, oferecendo suporte diário para a saúde de
-                quem você ama.</p>
+            <p class="ss">Uma presença simples e acolhedora para ajudar pessoas e famílias a organizar o cuidado no dia
+                a dia.</p>
             <div class="about-grid">
                 <div class="about-card">
                     <div class="about-ico">🎯</div>
                     <h3>Nossa Missão</h3>
-                    <p>Cuidar de quem amamos, mesmo quando não podemos estar perto. Oferecemos suporte diário para a
-                        saúde com carinho, tecnologia e constância — porque todo mundo merece ter uma Tia por perto.</p>
+                    <p>Ajudar pessoas e famílias a organizar a rotina de cuidados com a saúde, mesmo quando quem cuida
+                        não pode estar perto.</p>
                 </div>
                 <div class="about-card">
                     <div class="about-ico">🌟</div>
                     <h3>Nossa Visão</h3>
-                    <p>Ser a principal referência em cuidado inteligente e humanizado no Brasil, conectando famílias e
-                        profissionais de saúde através de tecnologia acessível e empática.</p>
+                    <p>Tornar o cuidado cotidiano mais simples e conectado, aproximando pacientes, cuidadores e
+                        organizações de saúde por canais que já fazem parte da vida das pessoas.</p>
                 </div>
                 <div class="about-card">
                     <div class="about-ico">❤️</div>
                     <h3>Nossos Valores</h3>
-                    <p>Empatia em cada interação. Confiança em cada lembrete. Simplicidade em cada etapa. Acreditamos
-                        que cuidar da saúde pode ser simples, carinhoso e gratuito.</p>
+                    <p>Empatia em cada interação. Transparência em cada registro. Simplicidade em cada etapa. Segurança
+                        e respeito aos limites do cuidado digital.</p>
                 </div>
             </div>
         </div>
@@ -1787,26 +1842,26 @@
         <div class="si">
             <div class="sl">💡 Por que a Tia Médica?</div>
             <h2 class="st">Cuidar da saúde não deveria ser tão difícil</h2>
-            <p class="ss">Milhões de pessoas enfrentam desafios diários para manter sua saúde em dia. A Tia Médica
-                nasceu para mudar isso.</p>
+            <p class="ss">Medicamentos, hábitos, consultas e o acompanhamento da família acabam espalhados entre
+                alarmes, papéis e mensagens. A Tia Médica nasceu para ajudar a organizar essa rotina.</p>
             <div class="p-grid">
                 <div class="p-card">
                     <div class="p-ico red">🤯</div>
-                    <h3>Saúde sem plataforma</h3>
-                    <p>Não existe um lugar simples para organizar remédios, hábitos e rotinas de saúde. Cada pessoa se
-                        vira como pode — com alarmes, papéis ou memória.</p>
+                    <h3>Rotina fragmentada</h3>
+                    <p>Medicamentos, hábitos e consultas ficam espalhados entre alarmes, papéis e memória, dificultando
+                        a continuidade do cuidado.</p>
                 </div>
                 <div class="p-card">
                     <div class="p-ico org">🤖</div>
                     <h3>Automação fria e impessoal</h3>
-                    <p>Apps de saúde existem, mas são frios, genéricos e complicados. Falta conexão humana, empatia e
-                        simplicidade no cuidado automatizado.</p>
+                    <p>Muitas soluções exigem novos aplicativos, senhas e menus. Para parte dos pacientes e cuidadores,
+                        essa fricção afasta em vez de ajudar.</p>
                 </div>
                 <div class="p-card">
                     <div class="p-ico blu">💔</div>
                     <h3>Distância de quem amamos</h3>
-                    <p>Famílias vivem separadas e não conseguem acompanhar a saúde uns dos outros. A preocupação existe,
-                        mas faltam as ferramentas certas.</p>
+                    <p>Quem cuida à distância convive com perguntas simples e difíceis: o lembrete chegou? A pessoa
+                        respondeu? Existe algo que precisa de atenção?</p>
                 </div>
             </div>
         </div>
@@ -1815,24 +1870,24 @@
     <section class="vp">
         <div class="si centered">
             <div class="sl">💎 Nossa Proposta</div>
-            <h2 class="st">Mais que um lembrete. Uma companhia para sua saúde.</h2>
-            <p class="ss">A Tia Médica foi pensada para qualquer pessoa que quer cuidar melhor de si mesma ou de quem
-                ama — com simplicidade, carinho e inteligência.</p>
+            <h2 class="st">Uma rotina de cuidado, não só um lembrete.</h2>
+            <p class="ss">A Tia Médica reúne pequenas tarefas do dia a dia em uma conversa simples, ajudando pacientes
+                e cuidadores a manter o cuidado mais organizado.</p>
             <div class="v-grid">
                 <div class="v-card"><span class="v-emoji">📸</span>
                     <h3>Receitas por Foto</h3>
-                    <p>Tire uma foto da receita médica e a Tia entende tudo — remédios, doses e horários. Sem digitar
-                        nada.</p>
+                    <p>Envie uma foto da receita. A Tia ajuda a extrair medicamentos, doses e horários e pede sua
+                        confirmação antes do cadastro.</p>
                 </div>
                 <div class="v-card"><span class="v-emoji">🤗</span>
                     <h3>Cuidado com Empatia</h3>
-                    <p>Nada de mensagens genéricas. A Tia conversa com carinho, paciência e respeito — como alguém que
-                        realmente se importa.</p>
+                    <p>Linguagem simples, acolhedora e em português para tornar a organização da rotina menos
+                        impessoal.</p>
                 </div>
                 <div class="v-card"><span class="v-emoji">🔗</span>
                     <h3>Conexão Familiar</h3>
-                    <p>Conecta quem cuida e quem é cuidado. Familiares acompanham a saúde uns dos outros em tempo real,
-                        mesmo à distância.</p>
+                    <p>Com autorização do paciente, cuidadores podem acompanhar confirmações reportadas e alertas
+                        importantes, mesmo à distância.</p>
                 </div>
                 <div class="v-card"><span class="v-emoji">✨</span>
                     <h3>Simplicidade Radical</h3>
@@ -1840,13 +1895,13 @@
                 </div>
                 <div class="v-card"><span class="v-emoji">🌱</span>
                     <h3>Hábitos Saudáveis</h3>
-                    <p>Além de remédios, ajuda a criar rotinas de bem-estar — beber água, atividade física, sono e muito
-                        mais.</p>
+                    <p>Organize também hidratação, atividade física, sono e outras rotinas de bem-estar escolhidas por
+                        você.</p>
                 </div>
                 <div class="v-card"><span class="v-emoji">🔒</span>
                     <h3>Privacidade e Segurança</h3>
-                    <p>Seus dados são seus. Conversas protegidas pela criptografia do WhatsApp e conformidade total com
-                        a LGPD.</p>
+                    <p>Dados de saúde exigem cuidado. Trabalhamos com consentimento, controles de acesso e transparência
+                        sobre o tratamento das informações.</p>
                 </div>
             </div>
         </div>
@@ -1856,31 +1911,32 @@
         <div class="si centered">
             <div class="sl">🚀 Como Funciona</div>
             <h2 class="st">Simples como mandar uma mensagem</h2>
-            <p class="ss">Em 4 passos, sua saúde está organizada. Sem downloads, sem cadastros complicados.</p>
+            <p class="ss">No piloto com clínicas parceiras, toda a experiência do paciente acontece pelo WhatsApp.</p>
             <div class="steps">
                 <div class="step">
                     <div class="step-n">1</div>
                     <div class="step-ico">📱</div>
-                    <h3>Mande um "oi"</h3>
-                    <p>Inicie a conversa pelo WhatsApp. A Tia Médica te guia de forma acolhedora.</p>
+                    <h3>Receba o convite</h3>
+                    <p>A clínica parceira apresenta o piloto e orienta o início da conversa pelo WhatsApp.</p>
                 </div>
                 <div class="step">
                     <div class="step-n">2</div>
                     <div class="step-ico">📸</div>
-                    <h3>Envie a receita</h3>
-                    <p>Tire uma foto da receita médica ou diga os remédios por mensagem.</p>
+                    <h3>Conte sua rotina</h3>
+                    <p>Envie uma receita ou cadastre por mensagem medicamentos, hábitos e consultas que deseja
+                        acompanhar.</p>
                 </div>
                 <div class="step">
                     <div class="step-n">3</div>
                     <div class="step-ico">🔔</div>
                     <h3>Receba lembretes</h3>
-                    <p>Na hora certa, aviso com nome do remédio, dose e instruções.</p>
+                    <p>A Tia envia os lembretes programados e registra as confirmações que você reportar.</p>
                 </div>
                 <div class="step">
                     <div class="step-n">4</div>
                     <div class="step-ico">👨‍👩‍👧</div>
                     <h3>Família conectada</h3>
-                    <p>Cuidadores recebem alertas e relatórios sobre a adesão.</p>
+                    <p>Quando o paciente autoriza, cuidadores recebem atualizações e alertas relacionados à rotina.</p>
                 </div>
             </div>
         </div>
@@ -1889,49 +1945,53 @@
     <section class="feat" id="funcionalidades">
         <div class="si centered">
             <div class="sl">✨ Funcionalidades</div>
-            <h2 class="st">Tudo pelo WhatsApp</h2>
-            <p class="ss">Sem instalar nada. Sem aprender nada novo. Só conversar.</p>
+            <h2 class="st">Sua rotina de cuidado pelo WhatsApp</h2>
+            <p class="ss">Medicamentos são uma parte importante — mas o cuidado cotidiano vai além deles.</p>
             <div class="f-grid">
                 <div class="f-card">
                     <div class="f-ico">⏰</div>
                     <div>
                         <h3>Lembretes Inteligentes</h3>
-                        <p>Notificações no horário exato, com nome do remédio, dose e instruções personalizadas.</p>
+                        <p>Lembretes programados para medicamentos, hábitos e compromissos cadastrados por você.</p>
                     </div>
                 </div>
                 <div class="f-card">
                     <div class="f-ico">📸</div>
                     <div>
                         <h3>Leitura de Receitas por Foto</h3>
-                        <p>Envie uma foto da receita e a IA cadastra todos os medicamentos automaticamente.</p>
+                        <p>A IA ajuda a extrair os dados da receita e apresenta as informações para sua confirmação.</p>
                     </div>
                 </div>
                 <div class="f-card">
                     <div class="f-ico">👨‍👩‍👧</div>
                     <div>
                         <h3>Notificações para Cuidadores</h3>
-                        <p>Familiares recebem alertas em tempo real quando o remédio é tomado ou esquecido.</p>
+                        <p>Com autorização, familiares recebem confirmações reportadas e alertas de doses não
+                            confirmadas.</p>
                     </div>
                 </div>
                 <div class="f-card">
                     <div class="f-ico">🗣️</div>
                     <div>
                         <h3>Conversa Natural com IA</h3>
-                        <p>Entende linguagem do dia a dia em português. Sem menus, botões ou comandos.</p>
+                        <p>Converse em português do dia a dia para organizar informações e navegar pelas funções da
+                            Tia.</p>
                     </div>
                 </div>
                 <div class="f-card">
                     <div class="f-ico">📊</div>
                     <div>
-                        <h3>Relatórios de Adesão</h3>
-                        <p>Histórico completo de medicamentos para compartilhar com o médico.</p>
+                        <h3>Histórico da Rotina</h3>
+                        <p>Consulte medicamentos cadastrados e confirmações reportadas para apoiar suas conversas de
+                            cuidado.</p>
                     </div>
                 </div>
                 <div class="f-card">
                     <div class="f-ico">🔒</div>
                     <div>
                         <h3>Privacidade e Segurança</h3>
-                        <p>Criptografia do WhatsApp + servidores AWS. 100% compatível com a LGPD.</p>
+                        <p>Consentimento, controles técnicos e canais para exercer seus direitos sobre os dados
+                            pessoais.</p>
                     </div>
                 </div>
             </div>
@@ -1940,30 +2000,31 @@
 
     <section class="platform" id="plataforma">
         <div class="si centered">
-            <div class="sl">🖥️ Plataforma</div>
-            <h2 class="st">Estamos onde você precisa</h2>
-            <p class="ss">Suporte diário, 24x7, gratuito. Tecnologia humanizada com recursos avançados.</p>
+            <div class="sl">🖥️ Canais</div>
+            <h2 class="st">WhatsApp agora. Outros canais no futuro.</h2>
+            <p class="ss">O piloto clínico acontece pelo WhatsApp. O portal e o aplicativo seguem como canais
+                estratégicos em evolução, fora desta etapa do piloto.</p>
             <div class="plat-grid">
                 <div class="plat-card">
                     <div class="plat-ico">💬</div>
-                    <h3>WhatsApp</h3>
-                    <p>Acesse a Tia de forma gratuita pelo WhatsApp. Converse naturalmente, envie fotos de receitas e
-                        receba lembretes personalizados — tudo na interface que você já conhece.</p>
-                    <a href="https://wa.me/551140402232" class="plat-link">Envie uma mensagem →</a>
+                    <h3>WhatsApp — canal principal</h3>
+                    <p>É onde pacientes e cuidadores organizam a rotina, recebem lembretes e registram confirmações
+                        durante o piloto supervisionado.</p>
+                    <a href="mailto:admin@tiamedica.com?subject=Interesse%20no%20piloto%20da%20Tia%20M%C3%A9dica"
+                        class="plat-link">Fale com a equipe →</a>
                 </div>
                 <div class="plat-card">
                     <div class="plat-ico">🌐</div>
                     <h3>Portal do Cuidado</h3>
-                    <p>Para clínicas e casas de repouso, utilizamos tecnologia de ponta para monitorar a saúde dos
-                        pacientes de forma eficaz e personalizada com dashboards inteligentes.</p>
-                    <span class="plat-tag">Em breve para todos</span>
+                    <p>Canal estratégico para apoiar clínicas e organizações com uma visão autorizada da operação e dos
+                        alertas.</p>
+                    <span class="plat-tag">Em evolução</span>
                 </div>
                 <div class="plat-card">
                     <div class="plat-ico">📱</div>
                     <h3>App Tia Médica</h3>
-                    <p>Cuidadores, pacientes e clientes que se preocupam com sua plena saúde podem ter recursos que
-                        potencializam seu bem-estar na palma da mão.</p>
-                    <span class="plat-tag">Em breve</span>
+                    <p>Canal complementar pensado para ampliar a experiência de pacientes e cuidadores no futuro.</p>
+                    <span class="plat-tag">Fora do piloto clínico</span>
                 </div>
             </div>
         </div>
@@ -1972,65 +2033,43 @@
     <section class="fw" id="para-quem">
         <div class="si centered">
             <div class="sl">👥 Para Quem</div>
-            <h2 class="st">Feita para quem mais precisa</h2>
-            <p class="ss">A Tia Médica atende diferentes realidades do cuidado com a saúde.</p>
+            <h2 class="st">Para quem vive uma rotina recorrente de cuidado</h2>
+            <p class="ss">O piloto foi pensado para pacientes que usam WhatsApp, seus cuidadores autorizados e clínicas
+                parceiras que ajudam a formar essa rede.</p>
             <div class="pw">
-                <div class="ps-title">Para Pessoas — B2C</div>
+                <div class="ps-title">O perfil inicial da Tia Médica</div>
                 <div class="personas">
                     <div class="pe-card">
-                        <div class="pe-emoji">🧘</div>
-                        <h3>Quem cuida da própria saúde</h3>
-                        <p>Para você que toma medicamentos ou suplementos e quer manter a rotina em dia sem complicação.
-                        </p>
+                        <div class="pe-emoji">🌿</div>
+                        <h3>Pacientes</h3>
+                        <p>Para quem tem medicamentos, hábitos ou consultas recorrentes e quer organizar essa rotina
+                            sem instalar outro aplicativo.</p>
                         <ul>
-                            <li>Lembretes personalizados</li>
-                            <li>Acompanhamento de hábitos</li>
-                            <li>Histórico completo</li>
+                            <li>Rotina reunida no WhatsApp</li>
+                            <li>Lembretes programados</li>
+                            <li>Confirmações reportadas</li>
                         </ul>
                     </div>
                     <div class="pe-card">
                         <div class="pe-emoji">👨‍👩‍👧</div>
                         <h3>Famílias e Cuidadores</h3>
-                        <p>Para quem cuida de pais, avós ou qualquer pessoa querida e quer tranquilidade, mesmo à
-                            distância.</p>
+                        <p>Para quem acompanha pais, avós ou outra pessoa querida e precisa de mais contexto para cuidar
+                            à distância.</p>
                         <ul>
-                            <li>Alertas de medicamento esquecido</li>
-                            <li>Relatórios automáticos</li>
-                            <li>Gestão de múltiplos perfis</li>
+                            <li>Vínculo autorizado pelo paciente</li>
+                            <li>Alertas da rotina de cuidado</li>
+                            <li>Menos incerteza no dia a dia</li>
                         </ul>
                     </div>
-                    <div class="pe-card">
-                        <div class="pe-emoji">👴</div>
-                        <h3>Idosos</h3>
-                        <p>Para quem toma vários remédios e valoriza um lembrete simples, carinhoso e sem complicação.
-                        </p>
-                        <ul>
-                            <li>Zero apps para instalar</li>
-                            <li>Interface familiar do WhatsApp</li>
-                            <li>Tom carinhoso e paciente</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="ps-title">Para Empresas — B2B</div>
-                <div class="personas-b2b">
                     <div class="pe-card">
                         <div class="pe-emoji">🏥</div>
-                        <h3>Clínicas</h3>
-                        <p>Melhore a adesão dos seus pacientes e reduza reinternações.</p>
+                        <h3>Clínicas Parceiras</h3>
+                        <p>Para organizações que desejam recrutar e acompanhar uma coorte pequena em um piloto
+                            supervisionado, com consentimento e critérios claros.</p>
                         <ul>
-                            <li>Dashboard de acompanhamento</li>
-                            <li>Relatórios por paciente</li>
-                            <li>Integração com sistemas</li>
-                        </ul>
-                    </div>
-                    <div class="pe-card">
-                        <div class="pe-emoji">🏠</div>
-                        <h3>Casas de Repouso</h3>
-                        <p>Organize a medicação de múltiplos residentes com controle centralizado.</p>
-                        <ul>
-                            <li>Gestão de múltiplos pacientes</li>
-                            <li>Controle de estoque de remédios</li>
-                            <li>Comunicação com familiares</li>
+                            <li>Recrutamento da coorte</li>
+                            <li>Operação acompanhada</li>
+                            <li>Aprendizado de produto</li>
                         </ul>
                     </div>
                 </div>
@@ -2041,25 +2080,29 @@
 
     <section class="roadmap">
         <div class="si centered">
-            <div class="sl">🔮 Em Breve</div>
-            <h2 class="st">A Tia Médica está só começando</h2>
-            <p class="ss">Estamos construindo um ecossistema completo de cuidado e bem-estar.</p>
+            <div class="sl">🔮 Visão de Futuro</div>
+            <h2 class="st">Um canal hoje, uma plataforma de cuidado amanhã</h2>
+            <p class="ss">Primeiro vamos provar confiança operacional no WhatsApp. Depois, evoluímos os canais e
+                integrações com base no aprendizado real.</p>
             <div class="r-grid">
                 <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">📅</span>
-                    <h3>Agendamento de Consultas</h3>
-                    <p>Marque e acompanhe consultas direto pelo WhatsApp.</p>
+                    <h3>Mais rotinas de cuidado</h3>
+                    <p>Ampliar o apoio a consultas, acompanhamentos e outras tarefas recorrentes.</p>
                 </div>
-                <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">🔬</span>
-                    <h3>Acesso a Exames</h3>
-                    <p>Receba resultados de exames e acompanhe seu histórico.</p>
+                <div class="r-card"><span class="r-tag">Estratégico</span><span class="r-emoji">📱</span>
+                    <h3>Aplicativo complementar</h3>
+                    <p>Uma experiência adicional para pacientes e cuidadores, sem substituir o WhatsApp como canal
+                        acessível.</p>
                 </div>
-                <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">📦</span>
-                    <h3>Controle de Estoque</h3>
-                    <p>Aviso quando o remédio estiver acabando.</p>
+                <div class="r-card"><span class="r-tag">Em evolução</span><span class="r-emoji">🏥</span>
+                    <h3>Portal para organizações</h3>
+                    <p>Ferramentas operacionais para clínicas e parceiros acompanharem somente o que estiver
+                        autorizado.</p>
                 </div>
-                <div class="r-card"><span class="r-tag">Em breve</span><span class="r-emoji">👨‍⚕️</span>
-                    <h3>Relatório ao Médico</h3>
-                    <p>Dados do paciente enviados automaticamente ao médico.</p>
+                <div class="r-card"><span class="r-tag">Futuro</span><span class="r-emoji">🔗</span>
+                    <h3>Integrações responsáveis</h3>
+                    <p>Conexões com outros sistemas somente quando houver necessidade validada, consentimento e
+                        segurança.</p>
                 </div>
             </div>
         </div>
@@ -2071,46 +2114,55 @@
             <h2 class="st">Perguntas Frequentes</h2>
             <p class="ss">Tire suas dúvidas sobre a Tia Médica.</p>
             <div class="faq-list">
-                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Preciso instalar algum
+                <div class="faq-item"><button class="faq-q" type="button">Preciso instalar algum
                         aplicativo?<span class="arrow">▼</span></button>
                     <div class="faq-a">
-                        <div class="faq-ai">Não! A Tia Médica funciona 100% pelo WhatsApp. Se você já tem WhatsApp, está
-                            pronto. Basta enviar uma mensagem para nosso número.</div>
+                        <div class="faq-ai">No piloto da clínica, não. A experiência do paciente acontece pelo WhatsApp.
+                            O aplicativo da Tia é um canal estratégico futuro e não faz parte desta etapa.</div>
                     </div>
                 </div>
-                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">É realmente gratuito?<span
+                <div class="faq-item"><button class="faq-q" type="button">Quanto custa participar?<span
                             class="arrow">▼</span></button>
                     <div class="faq-a">
-                        <div class="faq-ai">Sim! O uso da Tia Médica é totalmente gratuito. Cadastre medicamentos,
-                            receba lembretes e conecte cuidadores sem pagar nada.</div>
+                        <div class="faq-ai">As condições do piloto serão comunicadas pela clínica parceira aos
+                            participantes convidados. Isso não representa uma promessa de gratuidade permanente.</div>
                     </div>
                 </div>
-                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">É seguro compartilhar dados de
+                <div class="faq-item"><button class="faq-q" type="button">É seguro compartilhar dados de
                         saúde?<span class="arrow">▼</span></button>
                     <div class="faq-a">
-                        <div class="faq-ai">Sim! Seguimos a LGPD. Conversas criptografadas pelo WhatsApp e servidores
-                            seguros na AWS.</div>
+                        <div class="faq-ai">Dados de saúde exigem cuidado especial. Adotamos medidas técnicas e
+                            administrativas de segurança, solicitamos consentimento e explicamos o tratamento das
+                            informações em nossa <a href="/privacidade">Política de Privacidade</a>.</div>
                     </div>
                 </div>
-                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Meu pai/mãe não sabe usar
+                <div class="faq-item"><button class="faq-q" type="button">Meu pai/mãe não sabe usar
                         tecnologia. Vai conseguir?<span class="arrow">▼</span></button>
                     <div class="faq-a">
-                        <div class="faq-ai">Com certeza! Se a pessoa já troca mensagens no WhatsApp, ela consegue usar a
-                            Tia Médica. Linguagem simples, carinhosa e paciente. Sem menus complicados.</div>
+                        <div class="faq-ai">A Tia foi desenhada para quem já usa o WhatsApp, com linguagem simples e sem
+                            menus complicados. Durante o piloto, a clínica e a equipe acompanham a experiência.</div>
                     </div>
                 </div>
-                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Como funciona o reconhecimento de
+                <div class="faq-item"><button class="faq-q" type="button">Como funciona o reconhecimento de
                         receitas?<span class="arrow">▼</span></button>
                     <div class="faq-a">
-                        <div class="faq-ai">Tire uma foto da receita e envie pelo WhatsApp. Nossa IA analisa a imagem,
-                            identifica medicamentos, doses e frequências, e cadastra tudo. Depois é só confirmar!</div>
+                        <div class="faq-ai">Envie a foto pelo WhatsApp. A IA sugere os medicamentos, doses e frequências
+                            identificados e pede sua confirmação antes do cadastro. Ela não substitui a conferência da
+                            receita nem a orientação profissional.</div>
                     </div>
                 </div>
-                <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Sou profissional de saúde. Como
+                <div class="faq-item"><button class="faq-q" type="button">A Tia dá orientação
+                        médica?<span class="arrow">▼</span></button>
+                    <div class="faq-a">
+                        <div class="faq-ai">Não. A Tia organiza, lembra e registra informações fornecidas pelo usuário.
+                            Não diagnostica, prescreve, altera tratamentos ou substitui profissionais de saúde.</div>
+                    </div>
+                </div>
+                <div class="faq-item"><button class="faq-q" type="button">Sou profissional de saúde. Como
                         usar para meus pacientes?<span class="arrow">▼</span></button>
                     <div class="faq-a">
-                        <div class="faq-ai">Oferecemos soluções para clínicas e casas de repouso com dashboard e
-                            relatórios de adesão. Entre em contato pelo WhatsApp!</div>
+                        <div class="faq-ai">O piloto será realizado com clínicas parceiras e uma coorte acompanhada.
+                            Fale com nossa equipe para conhecer o formato e as próximas etapas.</div>
                     </div>
                 </div>
             </div>
@@ -2119,64 +2171,62 @@
 
     <section class="cta">
         <div class="si">
-            <h2>A Tia no WhatsApp. De graça.</h2>
-            <p>Acesse a Tia pelo WhatsApp de forma gratuita e comece já a cuidar da sua saúde ou de quem você deseja
-                cuidado.</p>
-            <div class="cta-tag">✨ Gratuito, 24x7, com carinho</div><br><br>
-            <a href="https://wa.me/551150394938" class="btn-p">📱 Envie uma mensagem para a Tia</a>
+            <h2>Organize o cuidado pelo WhatsApp</h2>
+            <p>O piloto será conduzido com pacientes convidados por clínicas parceiras. Quer conhecer a Tia ou avaliar
+                um piloto para sua clínica?</p>
+            <div class="cta-tag">✨ Piloto somente pelo WhatsApp · sem app adicional</div><br><br>
+            <a href="mailto:admin@tiamedica.com?subject=Interesse%20no%20piloto%20da%20Tia%20M%C3%A9dica"
+                class="btn-p">✉️ Fale com a equipe</a>
         </div>
     </section>
 
     <section class="newsletter">
         <div class="si centered">
-            <div class="sl">📬 Fique por Dentro</div>
-            <h2 class="st">Novidades da Tia Médica</h2>
-            <p class="ss">Informe seu email para ter notícias da Tia e fique atualizado das novidades.</p>
-            <form class="nl-form"
-                onsubmit="event.preventDefault();this.querySelector('.nl-btn').textContent='✅ Cadastrado!';this.querySelector('input').disabled=true">
-                <input type="email" placeholder="Seu melhor email" class="nl-input" required>
-                <button type="submit" class="nl-btn">Cadastrar</button>
-            </form>
+            <div class="sl">🤝 Clínicas e Parceiros</div>
+            <h2 class="st">Quer construir essa experiência com a gente?</h2>
+            <p class="ss">Estamos formando uma coorte pequena e supervisionada para aprender com pacientes, cuidadores
+                e clínicas parceiras.</p>
+            <a href="mailto:admin@tiamedica.com?subject=Parceria%20com%20a%20Tia%20M%C3%A9dica"
+                class="btn-p">Entrar em contato</a>
         </div>
     </section>
+    </main>
 
     <footer>
         <div class="fi">
             <div class="ft">
-                <div class="fb"><a href="#" class="logo">
+                <div class="fb"><a href="/" class="logo">
                         <img src="assets/logo.png" alt="Tia Médica" class="logo-icon"><span class="logo-text"
                             style="color:#fff">Tia Médica</span>
                     </a>
-                    <p>Assistente de saúde inteligente pelo WhatsApp. Cuidando de quem você ama, com carinho e
-                        tecnologia.</p>
+                    <p>Assistente para organizar rotinas de cuidado pelo WhatsApp. A Tia organiza, lembra e registra;
+                        não substitui profissionais de saúde.</p>
                 </div>
                 <div class="fc">
                     <h4>Produto</h4><a href="#sobre">Sobre</a><a href="#como-funciona">Como Funciona</a><a
-                        href="#plataforma">Plataforma</a><a href="#para-quem">Para Quem</a><a href="#faq">FAQ</a>
+                        href="#plataforma">Canais</a><a href="#para-quem">Para Quem</a><a href="#faq">FAQ</a>
                 </div>
                 <div class="fc">
-                    <h4>Empresa</h4><a href="#">Sobre Nós</a><a href="#">Blog</a><a href="#">Contato</a>
+                    <h4>Empresa</h4><a href="#sobre">Sobre Nós</a><a
+                        href="mailto:admin@tiamedica.com?subject=Contato%20pelo%20site%20Tia%20M%C3%A9dica">Contato</a>
                 </div>
                 <div class="fc">
-                    <h4>Legal</h4><a href="#">Termos de Uso</a><a href="/politica-de-privacidade">Privacidade</a><a href="/politica-de-privacidade#s10">LGPD</a>
+                    <h4>Legal</h4><a href="/privacidade">Privacidade</a><a
+                        href="/privacidade#s10">Seus direitos</a><a href="/excluir-conta">Excluir conta</a>
                 </div>
             </div>
             <div class="fbot">
                 <p>&copy; 2026 TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.). Todos os direitos reservados.</p>
-                <div class="fsoc"><a href="#" title="Instagram">📷</a><a href="#" title="LinkedIn">💼</a><a href="#"
-                        title="YouTube">▶️</a></div>
+                <div class="fsoc"><a href="mailto:admin@tiamedica.com" title="Enviar email"
+                        aria-label="Enviar email para a Tia Médica">✉️</a></div>
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/551150394938" class="wpp-float" title="WhatsApp">💬</a>
+    <a href="mailto:admin@tiamedica.com?subject=Interesse%20no%20piloto%20da%20Tia%20M%C3%A9dica"
+        class="contact-float" title="Fale com a equipe" aria-label="Enviar email para a equipe da Tia Médica">✉️</a>
 
-    <script>
-        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50) });
-        function toggleFaq(b) { const i = b.parentElement, a = i.querySelector('.faq-a'), x = i.classList.contains('active'); document.querySelectorAll('.faq-item').forEach(e => { e.classList.remove('active'); e.querySelector('.faq-a').style.maxHeight = '0' }); if (!x) { i.classList.add('active'); a.style.maxHeight = a.scrollHeight + 'px' } }
-        const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) { x.target.style.opacity = '1'; x.target.style.transform = 'translateY(0)' } }) }, { threshold: .1 });
-        document.querySelectorAll('.p-card,.step,.f-card,.v-card,.pe-card,.t-card,.r-card,.about-card,.plat-card').forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'all .6s ease'; obs.observe(el) });
-    </script>
+    <script src="/assets/site.js" defer></script>
 </body>
 
 </html>
