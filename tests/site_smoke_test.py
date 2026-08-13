@@ -24,7 +24,7 @@ def reveal_scroll_animations(page) -> None:
                 await new Promise((resolve) => setTimeout(resolve, 80));
             }
             document
-                .querySelectorAll('.p-card,.step,.f-card,.v-card,.pe-card,.t-card,.r-card,.about-card,.plat-card')
+                .querySelectorAll('.step,.v-card,.pe-card,.price-card,.trust-item')
                 .forEach((element) => {
                     element.style.opacity = '1';
                     element.style.transform = 'translateY(0)';
@@ -66,7 +66,18 @@ def run_desktop(browser) -> None:
     assert page.title() == "Tia Médica — Sua rotina de cuidados com a saúde pelo WhatsApp"
     assert "Organize sua rotina de cuidados com a saúde" in page.locator("h1").inner_text()
     assert page.locator('a[href^="mailto:admin@tiamedica.com"]').count() >= 5
-    assert page.locator('a[href*="wa.me"]').count() == 0
+    wpp_links = page.locator("a[data-wpp]").count()
+    assert wpp_links >= 3, f"Expected >=3 CTAs data-wpp, got {wpp_links}"
+    wa_links = page.locator('a[href*="wa.me"]').count()
+    assert wa_links in (0, wpp_links), (
+        f"wa.me links ({wa_links}) devem ser 0 (fallback e-mail) ou iguais aos data-wpp ({wpp_links})"
+    )
+    assert page.locator("section#planos").count() == 1
+    pricing_text = page.locator("section#planos").inner_text()
+    assert "R$ 49,90" in pricing_text
+    assert "lista de espera" in pricing_text.lower()
+    assert "Mercado Pago" in pricing_text
+    assert "192" in pricing_text
     assert page.locator("form").count() == 0
     assert page.locator('a[href="#"]').count() == 0
     assert page.locator("main#conteudo-principal").count() == 1

@@ -1,4 +1,24 @@
 (() => {
+    // Canal de venda pelo WhatsApp. Preencha com o número público da Tia em
+    // formato E.164 sem símbolos (ex.: '5519999999999') quando o fluxo de
+    // pagamento estiver ativo. Enquanto vazio, os botões com data-wpp mantêm o
+    // fallback de e-mail definido no HTML — nenhum outro passo é necessário.
+    const WHATSAPP_NUMBER = '';
+    const WHATSAPP_MESSAGES = {
+        inicio: 'Olá, Tia! Quero organizar minha rotina de cuidados.',
+        consulta: 'Olá, Tia! Quero uma consulta com médico parceiro.',
+        cta: 'Olá, Tia! Quero começar pelo WhatsApp.',
+    };
+
+    if (WHATSAPP_NUMBER) {
+        document.querySelectorAll('a[data-wpp]').forEach((link) => {
+            const message = WHATSAPP_MESSAGES[link.dataset.wpp] || WHATSAPP_MESSAGES.inicio;
+            link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            link.target = '_blank';
+            link.rel = 'noopener';
+        });
+    }
+
     const nav = document.getElementById('nav');
     const links = document.getElementById('navLinks');
     const menuButton = document.querySelector('.hamburger');
@@ -73,7 +93,7 @@
     });
 
     const animatedCards = document.querySelectorAll(
-        '.p-card,.step,.f-card,.v-card,.pe-card,.t-card,.r-card,.about-card,.plat-card'
+        '.step,.v-card,.pe-card,.price-card,.trust-item'
     );
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
