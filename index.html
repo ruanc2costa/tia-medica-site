@@ -1,2537 +1,429 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tia Médica — Sua rotina de cuidados com a saúde pelo WhatsApp</title>
-    <meta name="description"
-        content="Organize medicamentos, hábitos, consultas e o acompanhamento de quem você cuida pelo WhatsApp, com uma experiência simples e acolhedora.">
-    <meta property="og:title" content="Tia Médica — Cuidado diário pelo WhatsApp">
-    <meta property="og:description"
-        content="A Tia Médica ajuda pacientes e cuidadores a organizar a rotina de cuidados com a saúde pelo WhatsApp.">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="pt_BR">
-    <meta property="og:url" content="https://www.tiamedica.com/">
-    <meta property="og:image" content="https://www.tiamedica.com/assets/og-tia.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tia Médica — Cuidado diário pelo WhatsApp">
-    <meta name="twitter:description"
-        content="Organize medicamentos, hábitos, consultas e o acompanhamento de cuidadores pelo WhatsApp.">
-    <meta name="twitter:image" content="https://www.tiamedica.com/assets/og-tia.jpg">
-    <meta name="theme-color" content="#E76F51">
-    <link rel="canonical" href="https://www.tiamedica.com/">
-    <link rel="icon" type="image/png" href="/assets/logo.png">
-    <link rel="apple-touch-icon" href="/assets/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600;1,9..144,700&family=Nunito:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap"
-        rel="stylesheet">
-    <style>
-        /* ── Tokens · Manual de Padrões da Marca v1.0 ── */
-        :root {
-            --coral: #E76F51;
-            --coral-d: #C25A40;
-            --coral-s: #FBE4DB;
-            --teal: #2A9D8F;
-            --teal-d: #21867A;
-            --teal-s: #D9F0ED;
-            --lilac: #8B5CF6;
-            --lilac-s: #EDE5FC;
-            --yellow: #F4C430;
-            --yellow-s: #FCEFC4;
-            --ink: #264653;
-            --ink2: #5A7A82;
-            --ink3: #8FA3A8;
-            --cream: #FAF7F2;
-            --card: #FFFFFF;
-            --line: #EDE6DA;
-            --wash: #F4EFE6;
-            --wpp: #25D366;
-            --wpp-d: #1FA855;
-            --font-display: 'Fraunces', Georgia, serif;
-            --font-ui: 'Nunito', system-ui, sans-serif;
-            --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-            --radius-pill: 999px;
-            --radius-card: 20px;
-            --radius-icon: 16px;
-            --shadow-soft: 0 10px 30px rgba(38, 70, 83, .06);
-            --shadow-md: 0 14px 32px rgba(38, 70, 83, .1);
-            --shadow-lg: 0 26px 50px rgba(38, 70, 83, .14)
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box
-        }
-
-        html {
-            scroll-behavior: smooth
-        }
-
-        html,
-        body {
-            overflow-x: hidden
-        }
-
-        body {
-            font-family: var(--font-ui);
-            font-weight: 600;
-            color: var(--ink);
-            background: var(--cream);
-            line-height: 1.6
-        }
-
-        ::selection {
-            background: var(--coral-s);
-            color: var(--coral-d)
-        }
-
-        img {
-            display: block;
-            max-width: 100%
-        }
-
-        a:focus-visible,
-        button:focus-visible {
-            outline: 3px solid var(--coral);
-            outline-offset: 3px
-        }
-
-        .skip-link {
-            position: fixed;
-            top: -5rem;
-            left: 1rem;
-            z-index: 1000;
-            padding: .75rem 1rem;
-            border-radius: var(--radius-pill);
-            background: var(--ink);
-            color: var(--cream);
-            font-weight: 800;
-            text-decoration: none
-        }
-
-        .skip-link:focus {
-            top: 1rem
-        }
-
-        /* ── NAV ── */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            padding: .9rem 2rem;
-            transition: background .35s, box-shadow .35s, padding .35s;
-            background: transparent
-        }
-
-        nav.scrolled {
-            background: rgba(250, 247, 242, .88);
-            backdrop-filter: blur(14px);
-            box-shadow: 0 1px 0 var(--line), var(--shadow-soft);
-            padding: .6rem 2rem
-        }
-
-        .nav-inner {
-            max-width: 1240px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: .7rem;
-            text-decoration: none
-        }
-
-        .logo-symbol {
-            width: 42px;
-            height: 42px;
-            flex-shrink: 0
-        }
-
-        .logo-name {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 700;
-            font-size: 1.55rem;
-            letter-spacing: -.05em;
-            line-height: .9;
-            color: var(--ink)
-        }
-
-        .logo-desc {
-            font-family: var(--font-ui);
-            font-weight: 800;
-            font-size: .6rem;
-            letter-spacing: .22em;
-            text-transform: uppercase;
-            color: var(--ink2);
-            margin-top: .2rem
-        }
-
-        footer .logo-name {
-            color: var(--cream)
-        }
-
-        footer .logo-desc {
-            color: rgba(250, 247, 242, .7)
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1.7rem;
-            list-style: none
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--ink);
-            font-weight: 700;
-            font-size: .95rem;
-            transition: color .25s;
-            position: relative
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2.5px;
-            border-radius: 2px;
-            background: var(--coral);
-            transition: width .3s
-        }
-
-        .nav-links a:hover {
-            color: var(--coral-d)
-        }
-
-        .nav-links a:hover::after {
-            width: 100%
-        }
-
-        .btn-wpp-nav {
-            background: var(--wpp);
-            color: #fff !important;
-            padding: .6rem 1.3rem;
-            border-radius: var(--radius-pill);
-            font-weight: 800;
-            font-size: .9rem;
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            box-shadow: 0 3px 0 var(--wpp-d), 0 10px 22px rgba(37, 211, 102, .25);
-            transition: transform .12s, box-shadow .12s
-        }
-
-        .btn-wpp-nav:hover {
-            transform: translateY(-1px)
-        }
-
-        .btn-wpp-nav:active {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0 var(--wpp-d), 0 5px 12px rgba(37, 211, 102, .2)
-        }
-
-        .btn-wpp-nav::after {
-            display: none !important
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 6px
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2.5px;
-            background: var(--ink);
-            border-radius: 2px
-        }
-
-        /* ── Botões ── */
-        .btn-p,
-        .btn-wpp {
-            padding: 1rem 1.9rem;
-            border-radius: var(--radius-pill);
-            font-family: var(--font-ui);
-            font-weight: 800;
-            font-size: 1.02rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            border: none;
-            cursor: pointer;
-            transition: transform .12s, box-shadow .12s;
-            letter-spacing: .01em
-        }
-
-        .btn-p {
-            background: var(--coral);
-            color: #fff;
-            box-shadow: 0 5px 0 var(--coral-d), 0 12px 28px rgba(231, 111, 81, .25)
-        }
-
-        .btn-p:hover {
-            transform: translateY(-2px)
-        }
-
-        .btn-p:active {
-            transform: translateY(3px);
-            box-shadow: 0 2px 0 var(--coral-d), 0 6px 16px rgba(231, 111, 81, .2)
-        }
-
-        .btn-wpp {
-            background: var(--wpp);
-            color: #fff;
-            box-shadow: 0 5px 0 var(--wpp-d), 0 12px 28px rgba(37, 211, 102, .28)
-        }
-
-        .btn-wpp:hover {
-            transform: translateY(-2px)
-        }
-
-        .btn-wpp:active {
-            transform: translateY(3px);
-            box-shadow: 0 2px 0 var(--wpp-d), 0 6px 16px rgba(37, 211, 102, .2)
-        }
-
-        .btn-s {
-            background: transparent;
-            color: var(--ink);
-            padding: 1rem 1.9rem;
-            border-radius: var(--radius-pill);
-            font-weight: 800;
-            font-size: 1.02rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            border: 2px solid rgba(38, 70, 83, .18);
-            transition: border-color .25s, color .25s, background .25s
-        }
-
-        .btn-s:hover {
-            border-color: var(--coral);
-            color: var(--coral-d);
-            background: rgba(231, 111, 81, .05)
-        }
-
-        .btn-s.dark {
-            color: var(--cream);
-            border-color: rgba(250, 247, 242, .35)
-        }
-
-        .btn-s.dark:hover {
-            border-color: var(--cream);
-            color: #fff;
-            background: rgba(250, 247, 242, .08)
-        }
-
-        .ico {
-            display: inline-flex;
-            flex-shrink: 0
-        }
-
-        /* ── HERO ── */
-        .hero {
-            min-height: 92vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            background: var(--cream)
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            pointer-events: none
-        }
-
-        .hero-bg .blob-a {
-            position: absolute;
-            top: -140px;
-            right: -120px;
-            width: 560px;
-            height: 560px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--coral-s) 0%, transparent 65%)
-        }
-
-        .hero-bg .blob-b {
-            position: absolute;
-            bottom: -180px;
-            left: -140px;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--teal-s) 0%, transparent 65%)
-        }
-
-        .dot-c {
-            position: absolute;
-            border-radius: 50%;
-            opacity: .7;
-            animation: float 5s ease-in-out infinite
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(-14px)
-            }
-        }
-
-        .hero-inner {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 8rem 2rem 4rem;
-            display: grid;
-            grid-template-columns: 1.08fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            position: relative;
-            z-index: 2
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            background: var(--card);
-            border: 1px solid var(--line);
-            box-shadow: 0 2px 6px rgba(38, 70, 83, .05);
-            padding: .5rem 1rem;
-            border-radius: var(--radius-pill);
-            font-size: .85rem;
-            font-weight: 700;
-            color: var(--ink2);
-            margin-bottom: 1.6rem;
-            animation: fadeInUp .8s ease
-        }
-
-        .hero-badge .dot {
-            width: 9px;
-            height: 9px;
-            background: var(--wpp);
-            border-radius: 50%;
-            position: relative;
-            flex-shrink: 0
-        }
-
-        .hero-badge .dot::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            background: var(--wpp);
-            animation: pulse-ring 1.8s ease-out infinite
-        }
-
-        @keyframes pulse-ring {
-            0% {
-                transform: scale(1);
-                opacity: .5
-            }
-
-            100% {
-                transform: scale(2.1);
-                opacity: 0
-            }
-        }
-
-        .hero h1 {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 600;
-            font-size: clamp(2.5rem, 4.6vw, 3.9rem);
-            line-height: 1.06;
-            letter-spacing: -.03em;
-            margin-bottom: 1.5rem;
-            text-wrap: balance;
-            animation: fadeInUp .8s ease .1s both
-        }
-
-        .hero h1 .hl {
-            color: var(--coral)
-        }
-
-        .hero-sub {
-            font-size: 1.18rem;
-            color: var(--ink2);
-            max-width: 500px;
-            line-height: 1.6;
-            margin-bottom: 2.2rem;
-            text-wrap: pretty;
-            animation: fadeInUp .8s ease .2s both
-        }
-
-        .hero-ctas {
-            display: flex;
-            gap: .9rem;
-            flex-wrap: wrap;
-            align-items: center;
-            animation: fadeInUp .8s ease .3s both
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        /* Mascote */
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            min-height: 540px;
-            animation: fadeInUp 1s ease .3s both
-        }
-
-        .hero-visual .ring {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0
-        }
-
-        .mascote {
-            position: relative;
-            z-index: 2;
-            height: 520px;
-            width: auto;
-            filter: drop-shadow(0 30px 40px rgba(231, 111, 81, .18)) drop-shadow(0 8px 12px rgba(38, 70, 83, .08));
-            animation: float 6s ease-in-out infinite
-        }
-
-        .bubble {
-            position: absolute;
-            top: 26px;
-            left: 2%;
-            background: var(--card);
-            padding: .85rem 1.1rem;
-            border-radius: 20px 20px 20px 4px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--line);
-            max-width: 225px;
-            z-index: 3;
-            animation: fadeInUp .6s ease .8s both
-        }
-
-        .bubble .tag {
-            font-family: var(--font-mono);
-            font-size: .62rem;
-            font-weight: 700;
-            letter-spacing: .14em;
-            color: var(--coral);
-            margin-bottom: .25rem
-        }
-
-        .bubble .txt {
-            font-size: .88rem;
-            font-weight: 700;
-            color: var(--ink);
-            line-height: 1.4
-        }
-
-        .fcard {
-            position: absolute;
-            bottom: 84px;
-            right: -4px;
-            background: var(--card);
-            padding: .85rem;
-            border-radius: var(--radius-icon);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--line);
-            display: flex;
-            align-items: center;
-            gap: .75rem;
-            min-width: 235px;
-            z-index: 3;
-            animation: fadeInUp .7s ease 1.2s both
-        }
-
-        .fcard .fico {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: var(--teal-s);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0
-        }
-
-        .fcard .ft1 {
-            font-family: var(--font-mono);
-            font-size: .62rem;
-            font-weight: 700;
-            letter-spacing: .1em;
-            color: var(--teal);
-            text-transform: uppercase
-        }
-
-        .fcard .ft2 {
-            font-size: .88rem;
-            font-weight: 800;
-            color: var(--ink);
-            margin-top: .1rem
-        }
-
-        /* ── Marquee ── */
-        .marquee {
-            background: var(--ink);
-            padding: .85rem 0;
-            overflow: hidden;
-            position: relative
-        }
-
-        .marquee-track {
-            display: flex;
-            gap: 3.2rem;
-            width: max-content;
-            white-space: nowrap;
-            animation: marquee 34s linear infinite;
-            color: rgba(250, 247, 242, .85);
-            font-family: var(--font-mono);
-            font-weight: 500;
-            font-size: .8rem;
-            letter-spacing: .12em
-        }
-
-        @keyframes marquee {
-            from {
-                transform: translateX(0)
-            }
-
-            to {
-                transform: translateX(-50%)
-            }
-        }
-
-        /* ── Seções · helpers ── */
-        .si {
-            max-width: 1160px;
-            margin: 0 auto
-        }
-
-        .sl {
-            display: inline-flex;
-            align-items: center;
-            gap: .55rem;
-            font-family: var(--font-mono);
-            font-size: .74rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .2em;
-            color: var(--coral);
-            margin-bottom: 1.1rem
-        }
-
-        .sl::before {
-            content: '';
-            width: 24px;
-            height: 2px;
-            border-radius: 2px;
-            background: currentColor
-        }
-
-        .sl.teal {
-            color: var(--teal)
-        }
-
-        .sl.lilac {
-            color: var(--lilac)
-        }
-
-        .st {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 600;
-            font-size: clamp(2rem, 3.6vw, 3rem);
-            letter-spacing: -.03em;
-            color: var(--ink);
-            line-height: 1.08;
-            margin-bottom: 1rem;
-            max-width: 640px;
-            text-wrap: balance
-        }
-
-        .st .hl {
-            color: var(--coral)
-        }
-
-        .st .hl-t {
-            color: var(--teal)
-        }
-
-        .ss {
-            font-size: 1.1rem;
-            color: var(--ink2);
-            max-width: 560px;
-            margin-bottom: 3rem;
-            text-wrap: pretty
-        }
-
-        .centered .sl,
-        .centered .st,
-        .centered .ss {
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto
-        }
-
-        .centered .sl {
-            justify-content: center;
-            display: flex
-        }
-
-        .itile {
-            width: 54px;
-            height: 54px;
-            border-radius: var(--radius-icon);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.2rem;
-            flex-shrink: 0
-        }
-
-        .itile.coral {
-            background: var(--coral-s)
-        }
-
-        .itile.teal {
-            background: var(--teal-s)
-        }
-
-        .itile.lilac {
-            background: var(--lilac-s)
-        }
-
-        .itile.yellow {
-            background: var(--yellow-s)
-        }
-
-        /* ── VALOR ── */
-        .vp {
-            padding: 6.5rem 2rem;
-            background: var(--cream)
-        }
-
-        .vp .si {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 4rem;
-            align-items: start
-        }
-
-        .vp-head {
-            position: sticky;
-            top: 110px
-        }
-
-        .vp-head .ss {
-            margin-bottom: 1.8rem
-        }
-
-        .v-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.3rem;
-            text-align: left
-        }
-
-        .v-card {
-            background: var(--card);
-            border-radius: 24px;
-            padding: 2rem;
-            border: 1px solid var(--line);
-            transition: transform .25s, box-shadow .25s;
-            position: relative;
-            overflow: hidden
-        }
-
-        .v-card:nth-child(even) {
-            margin-top: 1.75rem
-        }
-
-        .v-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--coral), var(--coral-d));
-            opacity: 0;
-            transition: opacity .3s
-        }
-
-        .v-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg)
-        }
-
-        .v-card:hover::before {
-            opacity: 1
-        }
-
-        .v-card h3 {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 600;
-            font-size: 1.3rem;
-            letter-spacing: -.02em;
-            margin-bottom: .5rem
-        }
-
-        .v-card p {
-            font-size: .92rem;
-            color: var(--ink2);
-            line-height: 1.6
-        }
-
-        /* ── COMO FUNCIONA ── */
-        .hiw {
-            padding: 6.5rem 2rem;
-            background: var(--wash);
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line)
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            position: relative
-        }
-
-        .steps::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 12.5%;
-            width: 75%;
-            border-top: 2px dashed var(--coral);
-            opacity: .4
-        }
-
-        .step {
-            text-align: center;
-            position: relative
-        }
-
-        .step-n {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--card);
-            border: 3px solid var(--coral);
-            color: var(--coral);
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 700;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.4rem;
-            box-shadow: 0 8px 20px rgba(231, 111, 81, .18);
-            position: relative;
-            z-index: 2
-        }
-
-        .step h3 {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 600;
-            font-size: 1.28rem;
-            letter-spacing: -.02em;
-            margin-bottom: .55rem
-        }
-
-        .step p {
-            font-size: .92rem;
-            color: var(--ink2);
-            max-width: 250px;
-            margin: 0 auto;
-            line-height: 1.6
-        }
-
-        /* ── DEMO · conversa ── */
-        .demo {
-            padding: 6.5rem 2rem;
-            background: var(--cream)
-        }
-
-        .demo .si {
-            display: grid;
-            grid-template-columns: 1fr 1.15fr;
-            gap: 4rem;
-            align-items: center
-        }
-
-        .demo-copy .ss {
-            margin-bottom: 1.8rem
-        }
-
-        .demo-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: .8rem;
-            margin-bottom: 2.2rem
-        }
-
-        .demo-list li {
-            display: flex;
-            gap: .7rem;
-            align-items: flex-start;
-            font-size: .98rem;
-            color: var(--ink);
-            line-height: 1.5
-        }
-
-        .demo-list li::before {
-            content: '✓';
-            flex-shrink: 0;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--teal-s);
-            color: var(--teal-d);
-            font-weight: 800;
-            font-size: .8rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 2px
-        }
-
-        .phone-wrap {
-            display: flex;
-            justify-content: center;
-            position: relative
-        }
-
-        .phone {
-            width: 320px;
-            background: var(--ink);
-            border-radius: 44px;
-            padding: 9px;
-            box-shadow: 0 30px 60px rgba(38, 70, 83, .25), 0 0 0 1px rgba(0, 0, 0, .08)
-        }
-
-        .phone-screen {
-            border-radius: 36px;
-            overflow: hidden;
-            background: #ECE5DD;
-            min-height: 520px;
-            padding: .6rem .8rem 1.2rem;
-            position: relative
-        }
-
-        .phone-notch {
-            width: 110px;
-            height: 26px;
-            background: var(--ink);
-            border-radius: 0 0 16px 16px;
-            margin: -0.6rem auto .6rem;
-            position: relative;
-            z-index: 3
-        }
-
-        .ch-hdr {
-            display: flex;
-            align-items: center;
-            gap: .7rem;
-            padding: .75rem .8rem;
-            background: #075E54;
-            border-radius: 14px;
-            margin-bottom: 1rem
-        }
-
-        .ch-av {
-            width: 36px;
-            height: 36px;
-            background: var(--coral);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0
-        }
-
-        .ch-name {
-            color: #fff;
-            font-weight: 800;
-            font-size: .9rem
-        }
-
-        .ch-st {
-            color: rgba(255, 255, 255, .7);
-            font-size: .72rem
-        }
-
-        .msg {
-            max-width: 86%;
-            padding: .6rem .9rem;
-            border-radius: 14px;
-            margin-bottom: .5rem;
-            font-size: .82rem;
-            line-height: 1.5;
-            animation: msgIn .5s ease both
-        }
-
-        .msg-b {
-            background: #fff;
-            border-top-left-radius: 4px;
-            margin-right: auto;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .06)
-        }
-
-        .msg-u {
-            background: #DCF8C6;
-            border-top-right-radius: 4px;
-            margin-left: auto;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .06)
-        }
-
-        .msg:nth-child(3) {
-            animation-delay: .6s
-        }
-
-        .msg:nth-child(4) {
-            animation-delay: 1.3s
-        }
-
-        .msg:nth-child(5) {
-            animation-delay: 2s
-        }
-
-        .msg:nth-child(6) {
-            animation-delay: 2.7s
-        }
-
-        @keyframes msgIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        .msg-t {
-            font-size: .65rem;
-            color: var(--ink3);
-            text-align: right;
-            margin-top: 2px
-        }
-
-        /* ── PARA QUEM ── */
-        .fw {
-            padding: 6.5rem 2rem;
-            background: var(--cream)
-        }
-
-        .fw-banner {
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 3rem;
-            position: relative;
-            border: 1px solid var(--line)
-        }
-
-        .fw-banner img {
-            width: 100%;
-            height: clamp(260px, 34vw, 400px);
-            object-fit: cover;
-            object-position: center 30%;
-            display: block
-        }
-
-        .fw-banner .cap {
-            position: absolute;
-            left: 1.4rem;
-            bottom: 1.4rem;
-            background: rgba(250, 247, 242, .92);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius-pill);
-            padding: .55rem 1.1rem;
-            font-size: .85rem;
-            font-weight: 800;
-            color: var(--ink);
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            box-shadow: var(--shadow-soft)
-        }
-
-        .personas {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            text-align: left
-        }
-
-        .pe-card {
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 24px;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            transition: transform .25s, box-shadow .25s
-        }
-
-        .pe-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md)
-        }
-
-        .pe-card .halo {
-            position: absolute;
-            top: -46px;
-            right: -46px;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            opacity: .5
-        }
-
-        .pe-tag {
-            display: inline-block;
-            font-size: .78rem;
-            font-weight: 800;
-            padding: .35rem .85rem;
-            border-radius: var(--radius-pill);
-            margin-bottom: 1.1rem;
-            position: relative
-        }
-
-        .pe-card h3 {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 600;
-            font-size: 1.45rem;
-            letter-spacing: -.02em;
-            line-height: 1.15;
-            margin-bottom: .6rem;
-            position: relative
-        }
-
-        .pe-card>p {
-            font-size: .93rem;
-            color: var(--ink2);
-            line-height: 1.6;
-            position: relative
-        }
-
-        .pe-card ul {
-            list-style: none;
-            margin-top: 1.1rem;
-            position: relative
-        }
-
-        .pe-card li {
-            font-size: .89rem;
-            color: var(--ink);
-            padding: .3rem 0;
-            display: flex;
-            align-items: flex-start;
-            gap: .55rem;
-            line-height: 1.45
-        }
-
-        .pe-card li::before {
-            content: '✓';
-            flex-shrink: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            font-size: .72rem;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 2px
-        }
-
-        .pe-link {
-            display: inline-flex;
-            align-items: center;
-            gap: .4rem;
-            margin-top: 1.1rem;
-            color: var(--teal-d);
-            font-weight: 800;
-            font-size: .9rem;
-            text-decoration: none;
-            position: relative;
-            transition: color .25s
-        }
-
-        .pe-link:hover {
-            color: var(--ink)
-        }
-
-        .pe-card.c-coral .halo {
-            background: var(--coral-s)
-        }
-
-        .pe-card.c-coral .pe-tag {
-            background: var(--coral-s);
-            color: var(--coral-d)
-        }
-
-        .pe-card.c-coral li::before {
-            background: var(--coral-s);
-            color: var(--coral-d)
-        }
-
-        .pe-card.c-lilac .halo {
-            background: var(--lilac-s)
-        }
-
-        .pe-card.c-lilac .pe-tag {
-            background: var(--lilac-s);
-            color: var(--lilac)
-        }
-
-        .pe-card.c-lilac li::before {
-            background: var(--lilac-s);
-            color: var(--lilac)
-        }
-
-        .pe-card.c-teal .halo {
-            background: var(--teal-s)
-        }
-
-        .pe-card.c-teal .pe-tag {
-            background: var(--teal-s);
-            color: var(--teal-d)
-        }
-
-        .pe-card.c-teal li::before {
-            background: var(--teal-s);
-            color: var(--teal-d)
-        }
-
-        /* ── PLANOS ── */
-        .pricing {
-            padding: 6.5rem 2rem;
-            background: var(--wash);
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line)
-        }
-
-        .price-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            align-items: stretch;
-            margin-top: 2.5rem;
-            text-align: left
-        }
-
-        .price-card {
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 26px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            transition: transform .25s, box-shadow .25s
-        }
-
-        .price-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md)
-        }
-
-        .price-card.featured {
-            background: var(--ink);
-            color: var(--cream);
-            border-color: var(--ink);
-            box-shadow: var(--shadow-lg)
-        }
-
-        .price-tag {
-            display: inline-block;
-            align-self: flex-start;
-            background: var(--teal-s);
-            color: var(--teal-d);
-            font-family: var(--font-mono);
-            font-size: .66rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            padding: .3rem .85rem;
-            border-radius: var(--radius-pill);
-            margin-bottom: 1rem
-        }
-
-        .price-tag.wait {
-            background: var(--coral);
-            color: #fff
-        }
-
-        .price-tag.soon {
-            background: var(--coral-s);
-            color: var(--coral-d)
-        }
-
-        .price-card h3 {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 600;
-            font-size: 1.35rem;
-            letter-spacing: -.02em;
-            margin-bottom: .4rem
-        }
-
-        .price-value {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 700;
-            font-size: 2.1rem;
-            letter-spacing: -.03em;
-            color: var(--ink);
-            margin: .4rem 0 .2rem
-        }
-
-        .price-card.featured .price-value {
-            color: var(--cream)
-        }
-
-        .price-value small {
-            font-family: var(--font-ui);
-            font-style: normal;
-            font-size: .85rem;
-            font-weight: 700;
-            color: var(--ink2)
-        }
-
-        .price-card.featured .price-value small {
-            color: rgba(250, 247, 242, .7)
-        }
-
-        .price-desc {
-            font-size: .93rem;
-            color: var(--ink2);
-            line-height: 1.6;
-            margin-bottom: 1rem
-        }
-
-        .price-card.featured .price-desc {
-            color: rgba(250, 247, 242, .78)
-        }
-
-        .price-feats {
-            list-style: none;
-            margin: 0 0 1.5rem;
-            flex: 1
-        }
-
-        .price-feats li {
-            font-size: .9rem;
-            color: var(--ink2);
-            line-height: 1.5;
-            padding: .35rem 0 .35rem 1.7rem;
-            position: relative
-        }
-
-        .price-card.featured .price-feats li {
-            color: rgba(250, 247, 242, .82)
-        }
-
-        .price-feats li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            top: .38rem;
-            width: 19px;
-            height: 19px;
-            border-radius: 50%;
-            background: var(--teal-s);
-            color: var(--teal-d);
-            font-size: .68rem;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center
-        }
-
-        .price-card.featured .price-feats li::before {
-            background: rgba(250, 247, 242, .14);
-            color: var(--coral-s)
-        }
-
-        .price-note {
-            font-size: .78rem;
-            color: var(--ink3);
-            line-height: 1.5;
-            margin-top: 1rem
-        }
-
-        .price-card.featured .price-note {
-            color: rgba(250, 247, 242, .55)
-        }
-
-        .price-cta {
-            display: inline-block;
-            text-align: center;
-            background: var(--teal);
-            color: #fff;
-            font-weight: 800;
-            padding: .95rem 1.5rem;
-            border-radius: var(--radius-pill);
-            text-decoration: none;
-            box-shadow: 0 4px 0 var(--teal-d);
-            transition: transform .12s, box-shadow .12s
-        }
-
-        .price-cta:hover {
-            transform: translateY(-2px)
-        }
-
-        .price-cta:active {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0 var(--teal-d)
-        }
-
-        .price-cta.coral {
-            background: var(--coral);
-            box-shadow: 0 4px 0 var(--coral-d)
-        }
-
-        .price-cta.coral:active {
-            box-shadow: 0 1px 0 var(--coral-d)
-        }
-
-        .price-cta.ghost {
-            background: transparent;
-            color: var(--coral-d);
-            border: 2px solid var(--coral);
-            box-shadow: none
-        }
-
-        .price-cta.ghost:hover {
-            background: rgba(231, 111, 81, .07)
-        }
-
-        .trust-strip {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 2rem
-        }
-
-        .trust-item {
-            font-size: .85rem;
-            color: var(--ink2);
-            line-height: 1.55;
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-icon);
-            padding: 1rem 1.2rem;
-            text-align: left
-        }
-
-        /* ── FAQ ── */
-        .faq {
-            padding: 6.5rem 2rem;
-            background: var(--wash)
-        }
-
-        .faq .si {
-            display: grid;
-            grid-template-columns: 1fr 1.35fr;
-            gap: 4rem;
-            align-items: start
-        }
-
-        .faq-head {
-            position: sticky;
-            top: 110px
-        }
-
-        .faq-head .ss {
-            margin-bottom: 1.8rem
-        }
-
-        .faq-list {
-            display: flex;
-            flex-direction: column;
-            gap: .8rem
-        }
-
-        .faq-item {
-            background: var(--card);
-            border-radius: 18px;
-            border: 1px solid var(--line);
-            overflow: hidden;
-            transition: border-color .3s, box-shadow .3s
-        }
-
-        .faq-item:hover {
-            border-color: var(--coral)
-        }
-
-        .faq-item.active {
-            box-shadow: var(--shadow-soft)
-        }
-
-        .faq-q {
-            width: 100%;
-            background: none;
-            border: none;
-            padding: 1.35rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            cursor: pointer;
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 600;
-            font-size: 1.18rem;
-            letter-spacing: -.015em;
-            color: var(--ink);
-            text-align: left;
-            line-height: 1.3
-        }
-
-        .faq-q .arrow {
-            flex-shrink: 0;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: var(--coral-s);
-            position: relative;
-            transition: background .25s
-        }
-
-        .faq-q .arrow::before,
-        .faq-q .arrow::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            background: var(--coral);
-            border-radius: 2px;
-            transition: transform .3s, background .25s
-        }
-
-        .faq-q .arrow::before {
-            width: 14px;
-            height: 2.5px;
-            transform: translate(-50%, -50%)
-        }
-
-        .faq-q .arrow::after {
-            width: 2.5px;
-            height: 14px;
-            transform: translate(-50%, -50%)
-        }
-
-        .faq-item.active .faq-q .arrow {
-            background: var(--coral)
-        }
-
-        .faq-item.active .faq-q .arrow::before,
-        .faq-item.active .faq-q .arrow::after {
-            background: #fff
-        }
-
-        .faq-item.active .faq-q .arrow::after {
-            transform: translate(-50%, -50%) rotate(90deg)
-        }
-
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .4s ease
-        }
-
-        .faq-ai {
-            padding: 0 1.5rem 1.35rem;
-            font-size: .93rem;
-            color: var(--ink2);
-            line-height: 1.7
-        }
-
-        .faq-ai a {
-            color: var(--coral-d);
-            font-weight: 700
-        }
-
-        /* ── CTA FINAL ── */
-        .cta {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--coral), var(--coral-d));
-            position: relative;
-            overflow: hidden
-        }
-
-        .cta::before,
-        .cta::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .1)
-        }
-
-        .cta::before {
-            top: -120px;
-            left: -120px;
-            width: 380px;
-            height: 380px
-        }
-
-        .cta::after {
-            bottom: -160px;
-            right: -100px;
-            width: 460px;
-            height: 460px
-        }
-
-        .cta .si {
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 3rem;
-            align-items: center
-        }
-
-        .cta h2 {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-weight: 600;
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            letter-spacing: -.03em;
-            color: var(--cream);
-            line-height: 1.06;
-            margin-bottom: 1.2rem;
-            text-wrap: balance
-        }
-
-        .cta p {
-            color: rgba(250, 247, 242, .9);
-            font-size: 1.12rem;
-            max-width: 520px;
-            margin-bottom: 1.4rem;
-            text-wrap: pretty
-        }
-
-        .cta-tag {
-            display: inline-block;
-            background: rgba(250, 247, 242, .15);
-            border: 1px solid rgba(250, 247, 242, .3);
-            color: var(--cream);
-            font-weight: 800;
-            font-size: .88rem;
-            padding: .5rem 1.3rem;
-            border-radius: var(--radius-pill);
-            margin-bottom: 2rem
-        }
-
-        .cta-ctas {
-            display: flex;
-            gap: .9rem;
-            flex-wrap: wrap;
-            align-items: center
-        }
-
-        .cta-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            min-height: 380px
-        }
-
-        .cta-visual .mascote {
-            height: 380px;
-            animation: none;
-            filter: drop-shadow(0 20px 30px rgba(120, 40, 20, .3))
-        }
-
-        .cta-visual .bubble {
-            top: 6px;
-            left: -6px;
-            border: none;
-            border-radius: 20px 20px 4px 20px;
-            box-shadow: 0 14px 30px rgba(0, 0, 0, .18)
-        }
-
-        .cta-visual .bubble .tag {
-            color: var(--teal-d)
-        }
-
-        /* ── FOOTER ── */
-        footer {
-            background: var(--ink);
-            padding: 4rem 2rem 1.5rem;
-            color: var(--cream)
-        }
-
-        .fi {
-            max-width: 1160px;
-            margin: 0 auto
-        }
-
-        .ft {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr 1fr 1fr;
-            gap: 2rem;
-            padding-bottom: 2.5rem;
-            border-bottom: 1px solid rgba(250, 247, 242, .12)
-        }
-
-        .fb p {
-            font-size: .88rem;
-            color: rgba(250, 247, 242, .6);
-            line-height: 1.65;
-            max-width: 300px;
-            margin-top: 1rem
-        }
-
-        .fc h4 {
-            font-family: var(--font-mono);
-            color: rgba(250, 247, 242, .5);
-            font-size: .7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .18em;
-            margin-bottom: 1rem
-        }
-
-        .fc a {
-            display: block;
-            color: rgba(250, 247, 242, .78);
-            text-decoration: none;
-            font-size: .89rem;
-            font-weight: 700;
-            padding: .27rem 0;
-            transition: color .25s
-        }
-
-        .fc a:hover {
-            color: var(--coral-s)
-        }
-
-        .fbot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            padding-top: 1.5rem
-        }
-
-        .fbot p {
-            font-size: .78rem;
-            color: rgba(250, 247, 242, .45)
-        }
-
-        .fsoc {
-            display: flex;
-            gap: .8rem
-        }
-
-        .fsoc a {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: rgba(250, 247, 242, .08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(250, 247, 242, .7);
-            text-decoration: none;
-            transition: background .25s, color .25s;
-            font-size: .95rem
-        }
-
-        .fsoc a:hover {
-            background: var(--coral);
-            color: #fff
-        }
-
-        /* ── FLOAT ── */
-        .contact-float {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: var(--coral);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            color: #fff;
-            text-decoration: none;
-            box-shadow: 0 4px 0 var(--coral-d), 0 12px 28px rgba(231, 111, 81, .35);
-            z-index: 99;
-            transition: transform .15s, box-shadow .15s;
-            animation: bounceIn 1s ease 2s both
-        }
-
-        .contact-float:hover {
-            transform: scale(1.08)
-        }
-
-        .contact-float:active {
-            transform: translateY(3px);
-            box-shadow: 0 1px 0 var(--coral-d), 0 6px 14px rgba(231, 111, 81, .3)
-        }
-
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0)
-            }
-
-            60% {
-                transform: scale(1.15)
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1)
-            }
-        }
-
-        /* ── RESPONSIVO ── */
-        @media(max-width:1100px) and (min-width:901px) {
-
-            .personas,
-            .price-grid {
-                grid-template-columns: repeat(2, 1fr)
-            }
-
-            .vp .si {
-                grid-template-columns: 1fr
-            }
-
-            .vp-head {
-                position: static
-            }
-        }
-
-        @media(max-width:900px) {
-            .hero-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding-top: 7rem
-            }
-
-            .hero-sub {
-                margin-left: auto;
-                margin-right: auto
-            }
-
-            .hero-ctas {
-                justify-content: center
-            }
-
-            .hero-visual {
-                min-height: 0;
-                margin-top: 2.5rem
-            }
-
-            .mascote {
-                height: 400px
-            }
-
-            .bubble {
-                left: 0;
-                top: 0
-            }
-
-            .fcard {
-                right: 0;
-                bottom: 30px
-            }
-
-            .vp .si,
-            .faq .si,
-            .demo .si,
-            .cta .si {
-                grid-template-columns: 1fr
-            }
-
-            .vp-head,
-            .faq-head {
-                position: static
-            }
-
-            .cta-visual {
-                min-height: 0;
-                margin-top: 1rem
-            }
-
-            .cta-visual .mascote {
-                height: 300px
-            }
-
-            .steps,
-            .personas,
-            .v-grid,
-            .price-grid,
-            .trust-strip {
-                grid-template-columns: 1fr;
-                max-width: 520px;
-                margin-left: auto;
-                margin-right: auto
-            }
-
-            .v-card:nth-child(even) {
-                margin-top: 0
-            }
-
-            .price-grid,
-            .trust-strip {
-                margin-top: 2.5rem
-            }
-
-            .trust-strip {
-                margin-top: 2rem
-            }
-
-            .steps::before {
-                display: none
-            }
-
-            .ft {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .nav-links {
-                display: none
-            }
-
-            .hamburger {
-                display: flex
-            }
-
-            .nav-links.open {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--cream);
-                padding: 1.5rem 2rem;
-                box-shadow: var(--shadow-md);
-                border-bottom: 1px solid var(--line);
-                border-radius: 0 0 20px 20px;
-                gap: 1.1rem
-            }
-
-            .phone {
-                width: 290px
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
-                scroll-behavior: auto !important
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tia Médica — a rotina de cuidado, organizada por conversa</title>
+<meta name="description" content="Remédios, hábitos, consultas e a família por perto — numa conversa de WhatsApp. Sem instalar aplicativo. A Tia lembra, registra e avisa; quando a decisão é clínica, ela é de um médico.">
+<meta name="theme-color" content="#FAF7F2">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://www.tiamedica.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tia Médica">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://www.tiamedica.com/">
+<meta property="og:title" content="Tia Médica — a rotina de cuidado, organizada por conversa">
+<meta property="og:description" content="Remédios, hábitos, consultas e a família por perto — numa conversa de WhatsApp. Sem instalar aplicativo.">
+<meta property="og:image" content="https://www.tiamedica.com/assets/og-tia-2026.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tia Médica — a rotina de cuidado, organizada por conversa">
+<meta name="twitter:description" content="Remédios, hábitos, consultas e a família por perto — numa conversa de WhatsApp. Sem instalar aplicativo.">
+<meta name="twitter:image" content="https://www.tiamedica.com/assets/og-tia-2026.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/assets/tia-symbol-reduzido.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500..700&family=Nunito:wght@600..900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/tia.css">
+<script src="/assets/tia.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://www.tiamedica.com/#org","name":"Tia Médica","legalName":"TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.)","url":"https://www.tiamedica.com/","logo":"https://www.tiamedica.com/assets/icon-512.png","email":"admin@tiamedica.com","sameAs":["https://www.instagram.com/tiamedica/"]},
+ {"@type":"WebSite","@id":"https://www.tiamedica.com/#website","name":"Tia Médica","url":"https://www.tiamedica.com/","inLanguage":"pt-BR","publisher":{"@id":"https://www.tiamedica.com/#org"}},
+ {"@type":"FAQPage","@id":"https://www.tiamedica.com/#faq","mainEntity":[
+  {"@type":"Question","name":"Preciso instalar algum aplicativo?","acceptedAnswer":{"@type":"Answer","text":"Não. A experiência acontece inteira pelo WhatsApp que você já usa. Não tem download, não tem cadastro, não tem senha."}},
+  {"@type":"Question","name":"Minha mãe não sabe mexer em tecnologia. Vai conseguir?","acceptedAnswer":{"@type":"Answer","text":"Se ela manda mensagem no WhatsApp, ela consegue. A Tia trata por nome, escreve em frases curtas e aceita resposta em texto ou áudio. Ela responde “já tomei” e pronto — não existe menu para aprender."}},
+  {"@type":"Question","name":"Quanto custa?","acceptedAnswer":{"@type":"Answer","text":"A rotina de lembretes é gratuita e continua gratuita. A consulta com médico parceiro custa R$ 49,90 por atendimento, paga por link seguro do Mercado Pago. O Plano Tia Cuidado está em lista de espera."}},
+  {"@type":"Question","name":"Como funciona o pagamento?","acceptedAnswer":{"@type":"Answer","text":"Quando você pede um serviço com médico, a Tia envia na conversa um link oficial do Mercado Pago. O pagamento acontece no ambiente do Mercado Pago, por PIX ou cartão. Nunca pedimos número de cartão, código ou senha pelo WhatsApp."}},
+  {"@type":"Question","name":"Posso usar a consulta em uma emergência?","acceptedAnswer":{"@type":"Answer","text":"Não. O prazo de resposta é de 24 a 48 horas e não substitui atendimento de urgência. Em emergência, procure uma UPA ou hospital, ou ligue 192 (SAMU)."}},
+  {"@type":"Question","name":"A Tia dá orientação médica?","acceptedAnswer":{"@type":"Answer","text":"Não. Ela organiza, lembra e registra as informações que você fornece. Não diagnostica, não prescreve, não altera tratamentos e não substitui profissionais de saúde. Quando a decisão é clínica, ela é de um médico com CRM ativo, que responde na própria conversa."}},
+  {"@type":"Question","name":"Como funciona a leitura de receita por foto?","acceptedAnswer":{"@type":"Answer","text":"Você manda a foto pelo WhatsApp. A Tia sugere os medicamentos, doses e frequências que identificou e pede sua confirmação antes de cadastrar. Ela não substitui a conferência da receita nem a orientação do profissional que a emitiu."}},
+  {"@type":"Question","name":"É seguro compartilhar dados de saúde?","acceptedAnswer":{"@type":"Answer","text":"Dado de saúde exige cuidado especial. Adotamos medidas técnicas e administrativas de segurança, pedimos consentimento e explicamos o tratamento das informações na Política de Privacidade. Nada é compartilhado sem você saber."}},
+  {"@type":"Question","name":"Sou profissional de saúde. Como uso com meus pacientes?","acceptedAnswer":{"@type":"Answer","text":"Trabalhamos com clínicas parceiras em coortes acompanhadas, com consentimento e critérios claros. Escreva para admin@tiamedica.com para conhecer o formato."}}
+ ]}
+]}
+</script>
 </head>
-
 <body>
-    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
-    <nav id="nav" aria-label="Navegação principal">
-        <div class="nav-inner">
-            <a href="/" class="logo" aria-label="Tia Médica — página inicial">
-                <svg class="logo-symbol" viewBox="0 0 200 200" aria-hidden="true">
-                    <defs>
-                        <linearGradient id="tsg" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0" stop-color="#F08672" />
-                            <stop offset="1" stop-color="#E76F51" />
-                        </linearGradient>
-                    </defs>
-                    <path
-                        d="M100 178 C 48 142, 18 108, 18 72 C 18 44, 40 28, 64 28 C 82 28, 94 40, 100 54 C 106 40, 118 28, 136 28 C 160 28, 182 44, 182 72 C 182 108, 152 142, 100 178 Z"
-                        fill="url(#tsg)" stroke="#C25A40" stroke-width="3" stroke-linejoin="round" />
-                    <path
-                        d="M 40 104 L 66 104 L 76 78 L 90 128 L 102 92 L 110 112 L 118 104 L 160 104"
-                        fill="none" stroke="#FAF7F2" stroke-width="7" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-                <span>
-                    <span class="logo-name">Tia</span>
-                    <span class="logo-desc">Médica</span>
-                </span>
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#como-funciona">Como Funciona</a></li>
-                <li><a href="#para-quem">Para Quem</a></li>
-                <li><a href="#planos">Planos</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="mailto:admin@tiamedica.com?subject=Interesse%20no%20piloto%20da%20Tia%20M%C3%A9dica"
-                        class="btn-wpp-nav">✉️ Fale com a equipe</a></li>
-            </ul>
-            <button class="hamburger" type="button" aria-label="Abrir menu" aria-controls="navLinks"
-                aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- N12 · banner de promessa + barra que recolhe ao rolar -->
+<header class="nav" id="nav">
+  <div class="nav__banner" id="banner">
+    <p>💛 <b>Sempre vai existir uma Tia gratuita.</b><span class="nav__banner-more"> Lembrete de medicamento nunca é bloqueado por pagamento. <a class="link" href="#precos">Ver preços →</a></span></p>
+    <button class="nav__banner-x" id="banner-x" type="button" aria-label="Fechar aviso">×</button>
+  </div>
+  <div class="nav__bar">
+    <div class="wrap nav__in">
+      <a class="nav__brand" href="/" aria-label="Tia Médica — início">
+        <img src="/assets/tia-lockup-completo.svg" alt="Tia Médica" width="166" height="46">
+      </a>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#precos">Preços</a></li>
+        <li><a href="#duvidas">Dúvidas</a></li>
+      </ul>
+      <div class="nav__right">
+        <a class="cta-tia cta-tia--nav" data-cta href="https://wa.me/551140402232?text=Oi%21%20Vim%20pelo%20site%20e%20quero%20conhecer%20a%20Tia." target="_blank" rel="noopener">
+          <img src="/assets/tia-symbol-reduzido.svg" alt="" width="24" height="24"><span>Falar com a Tia</span>
+        </a>
+        <button class="nav__menu" id="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- hero · escolha de papel + simulador -->
+  <section class="hero" id="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <ul class="roles" aria-label="Para quem é a rotina">
+          <li><button class="role" type="button" data-role="mim" aria-pressed="true">Para mim</button></li>
+          <li><button class="role" type="button" data-role="mae" aria-pressed="false">Para quem eu cuido</button></li>
+          <li><button class="role" type="button" data-role="clinica" aria-pressed="false">Para minha clínica</button></li>
+        </ul>
+        <h1>A rotina de cuidado, <span class="word">organizada</span> por conversa.</h1>
+        <p class="lede hero__lede" id="hero-lede" data-swap>Remédios, hábitos e consultas na hora certa — numa conversa de WhatsApp que você já sabe usar. A Tia lembra, você confirma, e fica registrado.</p>
+        <div class="hero__actions">
+          <a class="cta-tia cta-tia--lg" id="hero-cta" data-cta href="https://wa.me/551140402232?text=Oi%21%20Quero%20come%C3%A7ar%20com%20os%20lembretes%20gratuitos." target="_blank" rel="noopener">
+            <img src="/assets/tia-symbol-reduzido.svg" alt="" width="24" height="24"><span id="hero-cta-label">Falar com a Tia</span>
+          </a>
+          <a class="link" href="#como-funciona">Ver como funciona ↓</a>
         </div>
-    </nav>
+      </div>
 
-    <main id="conteudo-principal">
-        <section class="hero">
-            <div class="hero-bg" aria-hidden="true">
-                <div class="blob-a"></div>
-                <div class="blob-b"></div>
-                <div class="dot-c" style="left:8%;top:22%;width:8px;height:8px;background:var(--yellow)"></div>
-                <div class="dot-c" style="left:14%;top:62%;width:6px;height:6px;background:var(--lilac);animation-duration:6s"></div>
-                <div class="dot-c" style="left:88%;top:28%;width:10px;height:10px;background:var(--teal);animation-duration:7s"></div>
-                <div class="dot-c" style="left:92%;top:72%;width:6px;height:6px;background:var(--yellow);animation-duration:8s"></div>
-                <div class="dot-c" style="left:50%;top:12%;width:5px;height:5px;background:var(--coral);animation-duration:9s"></div>
-            </div>
-            <div class="hero-inner">
-                <div>
-                    <div class="hero-badge"><span class="dot"></span> Piloto supervisionado · direto no WhatsApp</div>
-                    <h1>Organize sua rotina de cuidados com a saúde <span class="hl">pelo WhatsApp</span></h1>
-                    <p class="hero-sub">A Tia Médica reúne medicamentos, hábitos, consultas e o acompanhamento de
-                        cuidadores em uma conversa simples e acolhedora — sem instalar outro aplicativo.</p>
-                    <div class="hero-ctas">
-                        <a href="mailto:admin@tiamedica.com?subject=Interesse%20na%20Tia%20M%C3%A9dica"
-                            data-wpp="inicio" class="btn-wpp"><span class="ico" aria-hidden="true"><svg width="20"
-                                    height="20" viewBox="0 0 24 24" fill="#fff">
-                                    <path
-                                        d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.2-.8.9-1 1.1-.4.2-.7 0-1.3-.5-2.4-1.5c-.9-.8-1.5-1.8-1.7-2.1s0-.4.1-.6c.1-.1.3-.4.4-.5s.2-.3.3-.4c.1-.2 0-.3 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4s.2-1.2.2-1.4c-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3A10 10 0 0012 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1120 12c0 4.4-3.6 8-8 8z" />
-                                </svg></span>Falar com a Tia</a>
-                        <a href="#planos" class="btn-s">Ver planos e preços →</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <svg class="ring" viewBox="0 0 500 560" aria-hidden="true">
-                        <circle cx="250" cy="300" r="225" fill="none" stroke="#E76F51" stroke-width="2"
-                            stroke-dasharray="2 8" opacity=".35" />
-                    </svg>
-                    <div class="bubble">
-                        <div class="tag">OI! SOU A TIA</div>
-                        <div class="txt">Conta comigo pra organizar o cuidado aí de casa 💛</div>
-                    </div>
-                    <div class="fcard">
-                        <div class="fico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="#2A9D8F" stroke-width="2.2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="2" y="8" width="20" height="8" rx="4" transform="rotate(-30 12 12)" />
-                                <path d="M8 8l8 8" transform="rotate(-30 12 12)" />
-                            </svg></div>
-                        <div>
-                            <div class="ft1">08:00 · Lembrete</div>
-                            <div class="ft2">Losartana 50mg</div>
-                        </div>
-                    </div>
-                    <img class="mascote" src="assets/tia-mascote.webp" width="894" height="1020"
-                        alt="Tia, a enfermeira da Tia Médica, mostrando uma conversa de WhatsApp no celular">
-                </div>
-            </div>
-        </section>
-
-        <div class="marquee" aria-hidden="true">
-            <div class="marquee-track">
-                <span>★ REMÉDIOS</span><span>·</span><span>★ HÁBITOS</span><span>·</span><span>★
-                    CONSULTAS</span><span>·</span><span>★ CUIDADORES</span><span>·</span><span>★ CLÍNICAS
-                    PARCEIRAS</span><span>·</span><span>★ NO WHATSAPP</span><span>·</span>
-                <span>★ REMÉDIOS</span><span>·</span><span>★ HÁBITOS</span><span>·</span><span>★
-                    CONSULTAS</span><span>·</span><span>★ CUIDADORES</span><span>·</span><span>★ CLÍNICAS
-                    PARCEIRAS</span><span>·</span><span>★ NO WHATSAPP</span><span>·</span>
-            </div>
+      <figure class="chat" id="sim" aria-label="Simulação de conversa com a Tia no WhatsApp — toque nas respostas para ver o que acontece">
+        <div class="chat__head">
+          <img src="/assets/tia-avatar-coral.svg" alt="" width="40" height="40">
+          <div>
+            <div class="chat__name">Tia Médica</div>
+            <div class="chat__status" id="sim-status">online</div>
+          </div>
         </div>
-
-        <section class="vp" id="valor">
-            <div class="si">
-                <div class="vp-head">
-                    <div class="sl">Por que a Tia Médica</div>
-                    <h2 class="st">Cuidar da saúde <span class="hl">não deveria ser tão difícil</span></h2>
-                    <p class="ss">Medicamentos, hábitos, consultas e o acompanhamento da família acabam espalhados
-                        entre alarmes, papéis e mensagens. A Tia Médica reúne essa rotina em uma conversa simples e
-                        acolhedora — sem instalar outro aplicativo.</p>
-                    <a href="#planos" class="btn-s">Ver planos e preços →</a>
-                </div>
-                <div class="v-grid">
-                    <div class="v-card">
-                        <div class="itile coral" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"
-                                fill="none" stroke="#E76F51" stroke-width="2.2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M4 8h3l2-3h6l2 3h3v11H4z" />
-                                <circle cx="12" cy="13" r="3.2" />
-                            </svg></div>
-                        <h3>Receitas por Foto</h3>
-                        <p>Envie uma foto da receita. A Tia ajuda a extrair medicamentos, doses e horários e pede sua
-                            confirmação antes do cadastro.</p>
-                    </div>
-                    <div class="v-card">
-                        <div class="itile teal" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"
-                                fill="none" stroke="#2A9D8F" stroke-width="2.2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M6 16l-1 2h14l-1-2M8 16V11a4 4 0 018 0v5M10 20a2 2 0 004 0" />
-                            </svg></div>
-                        <h3>Lembretes Programados</h3>
-                        <p>Medicamentos, hábitos e consultas com lembretes na conversa — e confirmações registradas,
-                            sem app novo e sem menus complicados.</p>
-                    </div>
-                    <div class="v-card">
-                        <div class="itile lilac" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"
-                                fill="none" stroke="#8B5CF6" stroke-width="2.2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <circle cx="8" cy="7" r="3" />
-                                <circle cx="16" cy="7" r="3" />
-                                <path d="M3 21c0-3 2-6 5-6s5 3 5 6M11 21c0-3 2-6 5-6s5 3 5 6" />
-                            </svg></div>
-                        <h3>Cuidadores Conectados</h3>
-                        <p>Familiares ou cuidadores profissionais acompanham confirmações reportadas e alertas
-                            importantes, mesmo à distância.</p>
-                    </div>
-                    <div class="v-card">
-                        <div class="itile yellow" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"
-                                fill="none" stroke="#B8860B" stroke-width="2.2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z" />
-                                <path d="M9 12l2 2 4-4" />
-                            </svg></div>
-                        <h3>Privacidade e Segurança</h3>
-                        <p>Dados de saúde exigem cuidado. Trabalhamos com consentimento, controles de acesso e
-                            transparência sobre o tratamento das informações.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="hiw" id="como-funciona">
-            <div class="si centered">
-                <div class="sl">Como Funciona</div>
-                <h2 class="st">Simples como <span class="hl">mandar uma mensagem</span></h2>
-                <p class="ss">No piloto com clínicas parceiras, toda a experiência do paciente acontece pelo WhatsApp.
-                </p>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-n">01</div>
-                        <h3>Receba o convite</h3>
-                        <p>A clínica parceira apresenta o piloto e orienta o início da conversa pelo WhatsApp.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-n">02</div>
-                        <h3>Conte sua rotina</h3>
-                        <p>Envie uma receita ou cadastre por mensagem medicamentos, hábitos e consultas que deseja
-                            acompanhar.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-n">03</div>
-                        <h3>Receba lembretes</h3>
-                        <p>A Tia envia os lembretes programados e registra as confirmações que você reportar.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-n">04</div>
-                        <h3>Família conectada</h3>
-                        <p>O cuidador — um familiar ou um profissional — recebe atualizações e alertas relacionados à
-                            rotina.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="demo">
-            <div class="si">
-                <div class="phone-wrap">
-                    <div class="phone">
-                        <div class="phone-screen">
-                            <div class="phone-notch"></div>
-                            <div class="ch-hdr">
-                                <div class="ch-av" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 200 200">
-                                        <path d="M100 178 C 48 142, 18 108, 18 72 C 18 44, 40 28, 64 28 C 82 28, 94 40, 100 54 C 106 40, 118 28, 136 28 C 160 28, 182 44, 182 72 C 182 108, 152 142, 100 178 Z"
-                                            fill="#FAF7F2" />
-                                    </svg></div>
-                                <div>
-                                    <div class="ch-name">Tia Médica</div>
-                                    <div class="ch-st">organização do cuidado</div>
-                                </div>
-                            </div>
-                            <div class="msg msg-b">Oi, Dona Maria! 😊 Já são 8h. Este é o lembrete da Losartana 50mg
-                                que você cadastrou.
-                                <div class="msg-t">08:00</div>
-                            </div>
-                            <div class="msg msg-u">Já tomei<div class="msg-t">08:02</div>
-                            </div>
-                            <div class="msg msg-b">Registrei sua confirmação. ✅ Seu próximo lembrete está programado
-                                para 12h.<div class="msg-t">08:02</div>
-                            </div>
-                            <div class="msg msg-b">📋 Sua rotina de hoje:<br>✅ Confirmação registrada — 8h<br>⏰
-                                Próximo medicamento — 12h<br>💧 Hábito de hidratação — 15h<div class="msg-t">08:03
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="demo-copy">
-                    <div class="sl teal">A experiência</div>
-                    <h2 class="st">Uma conversa que <span class="hl-t">cuida da sua rotina</span></h2>
-                    <p class="ss">A Tia conversa, não notifica. Trata por nome, fala em frases curtas com ritmo de fala
-                        e celebra cada confirmação — sem nunca cobrar.</p>
-                    <ul class="demo-list">
-                        <li>Linguagem simples e acolhedora, em português do dia a dia</li>
-                        <li>Confirmações reportadas ficam registradas para consulta</li>
-                        <li>Atraso nunca vira culpa — é só um lembrete gentil</li>
-                        <li>Histórico da rotina para apoiar suas conversas de cuidado</li>
-                    </ul>
-                    <a href="mailto:admin@tiamedica.com?subject=Interesse%20no%20piloto%20da%20Tia%20M%C3%A9dica"
-                        class="btn-p">Quero conhecer o piloto</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="fw" id="para-quem">
-            <div class="si centered">
-                <div class="sl lilac">Para Quem</div>
-                <h2 class="st">Para quem vive uma <span class="hl">rotina recorrente de cuidado</span></h2>
-                <p class="ss">O piloto foi pensado para pacientes que usam WhatsApp, seus cuidadores — familiares ou
-                    profissionais — e clínicas parceiras que ajudam a formar essa rede.</p>
-                <div class="fw-banner">
-                    <img src="assets/tia-familia.webp" width="1376" height="768"
-                        alt="Tia, a enfermeira da Tia Médica, mostrando o celular para um casal de idosos no sofá de casa">
-                    <span class="cap">💛 Cuidado que floresce todo dia</span>
-                </div>
-                <div class="personas">
-                    <div class="pe-card c-coral">
-                        <div class="halo" aria-hidden="true"></div>
-                        <span class="pe-tag">Pacientes</span>
-                        <h3>Para quem cuida da própria rotina</h3>
-                        <p>Para quem tem medicamentos, hábitos ou consultas recorrentes e quer organizar essa rotina
-                            sem instalar outro aplicativo.</p>
-                        <ul>
-                            <li>Rotina reunida no WhatsApp</li>
-                            <li>Lembretes programados</li>
-                            <li>Confirmações reportadas</li>
-                        </ul>
-                    </div>
-                    <div class="pe-card c-lilac">
-                        <div class="halo" aria-hidden="true"></div>
-                        <span class="pe-tag">Famílias e Cuidadores</span>
-                        <h3>Para quem cuida de quem ama</h3>
-                        <p>Para quem acompanha pais, avós ou outra pessoa querida e precisa de mais contexto para
-                            cuidar à distância.</p>
-                        <ul>
-                            <li>Membro da família ou cuidador profissional</li>
-                            <li>Alertas da rotina de cuidado</li>
-                            <li>Menos incerteza no dia a dia</li>
-                        </ul>
-                    </div>
-                    <div class="pe-card c-teal">
-                        <div class="halo" aria-hidden="true"></div>
-                        <span class="pe-tag">Clínicas Parceiras</span>
-                        <h3>Para quem cuida entre as consultas</h3>
-                        <p>Para organizações que desejam recrutar e acompanhar uma coorte pequena em um piloto
-                            supervisionado, com consentimento e critérios claros.</p>
-                        <ul>
-                            <li>Recrutamento da coorte</li>
-                            <li>Operação acompanhada</li>
-                            <li>Aprendizado de produto</li>
-                        </ul>
-                        <a href="mailto:admin@tiamedica.com?subject=Parceria%20com%20a%20Tia%20M%C3%A9dica"
-                            class="pe-link">Propor parceria →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="pricing" id="planos">
-            <div class="si centered">
-                <div class="sl">Planos e Preços</div>
-                <h2 class="st">Comece pela rotina. <span class="hl">Pague só quando precisar de um médico.</span></h2>
-                <p class="ss">A rotina de lembretes segue em piloto com convidados e clínicas parceiras. A consulta com
-                    médico parceiro pode ser contratada avulsa, direto na conversa com a Tia.</p>
-                <div class="price-grid">
-                    <div class="price-card">
-                        <span class="price-tag">Avulso · disponível</span>
-                        <h3>Consulta com médico parceiro</h3>
-                        <div class="price-value">R$ 49,90 <small>/consulta</small></div>
-                        <p class="price-desc">Você conta sua queixa para a Tia, ela organiza tudo e um médico parceiro
-                            responde na própria conversa.</p>
-                        <ul class="price-feats">
-                            <li>Resposta de médico com CRM ativo em até 24–48h</li>
-                            <li>A Tia coleta sua queixa e histórico antes — você não repete nada</li>
-                            <li>Tudo pelo WhatsApp, sem agendar horário</li>
-                            <li>Pagamento por PIX ou cartão em link seguro do Mercado Pago</li>
-                            <li>Sem resposta no prazo? Crédito devolvido</li>
-                        </ul>
-                        <a href="mailto:admin@tiamedica.com?subject=Quero%20uma%20consulta%20com%20m%C3%A9dico%20parceiro"
-                            data-wpp="consulta" class="price-cta">Pedir uma consulta</a>
-                        <p class="price-note">Teleconsulta na modalidade assíncrona (Resolução CFM nº 2.314/2022). Não
-                            é atendimento de urgência ou emergência.</p>
-                    </div>
-                    <div class="price-card featured">
-                        <span class="price-tag wait">Assinatura · lista de espera</span>
-                        <h3>Plano Tia Cuidado</h3>
-                        <div class="price-value">Em breve</div>
-                        <p class="price-desc">A Tia cuidando de você e de quem você ama todos os dias — com consultas
-                            incluídas no ano.</p>
-                        <ul class="price-feats">
-                            <li>Até 2 pacientes: você e quem você cuida</li>
-                            <li>Lembretes de medicamentos e hábitos sem limite</li>
-                            <li>Alertas e resumo da rotina para o cuidador</li>
-                            <li>Leitura de receitas e exames por foto</li>
-                            <li>Relatório mensal em PDF</li>
-                            <li>Consultas com médico parceiro incluídas no ano</li>
-                            <li>Prioridade na fila e desconto em serviços avulsos</li>
-                        </ul>
-                        <a href="mailto:admin@tiamedica.com?subject=Lista%20de%20espera%20do%20Plano%20Tia%20Cuidado"
-                            class="price-cta coral">Entrar na lista de espera</a>
-                        <p class="price-note">Quem entra na lista conhece o preço primeiro e garante condição de
-                            lançamento.</p>
-                    </div>
-                    <div class="price-card">
-                        <span class="price-tag soon">Em breve</span>
-                        <h3>Análise de pele com médico</h3>
-                        <div class="price-value">a partir de R$ 69,90</div>
-                        <p class="price-desc">Envie fotos de uma lesão ou mancha pelo WhatsApp e receba a avaliação de
-                            um médico parceiro.</p>
-                        <ul class="price-feats">
-                            <li>A Tia orienta as fotos e confere a qualidade</li>
-                            <li>Avaliação individual por médico com CRM ativo</li>
-                            <li>Retorno na própria conversa</li>
-                        </ul>
-                        <a href="mailto:admin@tiamedica.com?subject=Avise-me%20sobre%20a%20an%C3%A1lise%20de%20pele"
-                            class="price-cta ghost">Quero ser avisado</a>
-                        <p class="price-note">A avaliação médica não garante emissão de laudo ou atestado; o médico
-                            decide com base no caso.</p>
-                    </div>
-                </div>
-                <div class="trust-strip">
-                    <div class="trust-item">🔒 O pagamento acontece apenas por link oficial do Mercado Pago. A Tia
-                        nunca pede número de cartão ou senha na conversa.</div>
-                    <div class="trust-item">💊 Lembretes de medicamento nunca são bloqueados por pagamento — cuidado
-                        básico não é moeda de troca.</div>
-                    <div class="trust-item">🚑 Em emergência, procure uma UPA ou ligue 192 (SAMU). A Tia não atende
-                        urgências.</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="faq" id="faq">
-            <div class="si">
-                <div class="faq-head">
-                    <div class="sl">FAQ</div>
-                    <h2 class="st">Tem dúvida? <span class="hl">A gente responde.</span></h2>
-                    <p class="ss">Se a sua pergunta não estiver aqui, fale com a equipe — respondemos com carinho.</p>
-                    <a href="mailto:admin@tiamedica.com?subject=D%C3%BAvida%20sobre%20a%20Tia%20M%C3%A9dica"
-                        class="btn-p">Perguntar para a equipe</a>
-                </div>
-                <div class="faq-list">
-                    <div class="faq-item"><button class="faq-q" type="button">Preciso instalar algum
-                            aplicativo?<span class="arrow" aria-hidden="true"></span></button>
-                        <div class="faq-a">
-                            <div class="faq-ai">No piloto da clínica, não. A experiência do paciente acontece pelo
-                                WhatsApp. O aplicativo da Tia é um canal estratégico futuro e não faz parte desta
-                                etapa.</div>
-                        </div>
-                    </div>
-                    <div class="faq-item"><button class="faq-q" type="button">Quanto custa?<span class="arrow"
-                                aria-hidden="true"></span></button>
-                        <div class="faq-a">
-                            <div class="faq-ai">A rotina de lembretes segue as condições do piloto combinadas com a
-                                clínica parceira. A consulta com médico parceiro custa R$ 49,90 por atendimento, paga
-                                por link seguro do Mercado Pago (PIX ou cartão). O Plano Tia Cuidado, com consultas
-                                incluídas, está em lista de espera — veja a seção <a href="#planos">Planos e
-                                    Preços</a>.</div>
-                        </div>
-                    </div>
-                    <div class="faq-item"><button class="faq-q" type="button">Como funciona o pagamento?<span
-                                class="arrow" aria-hidden="true"></span></button>
-                        <div class="faq-a">
-                            <div class="faq-ai">Quando você pede um serviço com médico, a Tia envia na conversa um link
-                                oficial do Mercado Pago. O pagamento acontece no ambiente do Mercado Pago, por PIX ou
-                                cartão, e a Tia confirma assim que aprovado. Nunca pedimos número de cartão, código ou
-                                senha pelo WhatsApp — desconfie de qualquer mensagem que peça.</div>
-                        </div>
-                    </div>
-                    <div class="faq-item"><button class="faq-q" type="button">Posso usar a consulta em uma
-                            emergência?<span class="arrow" aria-hidden="true"></span></button>
-                        <div class="faq-a">
-                            <div class="faq-ai">Não. A consulta com médico parceiro tem prazo de resposta de até 24–48h
-                                e não substitui atendimento de urgência. Em emergência, procure uma UPA ou hospital, ou
-                                ligue 192 (SAMU).</div>
-                        </div>
-                    </div>
-                    <div class="faq-item"><button class="faq-q" type="button">É seguro compartilhar dados de
-                            saúde?<span class="arrow" aria-hidden="true"></span></button>
-                        <div class="faq-a">
-                            <div class="faq-ai">Dados de saúde exigem cuidado especial. Adotamos medidas técnicas e
-                                administrativas de segurança, solicitamos consentimento e explicamos o tratamento das
-                                informações em nossa <a href="/privacidade">Política de Privacidade</a>.</div>
-                        </div>
-                    </div>
-                    <div class="faq-item"><button class="faq-q" type="button">Meu pai/mãe não sabe usar
-                            tecnologia. Vai conseguir?<span class="arrow" aria-hidden="true"></span></button>
-                        <div class="faq-a">
-                            <div class="faq-ai">A Tia foi desenhada para quem já usa o WhatsApp, com linguagem simples
-                                e sem menus complicados. Durante o piloto, a clínica e a equipe acompanham a
-                                experiência.</div>
-                        </div>
-                    </div>
-                    <div class="faq-item"><button class="faq-q" type="button">Como funciona o reconhecimento de
-                            receitas?<span class="arrow" aria-hidden="true"></span></button>
-                        <div class="faq-a">
-                            <div class="faq-ai">Envie a foto pelo WhatsApp. A IA sugere os medicamentos, doses e
-                                frequências identificados e pede sua confirmação antes do cadastro. Ela não substitui a
-                                conferência da receita nem a orientação profissional.</div>
-                        </div>
-                    </div>
-                    <div class="faq-item"><button class="faq-q" type="button">A Tia dá orientação médica?<span
-                                class="arrow" aria-hidden="true"></span></button>
-                        <div class="faq-a">
-                            <div class="faq-ai">Não. A Tia organiza, lembra e registra informações fornecidas pelo
-                                usuário. Não diagnostica, prescreve, altera tratamentos ou substitui profissionais de
-                                saúde.</div>
-                        </div>
-                    </div>
-                    <div class="faq-item"><button class="faq-q" type="button">Sou profissional de saúde. Como
-                            usar para meus pacientes?<span class="arrow" aria-hidden="true"></span></button>
-                        <div class="faq-a">
-                            <div class="faq-ai">O piloto será realizado com clínicas parceiras e uma coorte
-                                acompanhada. Fale com nossa equipe para conhecer o formato e as próximas etapas.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta">
-            <div class="si">
-                <div>
-                    <h2>Organize o cuidado — e fale com um médico sem sair do WhatsApp</h2>
-                    <p>Peça uma consulta avulsa com médico parceiro, entre na lista de espera do Plano Tia Cuidado ou
-                        avalie um piloto para sua clínica.</p>
-                    <div class="cta-tag">✨ Tudo pelo WhatsApp · sem app adicional</div>
-                    <div class="cta-ctas">
-                        <a href="mailto:admin@tiamedica.com?subject=Interesse%20na%20Tia%20M%C3%A9dica" data-wpp="cta"
-                            class="btn-wpp"><span class="ico" aria-hidden="true"><svg width="20" height="20"
-                                    viewBox="0 0 24 24" fill="#fff">
-                                    <path
-                                        d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.2-.8.9-1 1.1-.4.2-.7 0-1.3-.5-2.4-1.5c-.9-.8-1.5-1.8-1.7-2.1s0-.4.1-.6c.1-.1.3-.4.4-.5s.2-.3.3-.4c.1-.2 0-.3 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4s.2-1.2.2-1.4c-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3A10 10 0 0012 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-3-.2-.3A8 8 0 1120 12c0 4.4-3.6 8-8 8z" />
-                                </svg></span>Começar pelo WhatsApp</a>
-                        <a href="#planos" class="btn-s dark">Ver planos e preços</a>
-                    </div>
-                </div>
-                <div class="cta-visual">
-                    <div class="bubble">
-                        <div class="tag">PILOTO EM ANDAMENTO</div>
-                        <div class="txt">Oi! Vamos organizar sua rotina de cuidado? 💛</div>
-                    </div>
-                    <img class="mascote" src="assets/tia-mascote.webp" width="894" height="1020" alt="">
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="fi">
-            <div class="ft">
-                <div class="fb">
-                    <a href="/" class="logo" aria-label="Tia Médica — página inicial">
-                        <svg class="logo-symbol" viewBox="0 0 200 200" aria-hidden="true">
-                            <path
-                                d="M100 178 C 48 142, 18 108, 18 72 C 18 44, 40 28, 64 28 C 82 28, 94 40, 100 54 C 106 40, 118 28, 136 28 C 160 28, 182 44, 182 72 C 182 108, 152 142, 100 178 Z"
-                                fill="url(#tsg)" stroke="#C25A40" stroke-width="3" stroke-linejoin="round" />
-                            <path
-                                d="M 40 104 L 66 104 L 76 78 L 90 128 L 102 92 L 110 112 L 118 104 L 160 104"
-                                fill="none" stroke="#FAF7F2" stroke-width="7" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                        <span>
-                            <span class="logo-name">Tia</span>
-                            <span class="logo-desc">Médica</span>
-                        </span>
-                    </a>
-                    <p>Assistente para organizar rotinas de cuidado pelo WhatsApp. A Tia organiza, lembra e registra;
-                        não substitui profissionais de saúde.</p>
-                </div>
-                <div class="fc">
-                    <h4>Produto</h4><a href="#como-funciona">Como Funciona</a><a href="#para-quem">Para Quem</a><a
-                        href="#planos">Planos</a><a href="#faq">FAQ</a>
-                </div>
-                <div class="fc">
-                    <h4>Empresa</h4><a
-                        href="mailto:admin@tiamedica.com?subject=Contato%20pelo%20site%20Tia%20M%C3%A9dica">Contato</a>
-                </div>
-                <div class="fc">
-                    <h4>Legal</h4><a href="/privacidade">Privacidade</a><a href="/privacidade#s10">Seus direitos</a><a
-                        href="/excluir-conta">Excluir conta</a>
-                </div>
-            </div>
-            <div class="fbot">
-                <p>&copy; 2026 TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.). Todos os direitos reservados.</p>
-                <div class="fsoc"><a href="mailto:admin@tiamedica.com" title="Enviar email"
-                        aria-label="Enviar email para a Tia Médica">✉️</a></div>
-            </div>
+        <div class="chat__body" id="sim-body" aria-live="polite">
+          <span class="chat__day">hoje</span>
+          <div class="msg">Oi, Dona Maria! Já são 8h. Passando pra lembrar da Losartana. 💛<span class="msg__meta"><span>08:00</span></span></div>
+          <div class="msg msg--me">Já tomei<span class="msg__meta"><span>08:04</span><span class="tick" aria-hidden="true">✓✓</span></span></div>
+          <div class="msg">Registrei sua confirmação. ✅ Seu próximo lembrete está programado para 12h.<span class="msg__meta"><span>08:04</span></span></div>
         </div>
-    </footer>
+        <div class="chat__replies" id="sim-replies" aria-label="Respostas rápidas"></div>
+        <figcaption class="chat__foot">
+          <span>Exemplo com nomes fictícios.</span>
+          <button class="chat__replay" id="sim-replay" type="button" hidden>↻ Ver de novo</button>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
 
-    <a href="mailto:admin@tiamedica.com?subject=Interesse%20no%20piloto%20da%20Tia%20M%C3%A9dica"
-        class="contact-float" title="Fale com a equipe" aria-label="Enviar email para a equipe da Tia Médica">✉️</a>
+  <!-- tese -->
+  <section class="thesis" aria-labelledby="tese">
+    <div class="wrap thesis__grid">
+      <div>
+        <h2 id="tese">O sistema de saúde é bom no dia da consulta. E quase cego nos noventa dias seguintes.</h2>
+        <p class="thesis__cut">É nesse intervalo que a Tia trabalha.</p>
+      </div>
+      <div class="promise">
+        <strong>Cuidado básico não é moeda de troca.</strong>
+        <p class="muted">Cartão recusado, plano cancelado — o lembrete continua. Monetizamos o que vem a mais: consulta, avaliação, relatório.</p>
+      </div>
+    </div>
+  </section>
 
-    <script src="/assets/site.js" defer></script>
+  <!-- Feature Stack · quatro momentos, um painel que acompanha -->
+  <section class="stack wrap" id="como-funciona" aria-labelledby="como-titulo">
+    <div class="stack__head">
+      <h2 id="como-titulo">Simples como mandar uma mensagem.</h2>
+      <p class="lede">Sem instalar aplicativo, sem criar conta, sem aprender nada novo. Role e acompanhe um dia com a Tia.</p>
+    </div>
+    <div class="stack__grid">
+      <div class="stages" id="stages">
+
+        <article class="stage is-active" data-stage="1">
+          <span class="stage__num" aria-hidden="true">1.0</span>
+          <h3><span class="sr-only">Etapa 1: </span>A receita vira rotina.</h3>
+          <p>Mande a foto da receita. A Tia identifica medicamentos e horários — e <strong>pede sua confirmação antes de cadastrar qualquer coisa</strong>. Ou conte por mensagem os remédios, hábitos e consultas que quer acompanhar.</p>
+          <div class="stage__inline">
+            <figure class="chat chat--sm" aria-label="Exemplo: a foto da receita vira rotina">
+              <div class="chat__body">
+                <div class="msg msg--me">Tia, essa é a receita da minha mãe 📸<span class="msg__meta"><span>14:02</span><span class="tick" aria-hidden="true">✓✓</span></span></div>
+                <div class="msg">Recebi. Encontrei 2 medicamentos e os horários: Losartana às 8h · Metformina às 8h e às 20h. Confere? Posso cadastrar assim?<span class="msg__meta"><span>14:02</span></span></div>
+                <div class="msg msg--me">Confere<span class="msg__meta"><span>14:03</span><span class="tick" aria-hidden="true">✓✓</span></span></div>
+                <div class="msg">Cadastrado. ✅ Amanhã às 8h eu lembro a Dona Maria.<span class="msg__meta"><span>14:03</span></span></div>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="stage" data-stage="2">
+          <span class="stage__num" aria-hidden="true">2.0</span>
+          <h3><span class="sr-only">Etapa 2: </span>Os lembretes, todo dia, no mesmo lugar.</h3>
+          <p>Na hora combinada, a Tia chama. Você responde <strong>“já tomei”</strong> e ela registra. Sem menu, sem botão, sem senha — a resposta pode ser em áudio.</p>
+          <p><strong>Atraso nunca vira culpa</strong> — é só um lembrete gentil. Dose esquecida é informação, não falha de caráter.</p>
+          <div class="stage__inline">
+            <figure class="chat chat--sm" aria-label="Exemplo: lembrete das 8h e confirmação">
+              <div class="chat__body">
+                <div class="msg">Oi, Dona Maria! Já são 8h. Passando pra lembrar da Losartana. 💛<span class="msg__meta"><span>08:00</span></span></div>
+                <div class="msg msg--me">Ainda não<span class="msg__meta"><span>08:06</span><span class="tick" aria-hidden="true">✓✓</span></span></div>
+                <div class="msg">Tudo bem — sem pressa. Volto a lembrar daqui a 30 minutos. Quando tomar, é só me avisar.<span class="msg__meta"><span>08:06</span></span></div>
+                <div class="msg msg--me">Já tomei<span class="msg__meta"><span>08:31</span><span class="tick" aria-hidden="true">✓✓</span></span></div>
+                <div class="msg">Registrei sua confirmação. ✅ Seu próximo lembrete está programado para 20h.<span class="msg__meta"><span>08:31</span></span></div>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="stage" data-stage="3">
+          <span class="stage__num" aria-hidden="true">3.0</span>
+          <h3><span class="sr-only">Etapa 3: </span>Quem cuida fica por perto.</h3>
+          <p>Você não precisa ligar todo dia pra perguntar se ela tomou. A Tia lembra, ela confirma, e você fica sabendo — <strong>sem a sua mãe sentir que está sendo fiscalizada</strong>.</p>
+          <p>O vínculo é combinado dos dois lados: ela convida, você aceita, e ela pode desligar quando quiser. Cuidar sem vigiar.</p>
+          <div class="stage__inline">
+            <figure class="chat chat--sm" aria-label="Exemplo: a filha recebe a confirmação">
+              <div class="chat__body">
+                <div class="msg">Oi, Ana. Dona Maria confirmou o remédio das 8h. ✅<span class="msg__meta"><span>08:31</span></span></div>
+                <div class="msg msg--me">Obrigada, Tia 💛<span class="msg__meta"><span>08:40</span><span class="tick" aria-hidden="true">✓✓</span></span></div>
+                <div class="msg">Se ela não confirmar até as 9h, eu te aviso — sem você precisar ligar todo dia.<span class="msg__meta"><span>08:40</span></span></div>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="stage" data-stage="4">
+          <span class="stage__num" aria-hidden="true">4.0</span>
+          <h3><span class="sr-only">Etapa 4: </span>Quando a decisão é clínica, ela é de um médico.</h3>
+          <p>A Tia não diagnostica, não receita e não interpreta exame. Quando a dúvida precisa de médico, ela organiza a queixa com o histórico e um <strong>médico parceiro com CRM ativo</strong> responde na própria conversa, em até 24–48h. Consulta avulsa a <span class="time">R$ 49,90</span>, na modalidade assíncrona (Resolução CFM nº 2.314/2022).</p>
+          <p class="stage__aside">Não é atendimento de urgência ou emergência. Nesses casos, procure uma UPA ou ligue 192 (SAMU).</p>
+          <div class="stage__inline">
+            <figure class="chat chat--sm" aria-label="Exemplo: uma dúvida é encaminhada a um médico parceiro">
+              <div class="chat__body">
+                <div class="msg msg--me">Tia, minha mãe está com tontura de manhã faz uns dias. Não é urgente, mas fiquei preocupada.<span class="msg__meta"><span>19:12</span><span class="tick" aria-hidden="true">✓✓</span></span></div>
+                <div class="msg">Anotei. Isso é decisão de médico — vou organizar a queixa com o histórico e os remédios cadastrados e enviar a um médico parceiro. A resposta vem aqui, em até 24–48h.<span class="msg__meta"><span>19:13</span></span></div>
+                <div class="msg">Se ela piorar ou for uma emergência, procure uma UPA ou ligue 192 (SAMU).<span class="msg__meta"><span>19:13</span></span></div>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- painel fixo (desktop): placa ilustrada + conversa que muda com o scroll -->
+      <div class="pane" aria-hidden="true">
+        <div class="pane__stage">
+          <div class="plate is-active" data-plate="1"><img src="/assets/ilustracoes/receita.webp" srcset="/assets/ilustracoes/receita-800.webp 800w, /assets/ilustracoes/receita.webp 1600w" sizes="(min-width: 60rem) 40rem, 100vw" width="1600" height="1195" alt="" loading="lazy" decoding="async"></div>
+          <div class="plate" data-plate="2"><img src="/assets/ilustracoes/cozinha.webp" srcset="/assets/ilustracoes/cozinha-900.webp 900w, /assets/ilustracoes/cozinha.webp 1800w" sizes="(min-width: 60rem) 40rem, 100vw" width="1800" height="1195" alt="" loading="lazy" decoding="async"></div>
+          <div class="plate" data-plate="3"><img src="/assets/ilustracoes/familia.webp" srcset="/assets/ilustracoes/familia-800.webp 800w, /assets/ilustracoes/familia.webp 1600w" sizes="(min-width: 60rem) 40rem, 100vw" width="1600" height="1195" alt="" loading="lazy" decoding="async"></div>
+          <div class="plate plate--soft" data-plate="4"></div>
+          <div class="pane__chat">
+            <div class="chat">
+              <div class="chat__head">
+                <img src="/assets/tia-avatar-coral.svg" alt="" width="40" height="40">
+                <div><div class="chat__name">Tia Médica</div><div class="chat__status">online</div></div>
+              </div>
+              <div class="chat__body">
+                <div class="pane__thread is-active" data-thread="1">
+                  <div class="msg msg--me">Tia, essa é a receita da minha mãe 📸<span class="msg__meta"><span>14:02</span><span class="tick">✓✓</span></span></div>
+                  <div class="msg">Recebi. Encontrei 2 medicamentos e os horários: Losartana às 8h · Metformina às 8h e às 20h. Confere? Posso cadastrar assim?<span class="msg__meta"><span>14:02</span></span></div>
+                  <div class="msg msg--me">Confere<span class="msg__meta"><span>14:03</span><span class="tick">✓✓</span></span></div>
+                  <div class="msg">Cadastrado. ✅ Amanhã às 8h eu lembro a Dona Maria.<span class="msg__meta"><span>14:03</span></span></div>
+                </div>
+                <div class="pane__thread" data-thread="2">
+                  <div class="msg">Oi, Dona Maria! Já são 8h. Passando pra lembrar da Losartana. 💛<span class="msg__meta"><span>08:00</span></span></div>
+                  <div class="msg msg--me">Ainda não<span class="msg__meta"><span>08:06</span><span class="tick">✓✓</span></span></div>
+                  <div class="msg">Tudo bem — sem pressa. Volto a lembrar daqui a 30 minutos. Quando tomar, é só me avisar.<span class="msg__meta"><span>08:06</span></span></div>
+                  <div class="msg msg--me">Já tomei<span class="msg__meta"><span>08:31</span><span class="tick">✓✓</span></span></div>
+                  <div class="msg">Registrei sua confirmação. ✅ Seu próximo lembrete está programado para 20h.<span class="msg__meta"><span>08:31</span></span></div>
+                </div>
+                <div class="pane__thread" data-thread="3">
+                  <div class="msg">Oi, Ana. Dona Maria confirmou o remédio das 8h. ✅<span class="msg__meta"><span>08:31</span></span></div>
+                  <div class="msg msg--me">Obrigada, Tia 💛<span class="msg__meta"><span>08:40</span><span class="tick">✓✓</span></span></div>
+                  <div class="msg">Se ela não confirmar até as 9h, eu te aviso — sem você precisar ligar todo dia.<span class="msg__meta"><span>08:40</span></span></div>
+                </div>
+                <div class="pane__thread" data-thread="4">
+                  <div class="msg msg--me">Tia, minha mãe está com tontura de manhã faz uns dias. Não é urgente, mas fiquei preocupada.<span class="msg__meta"><span>19:12</span><span class="tick">✓✓</span></span></div>
+                  <div class="msg">Anotei. Isso é decisão de médico — vou organizar a queixa com o histórico e os remédios cadastrados e enviar a um médico parceiro. A resposta vem aqui, em até 24–48h.<span class="msg__meta"><span>19:13</span></span></div>
+                  <div class="msg">Se ela piorar ou for uma emergência, procure uma UPA ou ligue 192 (SAMU).<span class="msg__meta"><span>19:13</span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- preços · bento -->
+  <section class="prices" id="precos" aria-labelledby="precos-titulo">
+    <div class="wrap">
+      <div class="prices__head">
+        <h2 id="precos-titulo">Comece pela rotina. Pague só quando precisar de um médico.</h2>
+        <p class="lede">Os lembretes não param se o pagamento parar — cuidado básico não é moeda de troca.</p>
+      </div>
+      <div class="bento">
+        <article class="cell span-2x2">
+          <span class="cell__tag">Grátis · sempre</span>
+          <h3>A rotina</h3>
+          <p class="cell__price">R$ 0<small>para sempre</small></p>
+          <p>Lembretes de medicamento, hábitos e consultas, com as confirmações registradas.</p>
+          <ul>
+            <li>Sem instalar aplicativo</li>
+            <li>Sem cartão, sem cadastro</li>
+            <li>Nunca bloqueado por pagamento</li>
+            <li>Quem cuida recebe as confirmações e os alertas que importam</li>
+          </ul>
+          <a class="link" href="https://wa.me/551140402232?text=Oi%21%20Quero%20come%C3%A7ar%20com%20os%20lembretes%20gratuitos." target="_blank" rel="noopener">Começar agora →</a>
+        </article>
+
+        <article class="cell span-2x1">
+          <span class="cell__tag">Avulso · disponível</span>
+          <h3>Consulta com médico parceiro</h3>
+          <p class="cell__price">R$ 49,90<small>por consulta · resposta em até 24–48h</small></p>
+          <p>Aquela dúvida sobre a sua mãe que não dá pra levar no pronto-socorro — e não dá pra esperar três meses. A Tia organiza a queixa antes; ninguém repete nada. Sem resposta no prazo, crédito devolvido.</p>
+          <p class="fine">Teleconsulta assíncrona (Resolução CFM nº 2.314/2022). Não substitui urgência ou emergência — nesses casos, UPA ou 192 (SAMU).</p>
+          <a class="link" href="https://wa.me/551140402232?text=Oi%21%20Queria%20tirar%20uma%20d%C3%BAvida%20com%20um%20m%C3%A9dico%20parceiro." target="_blank" rel="noopener">Tirar uma dúvida →</a>
+        </article>
+
+        <article class="cell cell--coral">
+          <span class="cell__emoji" aria-hidden="true">💊</span>
+          <p>Lembrete de medicamento nunca é bloqueado por pagamento. Cartão recusado, plano cancelado — o lembrete continua.</p>
+        </article>
+
+        <article class="cell cell--teal">
+          <span class="cell__emoji" aria-hidden="true">🔒</span>
+          <p>Pagamento só por link oficial do Mercado Pago, por PIX ou cartão. A Tia nunca pede número de cartão, código ou senha na conversa.</p>
+        </article>
+
+        <article class="cell span-2x1">
+          <span class="cell__tag cell__tag--soon">Em breve</span>
+          <h3>Análise de pele com médico</h3>
+          <p class="cell__price"><span class="cell__prefix">a partir de</span>R$ 69,90<small>por avaliação</small></p>
+          <p>Uma mancha ou lesão que apareceu e ficou na sua cabeça. Você manda as fotos pelo WhatsApp, a Tia confere a qualidade, e um médico parceiro avalia — o retorno vem na própria conversa. A avaliação não garante laudo ou atestado e não substitui consulta presencial nem urgência.</p>
+          <a class="cta-chip" href="mailto:admin@tiamedica.com?subject=Avise-me%20sobre%20a%20an%C3%A1lise%20de%20pele">Quero ser avisado</a>
+        </article>
+
+        <article class="cell span-2x1">
+          <span class="cell__tag cell__tag--soon">Em breve · lista de espera</span>
+          <h3>Plano Tia Cuidado</h3>
+          <p>A Tia cuidando de você e de quem você cuida todos os dias, com consultas incluídas no ano.</p>
+          <ul>
+            <li>Até 2 pessoas: você e quem você cuida</li>
+            <li>Leitura de receitas e exames por foto</li>
+            <li>Relatório mensal em PDF</li>
+            <li>Consultas com médico incluídas</li>
+          </ul>
+          <p class="fine">Quem entra na lista conhece o preço primeiro.</p>
+          <a class="cta-chip" href="mailto:admin@tiamedica.com?subject=Lista%20de%20espera%20do%20Plano%20Tia%20Cuidado">Entrar na lista de espera</a>
+        </article>
+      </div>
+      <p class="fine prices__fine">🚑 Em emergência, procure uma UPA ou ligue 192 (SAMU). A Tia não atende urgências.</p>
+    </div>
+  </section>
+
+  <!-- o que a Tia não faz -->
+  <section class="refuse" aria-labelledby="recusa">
+    <div class="wrap refuse__grid">
+      <h2 id="recusa">A lista do que ela recusa é maior que a do que ela faz.</h2>
+      <div class="refuse__body">
+        <p>Isso não é limitação — é a definição do produto. Não existe score de adesão, ranking, medalha nem gráfico para a família. Adesão é histórico e contexto para a conversa de cuidado, não boletim escolar de um adulto.</p>
+        <table class="spec">
+          <thead>
+            <tr><th scope="col">A Tia faz</th><th scope="col">O médico com CRM faz</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Lembra o remédio na hora combinada</td><td>Decide a dose e o horário</td></tr>
+            <tr><td>Lê a receita por foto e pede sua confirmação</td><td>Prescreve ou troca o remédio</td></tr>
+            <tr><td>Registra o que foi confirmado</td><td>Interpreta o exame</td></tr>
+            <tr><td>Avisa quem cuida, com o combinado dos dois lados</td><td>Diagnostica</td></tr>
+            <tr><td>Organiza a queixa e encaminha</td><td>Responde na própria conversa, em até 24–48h</td></tr>
+          </tbody>
+        </table>
+        <p class="refuse__cut">Ela cuida do intervalo. O médico cuida do resto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- clínicas -->
+  <section class="clinics" id="clinicas" aria-labelledby="clinicas-titulo">
+    <div class="wrap clinics__grid">
+      <div class="clinics__copy">
+        <h2 id="clinicas-titulo">Para clínicas: o intervalo entre as consultas, sustentado.</h2>
+        <p>A adesão vaza no intervalo, e ninguém está olhando. A Tia sustenta esse intervalo sem sua recepção operar mais um sistema — e devolve o paciente melhor informado.</p>
+        <ul class="clinics__list">
+          <li>Retrato da coorte, sem dado individual</li>
+          <li>Operação acompanhada</li>
+          <li>Consentimento e critérios claros</li>
+        </ul>
+      </div>
+      <a class="cta-chip clinics__action" href="mailto:admin@tiamedica.com?subject=Proposta%20de%20piloto%20para%20cl%C3%ADnica">Propor uma parceria</a>
+    </div>
+  </section>
+
+  <!-- dúvidas · acordeão -->
+  <section class="faq" id="duvidas" aria-labelledby="duvidas-titulo">
+    <div class="wrap faq__grid">
+      <div><h2 id="duvidas-titulo">Tem dúvida? A gente responde.</h2></div>
+      <div class="faq__list" id="faq">
+        <div class="faq__item"><h3 class="sr-only">Preciso instalar algum aplicativo?</h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-1">Preciso instalar algum aplicativo?</button><div class="faq__a" id="faq-1"><div><p>Não. A experiência acontece inteira pelo WhatsApp que você já usa. Não tem download, não tem cadastro, não tem senha.</p></div></div></div>
+        <div class="faq__item"><h3 class="sr-only">Minha mãe não sabe mexer em tecnologia. Vai conseguir?</h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-2">Minha mãe não sabe mexer em tecnologia. Vai conseguir?</button><div class="faq__a" id="faq-2"><div><p>Se ela manda mensagem no WhatsApp, ela consegue. A Tia trata por nome, escreve em frases curtas e aceita resposta em texto ou áudio. Ela responde “já tomei” e pronto — não existe menu para aprender.</p></div></div></div>
+        <div class="faq__item"><h3 class="sr-only">Quanto custa?</h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-3">Quanto custa?</button><div class="faq__a" id="faq-3"><div><p>A rotina de lembretes é gratuita e continua gratuita. A consulta com médico parceiro custa R$ 49,90 por atendimento, paga por link seguro do Mercado Pago. O Plano Tia Cuidado está em lista de espera.</p></div></div></div>
+        <div class="faq__item"><h3 class="sr-only">Como funciona o pagamento?</h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-4">Como funciona o pagamento?</button><div class="faq__a" id="faq-4"><div><p>Quando você pede um serviço com médico, a Tia envia na conversa um link oficial do Mercado Pago. O pagamento acontece no ambiente do Mercado Pago, por PIX ou cartão. Nunca pedimos número de cartão, código ou senha pelo WhatsApp — desconfie de qualquer mensagem que peça.</p></div></div></div>
+        <div class="faq__item"><h3 class="sr-only">Posso usar a consulta em uma emergência?</h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-5">Posso usar a consulta em uma emergência?</button><div class="faq__a" id="faq-5"><div><p>Não. O prazo de resposta é de 24 a 48 horas e não substitui atendimento de urgência. Em emergência, procure uma UPA ou hospital, ou ligue 192 (SAMU).</p></div></div></div>
+        <div class="faq__item"><h3 class="sr-only">A Tia dá orientação médica?</h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-6">A Tia dá orientação médica?</button><div class="faq__a" id="faq-6"><div><p>Não. Ela organiza, lembra e registra as informações que você fornece. Não diagnostica, não prescreve, não altera tratamentos e não substitui profissionais de saúde. Quando a decisão é clínica, ela é de um médico com CRM ativo, que responde na própria conversa.</p></div></div></div>
+        <div class="faq__item"><h3 class="sr-only">Como funciona a leitura de receita por foto?</h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-7">Como funciona a leitura de receita por foto?</button><div class="faq__a" id="faq-7"><div><p>Você manda a foto pelo WhatsApp. A Tia sugere os medicamentos, doses e frequências que identificou e pede sua confirmação antes de cadastrar. Ela não substitui a conferência da receita nem a orientação do profissional que a emitiu.</p></div></div></div>
+        <div class="faq__item"><h3 class="sr-only">É seguro compartilhar dados de saúde?</h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-8">É seguro compartilhar dados de saúde?</button><div class="faq__a" id="faq-8"><div><p>Dado de saúde exige cuidado especial. Adotamos medidas técnicas e administrativas de segurança, pedimos consentimento e explicamos o tratamento das informações na <a href="/privacidade">Política de Privacidade</a>. Nada é compartilhado sem você saber.</p></div></div></div>
+        <div class="faq__item"><h3 class="sr-only">Sou profissional de saúde. Como uso com meus pacientes?</h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-9">Sou profissional de saúde. Como uso com meus pacientes?</button><div class="faq__a" id="faq-9"><div><p>Trabalhamos com clínicas parceiras em coortes acompanhadas, com consentimento e critérios claros. Escreva para <a href="mailto:admin@tiamedica.com?subject=Proposta%20de%20piloto%20para%20cl%C3%ADnica">admin@tiamedica.com</a> para conhecer o formato.</p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- fechamento -->
+  <section class="close" aria-labelledby="fecho">
+    <div class="wrap close__grid">
+      <h2 id="fecho">Comece pela conversa. O resto a Tia organiza.</h2>
+      <p class="lede">Uma mensagem e a rotina começa a se organizar. Sem instalar nada, sem cartão, sem compromisso.</p>
+      <div>
+        <a class="cta-tia cta-tia--lg" data-cta href="https://wa.me/551140402232?text=Oi%21%20Quero%20organizar%20minha%20rotina%20de%20cuidado." target="_blank" rel="noopener">
+          <img src="/assets/tia-symbol-reduzido.svg" alt="" width="24" height="24"><span>Falar com a Tia</span>
+        </a>
+      </div>
+      <p class="limit">A Tia organiza, lembra e registra. Não diagnostica, prescreve nem substitui profissionais de saúde. Em emergência: SAMU 192.</p>
+    </div>
+  </section>
+</main>
+
+<!-- Ft6 · fechamento em carta -->
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <p class="foot__close">Com cuidado, e sem pressa —<br>a equipe da Tia Médica. Jundiaí, 2026.<img src="/assets/tia-lockup-completo.svg" alt="Tia Médica" width="152" height="42"></p>
+    <p class="foot__ps">P.S. — A Tia organiza, lembra e registra. Não diagnostica, prescreve nem substitui profissionais de saúde. Em emergência: SAMU 192. Dúvidas e parcerias: <a href="mailto:admin@tiamedica.com">admin@tiamedica.com</a>.</p>
+    <ul class="foot__links">
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#precos">Preços</a></li>
+      <li><a href="#duvidas">Dúvidas</a></li>
+      <li><a href="/privacidade">Privacidade</a></li>
+      <li><a href="/privacidade#s10">Seus direitos</a></li>
+      <li><a href="/excluir-conta">Excluir conta</a></li>
+      <li><a href="https://www.instagram.com/tiamedica/" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+    <div class="foot__licence">
+      <span>© 2026 TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.) · CNPJ 66.404.598/0001-92 · Jundiaí/SP</span>
+      <span class="foot__handle">@tiamedica</span>
+    </div>
+  </div>
+</footer>
+
+<!-- C4 · barra fixa no celular, aparece depois do hero -->
+<aside class="dock" id="dock" aria-label="Atalho para falar com a Tia">
+  <span>Sem instalar nada, sem cartão.</span>
+  <a class="cta-tia cta-tia--nav" data-cta href="https://wa.me/551140402232?text=Oi%21%20Vim%20pelo%20site%20e%20quero%20conhecer%20a%20Tia." target="_blank" rel="noopener">
+    <img src="/assets/tia-symbol-reduzido.svg" alt="" width="24" height="24"><span>Falar com a Tia</span>
+  </a>
+</aside>
 </body>
-
 </html>

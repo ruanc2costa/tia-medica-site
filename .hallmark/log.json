@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2026-08-29",
+    "macrostructure": "Feature Stack",
+    "theme": "custom",
+    "theme_axes": "light / italic-serif / warm",
+    "vibe": "cozinha de casa às oito da manhã; acolhedora, precisa, honesta; interativa",
+    "enrichment": "E5 Custom Illustration (Tier C generated, Higgsfield) + simulador de conversa (Tier A)",
+    "nav": "N12 Banner + retracting nav",
+    "footer": "Ft6 Letter close",
+    "brief": "Tia Médica · site institucional (Vercel) · versão interativa"
+  },
+  {
+    "date": "2026-08-29",
+    "macrostructure": "Narrative Workflow",
+    "theme": "custom",
+    "theme_axes": "light / italic-serif / warm",
+    "enrichment": "E5 Custom Illustration (Tier C generated, Higgsfield)",
+    "nav": "N9 Edge-aligned minimal",
+    "footer": "Ft1 Mast-headed",
+    "brief": "Tia Médica · site institucional (build Higgsfield, tia-medica-site-v2)"
+  }
+]
