@@ -1,0 +1,658 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-20T18:30:00.000Z",
+  "title": "Design System: Tia Médica — home experimental “As duas pontas do fio”",
+  "status": "Proposta experimental — sujeita à aprovação do fundador. 2026-09-20, branch exp/home-redesign, não publicada; não substitui nada até ser aprovada.",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Papel Creme",
+        "canonical": "oklch(97.6% 0.008 80)",
+        "tonalRamp": [
+          "oklch(15% 0.004 80)",
+          "oklch(27% 0.008 80)",
+          "oklch(39% 0.008 80)",
+          "oklch(51% 0.008 80)",
+          "oklch(63% 0.008 80)",
+          "oklch(75% 0.008 80)",
+          "oklch(87% 0.004 80)",
+          "oklch(95% 0.004 80)"
+        ]
+      },
+      "paper-2": {
+        "role": "neutral",
+        "displayName": "Papel Wash",
+        "canonical": "oklch(95.3% 0.012 80)",
+        "tonalRamp": [
+          "oklch(15% 0.006 80)",
+          "oklch(27% 0.012 80)",
+          "oklch(39% 0.012 80)",
+          "oklch(51% 0.012 80)",
+          "oklch(63% 0.012 80)",
+          "oklch(75% 0.012 80)",
+          "oklch(87% 0.006 80)",
+          "oklch(95% 0.006 80)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Superfície",
+        "canonical": "oklch(99.4% 0.005 80)",
+        "tonalRamp": [
+          "oklch(15% 0.0025 80)",
+          "oklch(27% 0.005 80)",
+          "oklch(39% 0.005 80)",
+          "oklch(51% 0.005 80)",
+          "oklch(63% 0.005 80)",
+          "oklch(75% 0.005 80)",
+          "oklch(87% 0.0025 80)",
+          "oklch(95% 0.0025 80)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Linha",
+        "canonical": "oklch(92.5% 0.018 80)",
+        "tonalRamp": [
+          "oklch(15% 0.009 80)",
+          "oklch(27% 0.018 80)",
+          "oklch(39% 0.018 80)",
+          "oklch(51% 0.018 80)",
+          "oklch(63% 0.018 80)",
+          "oklch(75% 0.018 80)",
+          "oklch(87% 0.009 80)",
+          "oklch(95% 0.009 80)"
+        ]
+      },
+      "rule-2": {
+        "role": "neutral",
+        "displayName": "Linha Forte",
+        "canonical": "oklch(88% 0.02 80)",
+        "tonalRamp": [
+          "oklch(15% 0.01 80)",
+          "oklch(27% 0.02 80)",
+          "oklch(39% 0.02 80)",
+          "oklch(51% 0.02 80)",
+          "oklch(63% 0.02 80)",
+          "oklch(75% 0.02 80)",
+          "oklch(87% 0.01 80)",
+          "oklch(95% 0.01 80)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta Azul-Petróleo",
+        "canonical": "oklch(36.5% 0.045 218)",
+        "tonalRamp": [
+          "oklch(15% 0.0225 218)",
+          "oklch(27% 0.045 218)",
+          "oklch(39% 0.045 218)",
+          "oklch(51% 0.045 218)",
+          "oklch(63% 0.045 218)",
+          "oklch(75% 0.045 218)",
+          "oklch(87% 0.0225 218)",
+          "oklch(95% 0.0225 218)"
+        ]
+      },
+      "ink-deep": {
+        "role": "neutral",
+        "displayName": "Tinta Profunda",
+        "canonical": "oklch(30% 0.045 218)",
+        "tonalRamp": [
+          "oklch(15% 0.0225 218)",
+          "oklch(27% 0.045 218)",
+          "oklch(39% 0.045 218)",
+          "oklch(51% 0.045 218)",
+          "oklch(63% 0.045 218)",
+          "oklch(75% 0.045 218)",
+          "oklch(87% 0.0225 218)",
+          "oklch(95% 0.0225 218)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Tinta 2",
+        "canonical": "oklch(48% 0.04 212)",
+        "tonalRamp": [
+          "oklch(15% 0.02 212)",
+          "oklch(27% 0.04 212)",
+          "oklch(39% 0.04 212)",
+          "oklch(51% 0.04 212)",
+          "oklch(63% 0.04 212)",
+          "oklch(75% 0.04 212)",
+          "oklch(87% 0.02 212)",
+          "oklch(95% 0.02 212)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Coral da Marca (só grafismo)",
+        "canonical": "oklch(68% 0.16 38)",
+        "tonalRamp": [
+          "oklch(15% 0.08 38)",
+          "oklch(27% 0.16 38)",
+          "oklch(39% 0.16 38)",
+          "oklch(51% 0.16 38)",
+          "oklch(63% 0.16 38)",
+          "oklch(75% 0.16 38)",
+          "oklch(87% 0.08 38)",
+          "oklch(95% 0.08 38)"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Coral de Palavra (só display)",
+        "canonical": "oklch(58.5% 0.15 36)",
+        "tonalRamp": [
+          "oklch(15% 0.075 36)",
+          "oklch(27% 0.15 36)",
+          "oklch(39% 0.15 36)",
+          "oklch(51% 0.15 36)",
+          "oklch(63% 0.15 36)",
+          "oklch(75% 0.15 36)",
+          "oklch(87% 0.075 36)",
+          "oklch(95% 0.075 36)"
+        ]
+      },
+      "call": {
+        "role": "primary",
+        "displayName": "Coral de Chamada",
+        "canonical": "oklch(53% 0.15 36)",
+        "tonalRamp": [
+          "oklch(15% 0.075 36)",
+          "oklch(27% 0.15 36)",
+          "oklch(39% 0.15 36)",
+          "oklch(51% 0.15 36)",
+          "oklch(63% 0.15 36)",
+          "oklch(75% 0.15 36)",
+          "oklch(87% 0.075 36)",
+          "oklch(95% 0.075 36)"
+        ]
+      },
+      "call-deep": {
+        "role": "primary",
+        "displayName": "Coral de Chamada Profundo",
+        "canonical": "oklch(47% 0.14 36)",
+        "tonalRamp": [
+          "oklch(15% 0.07 36)",
+          "oklch(27% 0.14 36)",
+          "oklch(39% 0.14 36)",
+          "oklch(51% 0.14 36)",
+          "oklch(63% 0.14 36)",
+          "oklch(75% 0.14 36)",
+          "oklch(87% 0.07 36)",
+          "oklch(95% 0.07 36)"
+        ]
+      },
+      "accent-soft": {
+        "role": "primary",
+        "displayName": "Coral Leite",
+        "canonical": "oklch(93% 0.03 40)",
+        "tonalRamp": [
+          "oklch(15% 0.015 40)",
+          "oklch(27% 0.03 40)",
+          "oklch(39% 0.03 40)",
+          "oklch(51% 0.03 40)",
+          "oklch(63% 0.03 40)",
+          "oklch(75% 0.03 40)",
+          "oklch(87% 0.015 40)",
+          "oklch(95% 0.015 40)"
+        ]
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Anel de Foco",
+        "canonical": "oklch(53% 0.15 36)",
+        "tonalRamp": [
+          "oklch(15% 0.075 36)",
+          "oklch(27% 0.15 36)",
+          "oklch(39% 0.15 36)",
+          "oklch(51% 0.15 36)",
+          "oklch(63% 0.15 36)",
+          "oklch(75% 0.15 36)",
+          "oklch(87% 0.075 36)",
+          "oklch(95% 0.075 36)"
+        ]
+      },
+      "teal": {
+        "role": "secondary",
+        "displayName": "Teal do Registro",
+        "canonical": "oklch(55% 0.095 180)",
+        "tonalRamp": [
+          "oklch(15% 0.0475 180)",
+          "oklch(27% 0.095 180)",
+          "oklch(39% 0.095 180)",
+          "oklch(51% 0.095 180)",
+          "oklch(63% 0.095 180)",
+          "oklch(75% 0.095 180)",
+          "oklch(87% 0.0475 180)",
+          "oklch(95% 0.0475 180)"
+        ]
+      },
+      "teal-ink": {
+        "role": "secondary",
+        "displayName": "Teal do Registro (tinta)",
+        "canonical": "oklch(48% 0.085 182)",
+        "tonalRamp": [
+          "oklch(15% 0.0425 182)",
+          "oklch(27% 0.085 182)",
+          "oklch(39% 0.085 182)",
+          "oklch(51% 0.085 182)",
+          "oklch(63% 0.085 182)",
+          "oklch(75% 0.085 182)",
+          "oklch(87% 0.0425 182)",
+          "oklch(95% 0.0425 182)"
+        ]
+      },
+      "teal-layer": {
+        "role": "secondary",
+        "displayName": "Teal de Folha",
+        "canonical": "oklch(88.5% 0.04 188)",
+        "tonalRamp": [
+          "oklch(15% 0.02 188)",
+          "oklch(27% 0.04 188)",
+          "oklch(39% 0.04 188)",
+          "oklch(51% 0.04 188)",
+          "oklch(63% 0.04 188)",
+          "oklch(75% 0.04 188)",
+          "oklch(87% 0.02 188)",
+          "oklch(95% 0.02 188)"
+        ]
+      },
+      "teal-thread": {
+        "role": "secondary",
+        "displayName": "Teal de Fio",
+        "canonical": "oklch(80% 0.055 190)",
+        "tonalRamp": [
+          "oklch(15% 0.0275 190)",
+          "oklch(27% 0.055 190)",
+          "oklch(39% 0.055 190)",
+          "oklch(51% 0.055 190)",
+          "oklch(63% 0.055 190)",
+          "oklch(75% 0.055 190)",
+          "oklch(87% 0.0275 190)",
+          "oklch(95% 0.0275 190)"
+        ]
+      },
+      "lilac-ink": {
+        "role": "tertiary",
+        "displayName": "Lilás de Quem Cuida (tinta)",
+        "canonical": "oklch(48% 0.2 292)",
+        "tonalRamp": [
+          "oklch(15% 0.1 292)",
+          "oklch(27% 0.2 292)",
+          "oklch(39% 0.2 292)",
+          "oklch(51% 0.2 292)",
+          "oklch(63% 0.2 292)",
+          "oklch(75% 0.2 292)",
+          "oklch(87% 0.1 292)",
+          "oklch(95% 0.1 292)"
+        ]
+      },
+      "lilac-soft": {
+        "role": "tertiary",
+        "displayName": "Lilás de Quem Cuida (suave)",
+        "canonical": "oklch(94% 0.03 300)",
+        "tonalRamp": [
+          "oklch(15% 0.015 300)",
+          "oklch(27% 0.03 300)",
+          "oklch(39% 0.03 300)",
+          "oklch(51% 0.03 300)",
+          "oklch(63% 0.03 300)",
+          "oklch(75% 0.03 300)",
+          "oklch(87% 0.015 300)",
+          "oklch(95% 0.015 300)"
+        ]
+      },
+      "lilac-layer": {
+        "role": "tertiary",
+        "displayName": "Lilás de Folha",
+        "canonical": "oklch(87.5% 0.06 298)",
+        "tonalRamp": [
+          "oklch(15% 0.03 298)",
+          "oklch(27% 0.06 298)",
+          "oklch(39% 0.06 298)",
+          "oklch(51% 0.06 298)",
+          "oklch(63% 0.06 298)",
+          "oklch(75% 0.06 298)",
+          "oklch(87% 0.03 298)",
+          "oklch(95% 0.03 298)"
+        ]
+      },
+      "wpp-bg": {
+        "role": "neutral",
+        "displayName": "WhatsApp literal — fundo",
+        "canonical": "oklch(92% 0.012 80)",
+        "tonalRamp": [
+          "oklch(15% 0.006 80)",
+          "oklch(27% 0.012 80)",
+          "oklch(39% 0.012 80)",
+          "oklch(51% 0.012 80)",
+          "oklch(63% 0.012 80)",
+          "oklch(75% 0.012 80)",
+          "oklch(87% 0.006 80)",
+          "oklch(95% 0.006 80)"
+        ]
+      },
+      "wpp-bubble": {
+        "role": "neutral",
+        "displayName": "WhatsApp literal — balão enviado",
+        "canonical": "oklch(95% 0.06 130)",
+        "tonalRamp": [
+          "oklch(15% 0.03 130)",
+          "oklch(27% 0.06 130)",
+          "oklch(39% 0.06 130)",
+          "oklch(51% 0.06 130)",
+          "oklch(63% 0.06 130)",
+          "oklch(75% 0.06 130)",
+          "oklch(87% 0.03 130)",
+          "oklch(95% 0.03 130)"
+        ]
+      },
+      "wpp-tick": {
+        "role": "neutral",
+        "displayName": "WhatsApp literal — tique",
+        "canonical": "oklch(50% 0.13 235)",
+        "tonalRamp": [
+          "oklch(15% 0.065 235)",
+          "oklch(27% 0.13 235)",
+          "oklch(39% 0.13 235)",
+          "oklch(51% 0.13 235)",
+          "oklch(63% 0.13 235)",
+          "oklch(75% 0.13 235)",
+          "oklch(87% 0.065 235)",
+          "oklch(95% 0.065 235)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "H1 do hero e título do compromisso. Fraunces itálico 600, medida de 13–17ch."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Um H2 por seção — uma afirmação inteira. Fraunces itálico 540."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "H3 dos momentos do dia e nomes das ofertas."
+      },
+      "title-lg": {
+        "displayName": "Title grande",
+        "purpose": "H3 dos momentos, oferta principal, H2 de clínicas, frase de corte dos limites."
+      },
+      "pull": {
+        "displayName": "Pull",
+        "purpose": "Frases de corte e assinatura do rodapé. O peso mais leve (500)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido em 18px / Nunito 600, 52–62ch."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Parágrafo que abre a seção, em tinta 2, até 54ch."
+      },
+      "fine": {
+        "displayName": "Fine",
+        "purpose": "Notas legais, rótulo de exemplo, licença."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Botões, chips, respostas rápidas, links de navegação (800)."
+      },
+      "price": {
+        "displayName": "Price",
+        "purpose": "Todo valor em reais: Nunito 800 com algarismos tabulares. Nunca mono."
+      },
+      "time": {
+        "displayName": "Time",
+        "purpose": "Só hora (e o número do passo no combinado): JetBrains Mono tabular."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-whisper",
+        "value": "0 1px 2px oklch(36.5% 0.045 218 / 0.07)",
+        "purpose": "Balões, rótulo do celular, avatar pousado, botão pressionado."
+      },
+      {
+        "name": "shadow-soft",
+        "value": "0 10px 30px oklch(36.5% 0.045 218 / 0.06)",
+        "purpose": "Ação primária em repouso, placa da personagem, folha de limites."
+      },
+      {
+        "name": "shadow-mid",
+        "value": "0 16px 34px oklch(36.5% 0.045 218 / 0.1)",
+        "purpose": "Cartão de conversa, hover da ação primária, painel do menu."
+      },
+      {
+        "name": "second-sheet",
+        "value": "10px 10px 0 oklch(88.5% 0.04 188)",
+        "purpose": "A segunda folha do cartão de conversa (teal; lilás oklch(87.5% 0.06 298) na ponta de quem cuida). Só em cartão de conversa, sempre somada a shadow-mid."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Ease-out exponencial: estados de hover, mensagens que sobem, dock."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Pulso no fio, acordeão, ícone do menu, pontos de digitação."
+      },
+      {
+        "name": "dur-short",
+        "value": "220ms",
+        "purpose": "Transições de estado."
+      },
+      {
+        "name": "dur-long",
+        "value": "420ms",
+        "purpose": "Entrada de mensagem (sobe 8px) e abertura do acordeão."
+      },
+      {
+        "name": "pulso",
+        "value": "1100ms offset-path",
+        "purpose": "Um único ponto coral percorre a travessia; só sob @supports (offset-path)."
+      },
+      {
+        "name": "desenrola",
+        "value": "animation-timeline: view(); cover 0% → cover 80%",
+        "purpose": "O fio do dia se desenrola com a rolagem; só sob @supports (animation-timeline) e prefers-reduced-motion: no-preference."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation/transition 0.01ms; esperas do script = 0",
+        "purpose": "prefers-reduced-motion: reduce colapsa todo movimento; o estado final aparece completo."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "telefone estreito",
+        "value": "26rem"
+      },
+      {
+        "name": "hero compacto",
+        "value": "40rem"
+      },
+      {
+        "name": "folha de limites em duas colunas",
+        "value": "48rem"
+      },
+      {
+        "name": "navegação e seções em colunas",
+        "value": "60rem"
+      },
+      {
+        "name": "hero em duas colunas",
+        "value": "72rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Ação primária",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "A única chamada da página: pílula em coral de chamada que leva ao WhatsApp. 60px no hero e no fechamento, 52px no livro-razão, 46px na barra e na dock.",
+      "html": "<a class=\"ds-cta\" href=\"#\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3.5c-5 0-9 3.4-9 7.7 0 2.2 1.1 4.2 2.9 5.6-.2 1.2-.8 2.4-1.7 3.4 1.9-.1 3.6-.8 4.9-1.8.9.2 1.9.4 2.9.4 5 0 9-3.4 9-7.6s-4-7.7-9-7.7Z\"/></svg><span>Falar com a Tia no WhatsApp</span></a>",
+      "css": ".ds-cta { display: inline-flex; align-items: center; justify-content: center; gap: 0.6em; min-height: 60px; padding: 0.75em 1.7em 0.75em 1.35em; background: var(--color-call); color: var(--color-paper); font-family: var(--font-body); font-weight: 800; font-size: 1.25rem; line-height: 1.1; text-decoration: none; border-radius: 999px; box-shadow: var(--shadow-soft); transition: background-color 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1), transform 100ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-cta svg { width: 1.3em; height: 1.3em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; } .ds-cta:hover { background: var(--color-call-deep); box-shadow: var(--shadow-mid); } .ds-cta:active { transform: translateY(1px); box-shadow: var(--shadow-whisper); } .ds-cta:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }"
+    },
+    {
+      "name": "Chip (ação secundária)",
+      "kind": "button",
+      "refersTo": "chip",
+      "description": "Ação por e-mail: lista de espera, aviso, parceria. Contorno interno em tinta; hover inverte.",
+      "html": "<a class=\"ds-chip\" href=\"#\">Entrar na lista de espera</a>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; min-height: 48px; padding: 0.6em 1.3em; border-radius: 999px; box-shadow: inset 0 0 0 2px var(--color-ink); color: var(--color-ink); background: transparent; font-family: var(--font-body); font-weight: 800; font-size: 1rem; line-height: 1.1; text-decoration: none; transition: background-color 220ms cubic-bezier(0.16, 1, 0.3, 1), color 220ms cubic-bezier(0.16, 1, 0.3, 1), transform 100ms; } .ds-chip:hover { background: var(--color-ink); color: var(--color-paper); } .ds-chip:active { transform: translateY(1px); } .ds-chip:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }"
+    },
+    {
+      "name": "Link sublinhado",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "Ação terciária: tinta em 800 com sublinhado de 2px no coral da marca; a seta do conjunto próprio desliza no hover.",
+      "html": "<a class=\"ds-link\" href=\"#\">Tirar uma dúvida<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4.5 12h15M13.5 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-link { display: inline-block; color: var(--color-ink); font-family: var(--font-body); font-weight: 800; font-size: 1.125rem; text-decoration: none; white-space: nowrap; border-bottom: 2px solid var(--color-accent); padding-block: 0.5em 0.3em; transition: border-color 220ms cubic-bezier(0.16, 1, 0.3, 1), color 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-link svg { display: inline-block; width: 1em; height: 1em; margin-inline-start: 0.35em; vertical-align: -0.14em; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-link:hover { color: var(--color-call); border-color: var(--color-call); } .ds-link:hover svg { transform: translateX(3px); } .ds-link:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; border-radius: 6px; }"
+    },
+    {
+      "name": "Pílulas de status",
+      "kind": "chip",
+      "refersTo": "status-live",
+      "description": "O vocabulário de status: Disponível em tinta cheia, Em piloto em coral-leite, Em breve só com contorno. Quanto menos existe, menos tinta.",
+      "html": "<span class=\"ds-status ds-status--live\">Disponível</span> <span class=\"ds-status ds-status--pilot\">Em piloto</span> <span class=\"ds-status ds-status--plan\">Em breve</span>",
+      "css": ".ds-status { display: inline-flex; align-items: center; min-height: 1.9em; padding: 0.1em 0.8em; border-radius: 999px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 800; line-height: 1.2; white-space: nowrap; letter-spacing: 0.01em; } .ds-status--live { background: var(--color-ink); color: var(--color-paper); } .ds-status--pilot { background: var(--color-accent-soft); color: var(--color-call-deep); } .ds-status--plan { background: transparent; color: var(--color-ink-2); box-shadow: inset 0 0 0 1.5px var(--color-rule-2); }"
+    },
+    {
+      "name": "Pílula de hora",
+      "kind": "chip",
+      "refersTo": "hour-pill",
+      "description": "A hora em JetBrains Mono, sentada sobre o fio; lilás na ponta de quem cuida.",
+      "html": "<p class=\"ds-hour\"><span class=\"ds-hour__t\">08:00</span><span class=\"ds-hour__w\">todo dia</span></p> <p class=\"ds-hour ds-hour--you\"><span class=\"ds-hour__t\">08:31</span><span class=\"ds-hour__w\">no seu celular</span></p>",
+      "css": ".ds-hour { display: inline-flex; align-items: baseline; gap: 0.55em; margin: 0 0.5rem 0 0; background: var(--color-paper); color: var(--color-ink); padding: 0.3em 0.9em 0.3em 0.75em; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--color-rule-2); font-size: 1.0625rem; line-height: 1.2; } .ds-hour__t { font-family: var(--font-mono); font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; } .ds-hour__w { font-family: var(--font-body); font-size: 0.875rem; font-weight: 800; color: var(--color-ink-2); } .ds-hour--you { background: var(--color-lilac-soft); box-shadow: inset 0 0 0 1.5px var(--color-lilac-layer); } .ds-hour--you .ds-hour__w { color: var(--color-lilac-ink); }"
+    },
+    {
+      "name": "Cartão de conversa",
+      "kind": "card",
+      "refersTo": "chat-card",
+      "description": "O produto é a conversa: corpo literal do WhatsApp, cabeçalho em superfície, segunda folha teal deslocada 10px (lilás com .ds-chat--you) e respostas rápidas em contorno teal.",
+      "html": "<div class=\"ds-chat\"><div class=\"ds-chat__head\"><span class=\"ds-chat__av\" aria-hidden=\"true\"></span><div><div class=\"ds-chat__name\">Tia Médica</div><div class=\"ds-chat__st\">online</div></div></div><div class=\"ds-chat__body\"><div class=\"ds-msg\">Oi, Dona Maria! Já são 8h. Passando pra lembrar da Losartana.<span class=\"ds-msg__meta\">08:00</span></div><div class=\"ds-msg ds-msg--me\">Já tomei<span class=\"ds-msg__meta\">08:04</span></div></div><div class=\"ds-chat__try\"><button class=\"ds-reply\" type=\"button\">Já tomei</button><button class=\"ds-reply\" type=\"button\">Ainda não</button></div></div>",
+      "css": ".ds-chat { position: relative; max-width: 22rem; margin: 0 10px 10px 0; background: var(--color-wpp-bg); border-radius: 20px; box-shadow: 10px 10px 0 var(--color-teal-layer), var(--shadow-mid); font-family: var(--font-body); color: var(--color-ink); } .ds-chat--you { box-shadow: 10px 10px 0 var(--color-lilac-layer), var(--shadow-mid); } .ds-chat__head { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: var(--color-surface); border-bottom: 1px solid var(--color-rule); border-radius: 20px 20px 0 0; } .ds-chat__av { width: 40px; height: 40px; border-radius: 50%; background: var(--color-accent-soft); box-shadow: 0 0 0 1px var(--color-rule); } .ds-chat__name { font-weight: 800; font-size: 1rem; line-height: 1.15; } .ds-chat__st { font-size: 0.875rem; font-weight: 600; color: var(--color-ink-2); line-height: 1.2; } .ds-chat__body { display: grid; gap: 7px; padding: 14px 1rem; } .ds-msg { max-width: 92%; justify-self: start; padding: 0.5em 0.8em 0.35em; border-radius: 14px; border-start-start-radius: 4px; background: var(--color-surface); font-size: 1rem; font-weight: 600; line-height: 1.42; box-shadow: var(--shadow-whisper); } .ds-msg--me { justify-self: end; background: var(--color-wpp-bubble); border-start-start-radius: 14px; border-start-end-radius: 4px; } .ds-msg__meta { display: block; text-align: end; font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; font-size: 0.8125rem; color: var(--color-ink-2); margin-top: 0.1em; } .ds-chat__try { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 10px 1rem 14px; border-top: 1px dashed var(--color-rule-2); } .ds-reply { min-height: 44px; padding: 0.45em 1.1em; border-radius: 999px; border: 0; box-shadow: inset 0 0 0 2px var(--color-teal); background: var(--color-surface); color: var(--color-ink); font-family: var(--font-body); font-weight: 800; font-size: 1rem; line-height: 1; cursor: pointer; transition: background-color 220ms cubic-bezier(0.16, 1, 0.3, 1), color 220ms cubic-bezier(0.16, 1, 0.3, 1), transform 100ms; } .ds-reply:hover { background: var(--color-teal-ink); color: var(--color-paper); box-shadow: inset 0 0 0 2px var(--color-teal-ink); } .ds-reply:active { transform: translateY(1px); } .ds-reply:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }"
+    },
+    {
+      "name": "Folha de limites",
+      "kind": "card",
+      "refersTo": "sheet",
+      "description": "Uma superfície, duas listas: o que a Tia faz (check teal) e o que ela recusa (sinal de recusa em tinta 2). A lista de recusas é sempre a mais longa.",
+      "html": "<div class=\"ds-sheet\"><div><h3>A Tia faz</h3><ul class=\"ds-marks\"><li><svg viewBox=\"0 0 24 24\" class=\"ds-yes\" aria-hidden=\"true\"><path d=\"M5 12.6l4.4 4.4L19 7.4\"/></svg>Lembra o remédio na hora combinada</li><li><svg viewBox=\"0 0 24 24\" class=\"ds-yes\" aria-hidden=\"true\"><path d=\"M5 12.6l4.4 4.4L19 7.4\"/></svg>Registra o que foi confirmado</li></ul></div><div><h3>A Tia recusa</h3><ul class=\"ds-marks\"><li><svg viewBox=\"0 0 24 24\" class=\"ds-no\" aria-hidden=\"true\"><path d=\"M6.5 6.5l11 11M17.5 6.5l-11 11\"/></svg>Diagnosticar</li><li><svg viewBox=\"0 0 24 24\" class=\"ds-no\" aria-hidden=\"true\"><path d=\"M6.5 6.5l11 11M17.5 6.5l-11 11\"/></svg>Prescrever ou trocar o remédio</li><li><svg viewBox=\"0 0 24 24\" class=\"ds-no\" aria-hidden=\"true\"><path d=\"M6.5 6.5l11 11M17.5 6.5l-11 11\"/></svg>Transformar atraso em culpa</li></ul></div></div>",
+      "css": ".ds-sheet { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.5rem; background: var(--color-surface); color: var(--color-ink); border-radius: 20px; box-shadow: var(--shadow-soft); padding: 2rem; font-family: var(--font-body); font-weight: 600; font-size: 1.125rem; } .ds-sheet h3 { margin: 0 0 1rem; font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 1.4375rem; line-height: 1.18; padding-bottom: 0.75rem; border-bottom: 1px solid var(--color-rule-2); } .ds-marks { margin: 0; padding: 0; list-style: none; } .ds-marks li { position: relative; padding: 0.7em 0 0.7em 2em; border-bottom: 1px solid var(--color-rule); line-height: 1.4; } .ds-marks li:last-child { border-bottom: 0; } .ds-marks svg { position: absolute; left: 0; top: 0.78em; width: 1.25em; height: 1.25em; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; } .ds-yes { stroke: var(--color-teal-ink); } .ds-no { stroke: var(--color-ink-2); }"
+    },
+    {
+      "name": "Linha do livro-razão",
+      "kind": "custom",
+      "refersTo": "status-pilot",
+      "description": "Oferta como linha, não como cartão: status, nome e preço em Nunito 800 tabular, descrição, ação.",
+      "html": "<div class=\"ds-offer\"><span class=\"ds-offer__st\">Em piloto</span><div><h3>A rotina</h3><p class=\"ds-offer__price\">R$ 0 <small>para sempre</small></p></div><p class=\"ds-offer__desc\">Lembretes de medicamento, hábitos e consultas, com as confirmações registradas.</p></div>",
+      "css": ".ds-offer { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) minmax(0, 5fr); gap: 1.5rem; align-items: start; padding-block: 2.5rem; border-top: 2px solid var(--color-ink); border-bottom: 1px solid var(--color-rule-2); font-family: var(--font-body); font-weight: 600; font-size: 1.125rem; line-height: 1.6; color: var(--color-ink); } .ds-offer__st { justify-self: start; display: inline-flex; align-items: center; min-height: 1.9em; padding: 0.1em 0.8em; border-radius: 999px; background: var(--color-accent-soft); color: var(--color-call-deep); font-size: 0.875rem; font-weight: 800; line-height: 1.2; } .ds-offer h3 { margin: 0 0 0.5rem; font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 1.75rem; line-height: 1.18; letter-spacing: -0.012em; } .ds-offer__price { margin: 0; font-weight: 800; font-size: 1.75rem; line-height: 1.15; font-variant-numeric: tabular-nums lining-nums; } .ds-offer__price small { display: block; font-weight: 700; font-size: 0.9375rem; color: var(--color-ink-2); line-height: 1.4; } .ds-offer__desc { margin: 0; }"
+    },
+    {
+      "name": "Navegação",
+      "kind": "nav",
+      "refersTo": "button-primary-nav",
+      "description": "Barra de 72px em papel translúcido: links em Nunito 800 com sublinhado coral no hover e a pílula de ação à direita.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav__brand\">Tia Médica</span><a href=\"#\">Como funciona</a><a href=\"#\">Preços</a><a href=\"#\">Dúvidas</a><a class=\"ds-nav__cta\" href=\"#\">Falar com a Tia</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 2.5rem; height: 72px; padding-inline: 1.5rem; background: var(--color-paper); border-bottom: 1px solid var(--color-rule); font-family: var(--font-body); color: var(--color-ink); } .ds-nav__brand { margin-inline-end: auto; font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 1.4375rem; } .ds-nav a { color: inherit; text-decoration: none; font-weight: 800; font-size: 1.0625rem; white-space: nowrap; border-bottom: 2px solid transparent; padding-block: 0.5em 0.4em; transition: border-color 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav a:hover { border-bottom-color: var(--color-accent); } .ds-nav a:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; border-radius: 6px; } .ds-nav a.ds-nav__cta { display: inline-flex; align-items: center; min-height: 46px; padding: 0.5em 1.15em; border: 0; border-radius: 999px; background: var(--color-call); color: var(--color-paper); font-size: 1rem; transition: background-color 220ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav a.ds-nav__cta:hover { background: var(--color-call-deep); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "As duas pontas do fio",
+    "overview": "A home é um fio com duas pontas: a cozinha dela às oito da manhã e o celular de quem cuida. Tudo o que a página demonstra é uma confirmação viajando de uma ponta à outra — o lembrete chega, ela responde “já tomei”, fica registrado, e quem cuida fica sabendo. O produto é a conversa, então a conversa é a demonstração: não há moldura de celular, não há captura de tela, há cartões de conversa de verdade, em HTML, ligados por um fio trançado.\n\nO tom é o da marca — acolhedora, precisa, honesta — levado para uma página sóbria: papel creme, tinta azul-petróleo, uma afirmação em Fraunces itálico por seção, e o coral guardado para o que chama. A densidade é de carta, não de painel: uma coluna de leitura, bastante respiro, e as partes “de contrato” (limites, ofertas, dúvidas) sem decoração nenhuma, porque o fundador pediu menos ornamento. O fio aparece onde há demonstração e some onde há contrato.\n\nA página recusa o arranjo padrão da categoria — título centralizado, três cartões de recurso, cartões de preço — e recusa também a versão anterior do site, sem rosto e de natureza-morta. Nada de adesão virando gráfico, nada de alarme, nada de promessa maior que o produto.",
+    "keyCharacteristics": [
+      "Papel creme com faixas wash alternadas; nunca branco puro como fundo de página.",
+      "Um só fio trançado (coral + tinta + teal claro) como espinha da demonstração; ausente em limites, ofertas e dúvidas.",
+      "Cartões de conversa com uma segunda folha deslocada — teal na ponta dela, lilás na ponta de quem cuida.",
+      "Coral em três degraus: grafismo, palavra grande, chamada. O degrau certo depende do tamanho do texto.",
+      "Horas em mono presas ao fio; preço nunca em mono.",
+      "Status dito com pílulas: hoje a página usa Em piloto e Em breve; Disponível (tinta cheia) fica reservada para quando uma oferta paga entrar no ar.",
+      "Completa sem JavaScript e parada, inteira, com movimento reduzido."
+    ],
+    "rules": [
+      {
+        "name": "A Regra dos Três Corais",
+        "body": "O coral da marca não é cor de texto: mede 2,9:1 no creme e falha até como texto grande. Grafismo usa `accent`; palavra de display usa `accent-ink`; ação e qualquer coral pequeno usam `call`. Escolhe-se o degrau pelo tamanho, nunca pelo gosto.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra da Cor com Dono",
+        "body": "Teal quer dizer “registrado”. Lilás quer dizer “quem cuida”. Nenhum dos dois decora. Se a peça não fala de confirmação, não tem teal; se não fala do cuidador, não tem lilás.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Verde Emprestado",
+        "body": "O verde e o azul do WhatsApp só existem dentro de um cartão de conversa, como representação literal da interface. Fora dele, não são cores do sistema.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra Sem Vermelho",
+        "body": "Não existe vermelho, nem para urgência. Urgência é dita com palavra (UPA, SAMU 192) sobre coral-leite e tinta.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra da Hora em Mono",
+        "body": "JetBrains Mono escreve hora e o número do passo no combinado — nada mais. Preço em mono é proibido: o zero cortado faz “R$ 0” ler como “R$ Ø”.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra do Itálico Leve",
+        "body": "Fraunces sempre itálico, sempre com eixo óptico automático, nunca acima de 600. H1 e H3 em 600, H2 em 540, frase de corte em 500. Se o título parece impresso em negrito, está errado.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra dos Dezoito",
+        "body": "O corpo é 18px com peso 600. O público inclui quem tem 55–85 anos; texto de leitura não desce disso.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra da Sombra de Tinta",
+        "body": "Toda sombra é a tinta azul-petróleo diluída (6–10%). Preto puro não existe — nem em texto, nem em sombra.",
+        "section": "elevation"
+      },
+      {
+        "name": "A Regra da Segunda Folha",
+        "body": "A folha deslocada pertence só ao cartão de conversa. Não vai em botão, em cartão de oferta, em imagem, em folha de limites. Teal na ponta dela, lilás na ponta de quem cuida, sempre 10px.",
+        "section": "elevation"
+      },
+      {
+        "name": "A Regra de Onde o Fio Vive",
+        "body": "O fio aparece em cinco lugares: a travessia entre os dois celulares, a linha “consulta — consulta” da tese, a linha do tempo do dia, o coração do compromisso e a chegada até a Tia no fechamento. Limites, ofertas, dúvidas, clínicas e rodapé ficam sem fio, de propósito.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do escolher o coral pelo tamanho do texto: `accent` para grafismo, `accent-ink` para palavra de display, `call` para ação e texto pequeno.",
+      "Do manter o corpo em 18px / Nunito 600 e todo alvo de toque com 44px ou mais (ações 46–60px, chip 48px, resposta 44px, pergunta 56px).",
+      "Do usar Fraunces sempre itálico, eixo óptico automático, pesos 500–600, com uma afirmação inteira por seção.",
+      "Do prender toda hora ao fio numa pílula, em JetBrains Mono tabular; escrever preço em Nunito 800 com algarismos tabulares.",
+      "Do dar a todo cartão de conversa a segunda folha de 10px — teal na ponta dela, lilás na ponta de quem cuida — e rotular as conversas como exemplo com nomes fictícios.",
+      "Do dizer o status com as três pílulas (Disponível, Em piloto, Em breve) e mostrar ofertas em linhas com coluna de status.",
+      "Do entregar o conteúdo completo em HTML: conversas escritas, respostas abertas sem JS, nada essencial revelado só por animação.",
+      "Do fazer toda sombra com a tinta diluída e todo ícone com o conjunto próprio de traço único, aplicado como máscara."
+    ],
+    "donts": [
+      "Don't usar o coral da marca (`accent`) como cor de texto ou de botão — 2,9:1 no creme.",
+      "Don't usar vermelho, preto puro, sombra preta ou branco puro como fundo de página.",
+      "Don't usar teal fora de confirmação/registro, lilás fora da ponta de quem cuida, nem verde de WhatsApp fora do cartão de conversa.",
+      "Don't pôr o fio em limites, ofertas, dúvidas, clínicas ou rodapé; ele é a espinha da demonstração, não um enfeite de seção.",
+      "Don't pôr preço em mono, nem mono em qualquer coisa que não seja hora.",
+      "Don't usar emoji ou glifo como ícone de interface; emoji só dentro das mensagens.",
+      "Don't transformar ofertas em cartões de preço ou bento, nem adesão em nota, gráfico, anel ou medalha.",
+      "Don't colocar a segunda folha em botões, imagens ou outros cartões.",
+      "Don't devolver a faixa promocional do topo nem o seletor de perfil; uma ação por tela.",
+      "Don't mostrar a personagem em cena clínica, infantilizada ou comunicando cobrança."
+    ]
+  }
+}

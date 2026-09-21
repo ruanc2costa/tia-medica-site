@@ -4,3 +4,8 @@ node_modules/
 .env.local
 .DS_Store
 Thumbs.db
+
+# saída local de ferramentas de inspeção
+.playwright-mcp/
+.impeccable/review/
+.impeccable/hook.cache.json

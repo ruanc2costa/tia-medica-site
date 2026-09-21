@@ -1,0 +1,9 @@
+# Documentos de trabalho e testes: ficam no repositório, não no site publicado.
+PRODUCT.md
+DESIGN.md
+ASSETS-BRIEF.md
+.impeccable
+docs
+tests
+assets/personagem/*.json
+index-novo.html
