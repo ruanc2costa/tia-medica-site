@@ -1,7 +1,7 @@
 ---
-# PROPOSTA EXPERIMENTAL — sujeita à aprovação do fundador · 2026-09-20 · branch exp/home-redesign · NÃO publicada · não substitui nada até ser aprovada
-name: "Tia Médica — home experimental “As duas pontas do fio”"
-description: "Proposta experimental (2026-09-20, branch exp/home-redesign, não publicada): a home como um fio com duas pontas — o celular de quem toma o remédio e o celular de quem cuida."
+# APROVADA pelo fundador e PUBLICADA em 2026-09-20 (PR #6, merge b42b8d6, www.tiamedica.com) · nasceu como proposta experimental na branch exp/home-redesign
+name: "Tia Médica — home “As duas pontas do fio”"
+description: "Home aprovada pelo fundador e publicada em 2026-09-20: a home como um fio com duas pontas — o celular de quem toma o remédio e o celular de quem cuida."
 colors:
   paper: "oklch(97.6% 0.008 80)"
   paper-2: "oklch(95.3% 0.012 80)"
@@ -199,10 +199,9 @@ components:
     padding: "1rem 1.5rem"
 ---
 
-# Design System: Tia Médica — home experimental “As duas pontas do fio”
+# Design System: Tia Médica — home “As duas pontas do fio”
 
-> **PROPOSTA EXPERIMENTAL — sujeita à aprovação do fundador.**
-> Data: **2026-09-20**. Vive só na branch **`exp/home-redesign`**. **Não está publicada nem implantada.** **Não substitui nada** — nem o site em produção, nem os documentos da marca — até ser aprovada. Direção: **“As duas pontas do fio”**.
+> **Aprovada pelo fundador e publicada em 2026-09-20** (“testei aqui e tá perfeito, pode subir”) — PR #6, merge `b42b8d6`, no ar em www.tiamedica.com. Nasceu como proposta experimental na branch `exp/home-redesign`. Direção: **“As duas pontas do fio”**.
 >
 > Este documento foi escrito **depois** da construção, a partir do que está em `index.html`, `assets/tia.css` (bloco `:root`) e `assets/tia.js`. Onde o plano e o código divergem, vale o código, e a divergência está anotada. Os tokens do cabeçalho YAML são normativos e estão em OKLCH, o formato em que foram entregues; a prosa não repete os valores.
 >

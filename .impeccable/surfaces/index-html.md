@@ -7,7 +7,7 @@ related_targets: []
 
 # Home — tiamedica.com (`index.html`)
 
-Escopo: home pública, página única. Modo: **Persuade**. Status: versão experimental local (branch `exp/home-redesign`), sujeita à aprovação do fundador. Build: code-led. A geração de imagem só foi liberada pelo fundador depois da revisão de acabamento, para a ilustração do hero.
+Escopo: home pública, página única. Modo: **Persuade**. Status: aprovada pelo fundador e publicada em 2026-09-20 (PR #6, merge `b42b8d6`). Build: code-led. A geração de imagem só foi liberada pelo fundador depois da revisão de acabamento, para a ilustração do hero.
 
 ## Quem, o quê, para quê
 

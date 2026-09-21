@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-09-20T18:30:00.000Z",
-  "title": "Design System: Tia Médica — home experimental “As duas pontas do fio”",
-  "status": "Proposta experimental — sujeita à aprovação do fundador. 2026-09-20, branch exp/home-redesign, não publicada; não substitui nada até ser aprovada.",
+  "title": "Design System: Tia Médica — home “As duas pontas do fio”",
+  "status": "Aprovada pelo fundador e publicada em 2026-09-20 (PR #6, merge b42b8d6). Nasceu como proposta experimental na branch exp/home-redesign.",
   "extensions": {
     "colorMeta": {
       "paper": {

@@ -133,11 +133,12 @@ def run_desktop(browser) -> None:
     her, you = page.locator("#sim-her"), page.locator("#sim-you")
     assert "confirmou o remédio das 8h" in you.inner_text()
     page.locator("#sim-replies button", has_text="Ainda não").click()
-    page.wait_for_function("document.querySelector('#sim-try-label').textContent.includes('meia hora')")
+    # esperas por locator: wait_for_function com texto usa eval, que o CSP de produção bloqueia
+    page.locator("#sim-try-label", has_text="meia hora").wait_for()
     assert "sem pressa" in her.inner_text()
     assert "confirmou" not in you.inner_text(), "Quem cuida não pode ser avisado antes da confirmação"
     page.locator("#sim-replies button", has_text="Já tomei").click()
-    page.wait_for_function("document.querySelector('#sim-you').innerText.includes('08:31')")
+    page.locator("#sim-you", has_text="08:31").wait_for()
     assert "confirmou o remédio das 8h" in you.inner_text()
 
     # dúvidas

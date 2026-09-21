@@ -1,4 +1,4 @@
-# ASSETS-BRIEF — home experimental "As duas pontas do fio"
+# ASSETS-BRIEF — home "As duas pontas do fio"
 
 Brief de imagens para produção no Higgsfield. O layout reutiliza primeiro o que a marca já tem; este arquivo lista só o que de fato faltava. **Única geração paga até aqui:** a ilustração do hero (peça 1), em 2026-09-20, com liberação expressa do fundador — 2 créditos. Nenhum vídeo foi gerado.
 
