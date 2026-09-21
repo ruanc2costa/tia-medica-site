@@ -3,36 +3,20 @@
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const wait = (ms) => new Promise((r) => setTimeout(r, reduceMotion ? 0 : ms));
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const wait = (ms) => new Promise((r) => setTimeout(r, reduceMotion.matches ? 0 : ms));
 
-  /* ---------------- N12 · banner + barra que recolhe ---------------- */
+  document.documentElement.classList.add("js");
+
+  /* ---------------- nav · fio de borda ao rolar ---------------- */
   const nav = $("#nav");
-  const banner = $("#banner");
-  const bannerX = $("#banner-x");
   if (nav) {
-    let lastY = window.scrollY;
     let ticking = false;
-    const update = () => {
-      const y = window.scrollY;
-      nav.classList.toggle("is-scrolled", y > 8);
-      if (y < 48) nav.classList.remove("is-compact");
-      else if (y > lastY + 4) nav.classList.add("is-compact");
-      else if (y < lastY - 4) nav.classList.remove("is-compact");
-      lastY = y;
-      ticking = false;
-    };
+    const update = () => { nav.classList.toggle("is-scrolled", window.scrollY > 8); ticking = false; };
     window.addEventListener("scroll", () => {
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
     }, { passive: true });
     update();
-    if (bannerX && banner) {
-      bannerX.addEventListener("click", () => {
-        document.documentElement.style.setProperty("--banner-h", "0px");
-        nav.classList.add("is-dismissed");
-        nav.classList.remove("is-compact");
-      });
-    }
   }
 
   /* ---------------- menu (celular) ---------------- */
@@ -51,70 +35,33 @@
     });
   }
 
-  /* ---------------- hero · papéis + simulador ---------------- */
-  const WPP = "https://wa.me/551140402232?text=";
-  const wa = (t) => WPP + encodeURIComponent(t);
-  const ROLES = {
-    mim: {
-      lede: "Remédios, hábitos e consultas na hora certa — numa conversa de WhatsApp que você já sabe usar. A Tia lembra, você confirma, e fica registrado.",
-      cta: { label: "Falar com a Tia", href: wa("Oi! Quero começar com os lembretes gratuitos.") },
-      script: {
-        start: [{ who: "tia", text: "Oi, Dona Maria! Já são 8h. Passando pra lembrar da Losartana. 💛", time: "08:00" }],
-        replies: [
-          { label: "Já tomei", time: "08:04", then: [
-            { who: "tia", text: "Registrei sua confirmação. ✅ Seu próximo lembrete está programado para 12h.", time: "08:04" },
-            { who: "tia", text: "Conta comigo. Se precisar, é só me chamar.", time: "08:04" },
-          ] },
-          { label: "Ainda não", time: "08:06", then: [
-            { who: "tia", text: "Tudo bem — sem pressa. Volto a lembrar daqui a 30 minutos. Quando tomar, é só me avisar que eu registro.", time: "08:06" },
-          ], replies: [
-            { label: "Já tomei", time: "08:31", then: [
-              { who: "tia", text: "Registrei sua confirmação. ✅ Seu próximo lembrete está programado para 12h.", time: "08:31" },
-            ] },
-          ] },
-        ],
-      },
-    },
-    mae: {
-      lede: "Você não precisa ligar todo dia pra perguntar se ela tomou. A Tia lembra, ela confirma, e você fica sabendo — sem sua mãe se sentir fiscalizada.",
-      cta: { label: "Falar com a Tia", href: wa("Oi! Vim pelo site e quero conhecer a Tia.") },
-      script: {
-        start: [{ who: "tia", text: "Oi, Ana. Dona Maria confirmou o remédio das 8h. ✅", time: "08:31" }],
-        replies: [
-          { label: "Obrigada 💛", time: "08:40", then: [
-            { who: "tia", text: "De nada. Se ela não confirmar até as 9h, eu te aviso — sem você precisar ligar todo dia.", time: "08:40" },
-          ] },
-          { label: "E se ela esquecer?", time: "08:41", then: [
-            { who: "tia", text: "Eu lembro de novo, com jeito — atraso nunca vira culpa. Se mesmo assim ela não confirmar, eu te aviso.", time: "08:41" },
-          ] },
-        ],
-      },
-    },
-    clinica: {
-      lede: "A adesão vaza no intervalo entre as consultas. A Tia sustenta esse intervalo sem sua recepção operar mais um sistema — e devolve o paciente melhor informado.",
-      cta: { label: "Propor uma parceria", href: "mailto:admin@tiamedica.com?subject=" + encodeURIComponent("Proposta de piloto para clínica") },
-      script: {
-        start: [{ who: "tia", text: "Oi, Seu José. Sua consulta de retorno na clínica é dia 14, às 9h. Quer que eu lembre na véspera?", time: "16:10" }],
-        replies: [
-          { label: "Quero", time: "16:12", then: [
-            { who: "tia", text: "Combinado. Lembro você dia 13 à tarde. Até lá, sigo com os lembretes dos remédios. 💛", time: "16:12" },
-          ] },
-          { label: "Não precisa", time: "16:12", then: [
-            { who: "tia", text: "Tudo bem. Sigo com os lembretes dos remédios — se mudar de ideia, é só me avisar.", time: "16:12" },
-          ] },
-        ],
-      },
-    },
-  };
+  /* ---------------- hero · as duas pontas do fio ----------------
+   * O HTML já traz a conversa completa nos dois celulares. Aqui o visitante pode
+   * responder no lugar da Dona Maria e ver a confirmação chegar a quem cuida. */
+  const REMINDER = { who: "tia", text: "Oi, Dona Maria! Já são 8h. Passando pra lembrar da Losartana. 💛", time: "08:00" };
+  const REGISTERED = "Registrei sua confirmação. ✅ Seu próximo lembrete está programado para 12h.";
+  const ARRIVAL = "Oi, Ana. Dona Maria confirmou o remédio das 8h. ✅";
+  const QUIET_WAITING = "Quando ela confirmar, a Tia avisa você aqui.";
+  const QUIET_LATE = "Por enquanto, nada de alarme. Se ela não confirmar até as 9h, a Tia avisa você.";
+  const REPLIES = [
+    { label: "Já tomei", time: "08:04", then: [{ who: "tia", text: REGISTERED, time: "08:04" }], arrives: "08:04" },
+    { label: "Ainda não", time: "08:06", quiet: QUIET_LATE,
+      then: [{ who: "tia", text: "Tudo bem — sem pressa. Volto a lembrar daqui a 30 minutos. Quando tomar, é só me avisar que eu registro.", time: "08:06" }],
+      replies: [
+        { label: "Já tomei", time: "08:31", then: [{ who: "tia", text: REGISTERED, time: "08:31" }], arrives: "08:31" },
+      ] },
+  ];
 
-  const lede = $("#hero-lede");
-  const heroCta = $("#hero-cta");
-  const heroCtaLabel = $("#hero-cta-label");
-  const simBody = $("#sim-body");
-  const simReplies = $("#sim-replies");
-  const simStatus = $("#sim-status");
-  const simReplay = $("#sim-replay");
-  let run = 0; // invalida execuções antigas quando o papel muda
+  const duo = $("#sim");
+  const her = $("#sim-her");
+  const you = $("#sim-you");
+  const herStatus = $("#sim-status");
+  const youStatus = $("#sim-you-status");
+  const tryBox = $("#sim-try");
+  const tryLabel = $("#sim-try-label");
+  const repliesBox = $("#sim-replies");
+  const hop = $("#sim-hop");
+  let run = 0; // invalida execuções antigas quando o visitante responde de novo
 
   const bubble = (who, text, time) => {
     const el = document.createElement("div");
@@ -129,7 +76,6 @@
       const tick = document.createElement("span");
       tick.className = "tick";
       tick.setAttribute("aria-hidden", "true");
-      tick.textContent = "✓✓";
       meta.appendChild(tick);
     }
     el.appendChild(meta);
@@ -140,126 +86,136 @@
     const el = document.createElement("div");
     el.className = "msg typing";
     el.setAttribute("aria-hidden", "true");
-    el.innerHTML = "<i></i><i></i><i></i>";
+    el.append(document.createElement("i"), document.createElement("i"), document.createElement("i"));
     return el;
   };
 
-  async function say(id, msgs) {
-    for (const m of msgs) {
-      if (id !== run) return;
-      if (m.who === "tia") {
-        if (simStatus) simStatus.textContent = "digitando…";
-        const t = typingEl();
-        simBody.appendChild(t);
-        await wait(Math.min(1400, 500 + m.text.length * 12));
-        t.remove();
-        if (simStatus) simStatus.textContent = "online";
-      }
-      if (id !== run) return;
-      simBody.appendChild(bubble(m.who, m.text, m.time));
-      await wait(320);
-    }
+  const quiet = (text) => {
+    const p = document.createElement("p");
+    p.className = "chat__quiet";
+    p.textContent = text;
+    you.replaceChildren(p);
+  };
+
+  async function say(id, box, status, msg) {
+    if (status) status.textContent = "digitando…";
+    const t = typingEl();
+    box.appendChild(t);
+    await wait(Math.min(1300, 450 + msg.text.length * 11));
+    t.remove();
+    if (status) status.textContent = "online";
+    if (id !== run) return null;
+    const el = bubble(msg.who, msg.text, msg.time);
+    box.appendChild(el);
+    await wait(300);
+    return el;
   }
 
-  function offer(id, replies, onDone) {
-    simReplies.replaceChildren();
-    if (!replies || !replies.length) { onDone(); return; }
+  async function sendAcross(id, time) {
+    hop.textContent = time;
+    duo.classList.remove("is-sending");
+    void duo.offsetWidth; // reinicia a animação do pulso
+    duo.classList.add("is-sending");
+    await wait(1100);
+    if (id !== run) return;
+    you.replaceChildren();
+    const el = await say(id, you, youStatus, { who: "tia", text: ARRIVAL, time });
+    if (el) el.classList.add("is-landing");
+  }
+
+  function offer(id, replies, label) {
+    repliesBox.replaceChildren();
+    tryLabel.textContent = label;
     replies.forEach((r) => {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "reply";
       b.textContent = r.label;
-      b.addEventListener("click", async () => {
-        if (id !== run) return;
-        $$("button", simReplies).forEach((x) => { x.disabled = true; });
-        simBody.appendChild(bubble("me", r.label, r.time));
-        simReplies.replaceChildren();
-        await wait(500);
-        await say(id, r.then || []);
-        if (id !== run) return;
-        offer(id, r.replies, onDone);
-      });
-      simReplies.appendChild(b);
+      b.addEventListener("click", () => choose(r));
+      repliesBox.appendChild(b);
     });
   }
 
-  async function play(roleKey) {
-    if (!simBody || !simReplies) return;
+  async function choose(reply) {
     const id = ++run;
-    const script = ROLES[roleKey].script;
-    simReplay.hidden = true;
-    simBody.replaceChildren();
-    const day = document.createElement("span");
-    day.className = "chat__day";
-    day.textContent = "hoje";
-    simBody.appendChild(day);
-    simReplies.replaceChildren();
-    await wait(400);
-    await say(id, script.start);
+    $$("button", repliesBox).forEach((b) => { b.disabled = true; });
+    // primeira resposta de uma rodada: volta ao lembrete das 8h
+    if (REPLIES.includes(reply)) {
+      her.replaceChildren(bubble(REMINDER.who, REMINDER.text, REMINDER.time));
+      her.firstElementChild.classList.remove("is-new");
+      quiet(QUIET_WAITING);
+    }
+    her.appendChild(bubble("me", reply.label, reply.time));
+    await wait(450);
+    for (const m of reply.then) {
+      if (id !== run) return;
+      await say(id, her, herStatus, m);
+    }
     if (id !== run) return;
-    offer(id, script.replies, () => { if (id === run) simReplay.hidden = false; });
+    if (reply.quiet) quiet(reply.quiet);
+    if (reply.arrives) await sendAcross(id, reply.arrives);
+    if (id !== run) return;
+    if (reply.replies) offer(id, reply.replies, "E meia hora depois:");
+    else offer(id, REPLIES, "Responda de novo no lugar dela:");
   }
 
-  let currentRole = "mim";
-  function setRole(key, { replay = true } = {}) {
-    currentRole = key;
-    $$(".role").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.role === key)));
-    const role = ROLES[key];
-    if (lede) {
-      lede.classList.add("is-swapping");
-      setTimeout(() => { lede.textContent = role.lede; lede.classList.remove("is-swapping"); }, reduceMotion ? 0 : 200);
-    }
-    if (heroCta && heroCtaLabel) {
-      heroCta.href = role.cta.href;
-      heroCtaLabel.textContent = role.cta.label;
-      if (role.cta.href.startsWith("mailto:")) { heroCta.removeAttribute("target"); heroCta.removeAttribute("rel"); }
-      else { heroCta.target = "_blank"; heroCta.rel = "noopener"; }
-    }
-    if (replay) play(key);
+  if (duo && her && you && tryBox && repliesBox && hop) {
+    tryBox.hidden = false;
+    offer(run, REPLIES, "Responda no lugar dela:");
   }
 
-  $$(".role").forEach((b) => b.addEventListener("click", () => {
-    if (b.dataset.role !== currentRole) setRole(b.dataset.role);
-  }));
-  if (simReplay) simReplay.addEventListener("click", () => play(currentRole));
+  /* ---------------- um dia com a Tia · o fio desce trançando ----------------
+   * Sem isto o fio já está inteiro na página. Aqui ele acompanha a rolagem: a trama é
+   * revelada até a altura da ponta, gira enquanto desce, e os três fios seguem soltos
+   * logo abaixo, entrando na trança. Cada hora acende quando o fio chega nela. */
+  const fio = $("#day-fio");
+  const lista = fio && fio.parentElement;
+  if (fio && lista) {
+    const PERIODO = 64, AMPLITUDE = 6, EIXO = 14, CAUDA = 34;
+    const soltos = [[".fio__c", EIXO], [".fio__b", 23], [".fio__a", 5]].map(([sel, x]) => [$(".day__cauda " + sel, fio), x]);
+    const momentos = $$(".moment", lista);
+    let agendado = false;
 
-  // começa quando o hero está visível (não antes)
-  const sim = $("#sim");
-  if (sim && "IntersectionObserver" in window) {
-    const io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); play(currentRole); }
-    }, { threshold: 0.4 });
-    io.observe(sim);
-  } else if (sim) {
-    play(currentRole);
-  }
-
-  /* ---------------- Feature Stack · painel sincronizado com o scroll ---------------- */
-  const stages = $$(".stage");
-  const plates = $$(".plate");
-  const threads = $$(".pane__thread");
-  const wide = window.matchMedia("(min-width: 60rem)");
-  if (stages.length && "IntersectionObserver" in window) {
-    const activate = (n) => {
-      stages.forEach((s) => s.classList.toggle("is-active", s.dataset.stage === n));
-      plates.forEach((p) => p.classList.toggle("is-active", p.dataset.plate === n));
-      threads.forEach((t) => t.classList.toggle("is-active", t.dataset.thread === n));
+    const desenha = () => {
+      agendado = false;
+      const r = lista.getBoundingClientRect();
+      const corte = Math.max(0, Math.min(r.height, window.innerHeight * 0.62 - r.top));
+      const fase = (corte * 0.5) % PERIODO;
+      fio.style.setProperty("--fio-corte", corte + "px");
+      fio.style.setProperty("--fio-fase", fase + "px");
+      // onde cada fio da trama está na altura do corte — é dali que a ponta solta sai
+      const u = (2 * Math.PI * (corte - fase)) / PERIODO;
+      const naTrama = [EIXO + AMPLITUDE * Math.cos(u), EIXO - AMPLITUDE * Math.sin(u), EIXO + AMPLITUDE * Math.sin(u)];
+      const solta = Math.min(1, (r.height - corte) / 80); // perto do fim a ponta se recolhe
+      soltos.forEach(([path, alvo], i) => {
+        const x0 = naTrama[i].toFixed(1);
+        const x1 = (EIXO + (alvo - EIXO) * solta).toFixed(1);
+        path.setAttribute("d", `M${x0} 0C${x0} 12 ${x1} 18 ${x1} ${CAUDA}`);
+      });
+      momentos.forEach((m) => {
+        const hora = $(".moment__time", m).getBoundingClientRect();
+        m.classList.toggle("is-reached", hora.top + hora.height / 2 - r.top <= corte);
+      });
     };
-    let io = null;
-    const arm = () => {
-      if (io) { io.disconnect(); io = null; }
-      if (!wide.matches) { activate("1"); return; }
-      io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) activate(e.target.dataset.stage); });
-      }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
-      stages.forEach((s) => io.observe(s));
+    const agenda = () => { if (!agendado) { agendado = true; requestAnimationFrame(desenha); } };
+    const liga = () => {
+      const vivo = !reduceMotion.matches;
+      fio.classList.toggle("is-vivo", vivo);
+      if (vivo) { desenha(); return; }
+      fio.style.removeProperty("--fio-corte");
+      fio.style.removeProperty("--fio-fase");
+      momentos.forEach((m) => m.classList.remove("is-reached"));
     };
-    arm();
-    wide.addEventListener("change", arm);
+    window.addEventListener("scroll", () => { if (!reduceMotion.matches) agenda(); }, { passive: true });
+    window.addEventListener("resize", () => { if (!reduceMotion.matches) agenda(); });
+    reduceMotion.addEventListener("change", liga);
+    liga();
   }
 
-  /* ---------------- dúvidas · acordeão ---------------- */
+  /* ---------------- dúvidas · acordeão ----------------
+   * No HTML as respostas vêm abertas (é assim que ficam sem JavaScript); aqui elas recolhem. */
   $$(".faq__q").forEach((q) => {
+    q.setAttribute("aria-expanded", "false");
     q.addEventListener("click", () => {
       const item = q.closest(".faq__item");
       const open = !item.classList.contains("is-open");
@@ -268,13 +224,15 @@
     });
   });
 
-  /* ---------------- C4 · barra fixa depois do hero (celular) ---------------- */
+  /* ---------------- barra fixa depois do hero (celular) ---------------- */
   const dock = $("#dock");
   const hero = $("#hero");
   if (dock && hero && "IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
       const e = entries[0];
-      dock.classList.toggle("is-visible", !e.isIntersecting && e.boundingClientRect.bottom < 0);
+      const visible = !e.isIntersecting && e.boundingClientRect.bottom < 0;
+      dock.classList.toggle("is-visible", visible);
+      if (nav) nav.classList.toggle("has-dock", visible); // no celular, uma ação por tela
     }, { threshold: 0 });
     io.observe(hero);
   }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Home Tia Médica — antes e depois (experimental)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500..700&family=Nunito:wght@600..900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --paper: #FAF7F2; --paper-2: #F4EFE6; --ink: #264653; --ink-2: #43646B; --call: #B14325; --rule: #E4DCCD; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.55; }
+  code { font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: 0.9em; }
+  main { max-width: 90rem; margin: 0 auto; padding: 2.5rem clamp(1rem, 4vw, 3rem) 5rem; }
+  h1, h2 { font-family: "Fraunces", "Iowan Old Style", Georgia, serif; font-style: italic; font-weight: 600; line-height: 1.12; margin: 0; }
+  h1 { font-size: clamp(2rem, 3vw + 1rem, 3rem); max-width: 22ch; }
+  h2 { font-size: 1.75rem; margin-top: 4rem; }
+  p { margin: 0.75rem 0 0; color: var(--ink-2); max-width: 70ch; }
+  .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.5rem; align-items: start; }
+  .pair--narrow { max-width: 56rem; }
+  figure { margin: 0; }
+  figcaption { font-weight: 800; font-size: 0.9375rem; margin-bottom: 0.5rem; display: flex; gap: 0.6rem; align-items: baseline; }
+  figcaption span { font-weight: 700; color: var(--ink-2); }
+  figcaption .tag { color: var(--ink); font-weight: 800; }
+  .tag { display: inline-block; padding: 0.1em 0.75em; border-radius: 999px; background: var(--paper-2); box-shadow: inset 0 0 0 1.5px var(--rule); }
+  figcaption .tag--after { background: oklch(93% 0.03 40); box-shadow: none; color: oklch(47% 0.14 36); }
+  .frame { border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(38, 70, 83, 0.1); background: #fff; }
+  .frame--scroll { max-height: 82vh; overflow: auto; scrollbar-color: var(--rule) var(--paper-2); }
+  .frame--scroll:focus-visible { outline: 3px solid var(--call); outline-offset: 3px; }
+  img { display: block; width: 100%; height: auto; }
+  ul { margin: 1rem 0 0; padding-left: 1.2rem; color: var(--ink-2); max-width: 75ch; }
+  li + li { margin-top: 0.35rem; }
+  @media (max-width: 44rem) { .pair { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Home da Tia Médica — antes e depois.</h1>
+  <p>Proposta experimental "As duas pontas do fio", branch <code>exp/home-redesign</code>, 20/09/2026. Nada aqui foi publicado. "Antes" é a home da branch <code>feat/site-novo-branding</code>; as capturas usam a mesma largura e o mesmo navegador.</p>
+
+  <h2>Primeira dobra — desktop (1440 × 900)</h2>
+  <div class="pair">
+    <figure><figcaption><span class="tag">Antes</span><span>três seletores antes do título; conversa quase vazia; sem personagem</span></figcaption><div class="frame"><img src="antes-desktop-dobra.jpg" alt="Primeira dobra da home anterior em desktop" loading="lazy"></div></figure>
+    <figure><figcaption><span class="tag tag--after">Depois</span><span>uma proposta, uma ação, e a confirmação chegando a quem cuida</span></figcaption><div class="frame"><img src="depois-desktop-dobra.jpg" alt="Primeira dobra da home proposta em desktop" loading="lazy"></div></figure>
+  </div>
+  <ul>
+    <li>A promessa deixa de ser um slogan ("organizada por conversa") e vira a dor de quem visita: "Você não precisa ligar todo dia pra perguntar se ela tomou."</li>
+    <li>A demonstração passa a mostrar o mecanismo inteiro — o lembrete no celular dela e a confirmação no seu — já completa, sem depender de animação.</li>
+    <li>O botão diz para onde leva ("no WhatsApp") e o status "Em piloto" aparece junto da ação.</li>
+  </ul>
+
+  <h2>Primeira dobra — celular (390 × 844) e tablet (768 × 1024)</h2>
+  <div class="pair pair--narrow">
+    <figure><figcaption><span class="tag">Antes</span></figcaption><div class="frame"><img src="antes-celular-dobra.jpg" alt="Primeira dobra da home anterior no celular" loading="lazy"></div></figure>
+    <figure><figcaption><span class="tag tag--after">Depois</span></figcaption><div class="frame"><img src="depois-celular-dobra.jpg" alt="Primeira dobra da home proposta no celular" loading="lazy"></div></figure>
+  </div>
+  <div class="pair">
+    <figure><figcaption><span class="tag">Antes</span></figcaption><div class="frame"><img src="antes-tablet-dobra.jpg" alt="Primeira dobra da home anterior no tablet" loading="lazy"></div></figure>
+    <figure><figcaption><span class="tag tag--after">Depois</span></figcaption><div class="frame"><img src="depois-tablet-dobra.jpg" alt="Primeira dobra da home proposta no tablet" loading="lazy"></div></figure>
+  </div>
+
+  <h2>Página inteira — desktop</h2>
+  <p>Role dentro de cada quadro. No "antes", o painel de conversa é fixo e acompanha o scroll no navegador; na captura estática ele aparece uma vez só, no topo da seção.</p>
+  <div class="pair">
+    <figure><figcaption><span class="tag">Antes</span><span>seis das oito seções repetem o arranjo em duas colunas: título de um lado, conteúdo do outro</span></figcaption><div class="frame frame--scroll" tabindex="0"><img src="antes-desktop-pagina.jpg" alt="Página inteira da home anterior em desktop" loading="lazy"></div></figure>
+    <figure><figcaption><span class="tag tag--after">Depois</span><span>o fio da marca como espinha; cada seção com a forma do seu conteúdo</span></figcaption><div class="frame frame--scroll" tabindex="0"><img src="depois-desktop-pagina.jpg" alt="Página inteira da home proposta em desktop" loading="lazy"></div></figure>
+  </div>
+
+  <h2>Página inteira — celular</h2>
+  <div class="pair pair--narrow">
+    <figure><figcaption><span class="tag">Antes</span></figcaption><div class="frame frame--scroll" tabindex="0"><img src="antes-celular-pagina.jpg" alt="Página inteira da home anterior no celular" loading="lazy"></div></figure>
+    <figure><figcaption><span class="tag tag--after">Depois</span></figcaption><div class="frame frame--scroll" tabindex="0"><img src="depois-celular-pagina.jpg" alt="Página inteira da home proposta no celular" loading="lazy"></div></figure>
+  </div>
+</main>
+</body>
+</html>
