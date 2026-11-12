@@ -251,6 +251,7 @@ def run_secondary_pages(browser) -> None:
             "360dialog GmbH",
             "OpenStreetMap Foundation (Nominatim)",
             "Mercado Pago",
+            "quando o endereço do CEP não é encontrado",
             "e no Reino Unido",
             "confirmações reportadas",
             "7.1. Compartilhamento opcional com a clínica vinculada",
