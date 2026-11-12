@@ -274,6 +274,8 @@ def run_secondary_pages(browser) -> None:
         for snippet in snippets:
             assert snippet in body, f"{snippet!r} missing from {path}"
         assert "[data" not in body, f"marcador de data sem preencher em {path}"
+        if "politica" in path:
+            assert "Logradouro" not in body, "a política ainda cita o logradouro"
         screenshot_name = "tia-site-" + Path(path).stem + ".png"
         page.screenshot(path=str(TEMP_DIR / screenshot_name), full_page=True)
         page.close()
