@@ -250,7 +250,8 @@ def run_secondary_pages(browser) -> None:
             "Versão 1.3",
             "360dialog GmbH",
             "confirmações reportadas",
-            "3 (três) dias úteis",
+            "7.1. Compartilhamento opcional com a clínica vinculada",
+            "Resolução CD/ANPD nº 19/2024",
         ],
         "/excluir-conta.html": [
             "excluir minha conta",
