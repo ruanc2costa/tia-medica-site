@@ -489,6 +489,13 @@
                                 <tr><td>360dialog GmbH</td><td>Envio e recebimento de mensagens via WhatsApp para pacientes de clínicas parceiras</td><td>Alemanha, com armazenamento nos Estados Unidos</td><td>Número de telefone; conteúdo das mensagens</td></tr>
                                 <tr><td>Meta Platforms, Inc. (WhatsApp Business)</td><td>Transporte das mensagens de WhatsApp</td><td>Estados Unidos</td><td>Número de telefone; conteúdo das mensagens</td></tr>
                                 <tr><td>Amazon Web Services, Inc.</td><td>Hospedagem de aplicação e banco de dados</td><td>Estados Unidos</td><td>Todos os dados persistidos no sistema</td></tr>
+                                <tr><td>Google LLC (Google Workspace, e-mail)</td><td>Envio de e-mails do serviço à equipe das clínicas parceiras, incluindo o aviso de dúvida encaminhada pelo paciente</td><td>Estados Unidos</td><td>Endereço de e-mail e nome do destinatário; nome do paciente no aviso de teleconsulta pendente; texto da dúvida encaminhada pelo paciente, que pode conter informação de saúde</td></tr>
+                                <tr><td>ViaCEP</td><td>Consulta do endereço correspondente ao CEP informado pelo titular</td><td>Brasil</td><td>CEP</td></tr>
+                                <tr><td>OpenStreetMap Foundation (Nominatim)</td><td>Localização aproximada a partir do endereço do CEP, para buscar atendimento próximo</td><td>Reino Unido, com armazenamento no Reino Unido e nos Países Baixos</td><td>Logradouro, bairro, cidade e UF do CEP; o CEP, quando a consulta de endereço falha. Sem nome nem telefone</td></tr>
+                                <tr><td>Google LLC (Geocoding API)</td><td>Localização aproximada a partir do CEP, quando a localização por CEP via Google estiver ativa</td><td>Estados Unidos</td><td>CEP</td></tr>
+                                <tr><td>Google LLC (Places API)</td><td>Busca de clínica pelo nome, quando a busca complementar de locais de atendimento estiver ativa</td><td>Estados Unidos</td><td>Nome da clínica buscada; coordenadas aproximadas (latitude e longitude)</td></tr>
+                                <tr><td>OpenAI, L.L.C.</td><td>Busca de fonte oficial sobre medicamento ou produto de saúde, quando essa busca usar esse provedor</td><td>Estados Unidos</td><td>Termo de busca com o nome do produto consultado. Sem nome nem telefone</td></tr>
+                                <tr><td>Mercado Pago</td><td>Processamento de pagamentos, quando a função de pagamentos estiver ativa</td><td>Brasil</td><td>Descrição e valor do serviço; identificador interno do pedido. Os dados de pagamento são informados pelo titular diretamente ao Mercado Pago</td></tr>
                                 <tr><td>Vercel Inc.</td><td>Hospedagem deste site institucional</td><td>Estados Unidos</td><td>Logs de acesso à landing page e a esta página</td></tr>
                             </tbody>
                         </table>
@@ -501,7 +508,7 @@
 
                 <section id="s8" class="pp-section">
                     <h2>8. Transferência internacional de dados</h2>
-                    <p>Os operadores listados na Seção 7 estão sediados nos Estados Unidos e na União Europeia (Alemanha). O tratamento por esses operadores, portanto, envolve transferência internacional de dados, nos termos do art. 33 da LGPD.</p>
+                    <p>Os operadores listados na Seção 7 estão sediados no Brasil, nos Estados Unidos, na União Europeia (Alemanha) e no Reino Unido. O tratamento pelos operadores sediados fora do Brasil, portanto, envolve transferência internacional de dados, nos termos do art. 33 da LGPD.</p>
                     <p>A transferência é realizada com fundamento no consentimento específico e destacado do titular (art. 33, VIII) e nas cláusulas contratuais padrão de proteção de dados adotadas pelos respectivos operadores em seus termos de serviço.</p>
                     <p>Essa autorização deve ser solicitada de forma separada e clara no fluxo de cadastro; o simples acesso a este site ou a leitura desta Política não constitui consentimento.</p>
                     <p>A Tia também deve observar os mecanismos e as salvaguardas contratuais aplicáveis a cada operador, nos termos da <a href="https://www.gov.br/anpd/pt-br/acesso-a-informacao/institucional/atos-normativos/regulamentacoes_anpd/resolucao-cd-anpd-no-19-de-23-de-agosto-de-2024">Resolução CD/ANPD nº 19/2024</a>.</p>
@@ -584,7 +591,7 @@
                 <section id="s13" class="pp-section">
                     <h2>13. Em andamento</h2>
                     <p>Em conformidade com o princípio de transparência da LGPD (art. 6º, VI), listamos abaixo as iniciativas de segurança e de garantia de direitos do titular.</p>
-                    <h3>Implementadas (versão 1.2)</h3>
+                    <h3>Medidas e rotinas já disponíveis</h3>
                     <ul>
                         <li>✅ <strong>Consentimento explícito no cadastro</strong> — Etapa 0 obrigatória do onboarding com registro de versão da política aceita, carimbo de data e hora (<code>users.lgpd_consent_at</code>, <code>users.privacy_policy_version</code>) e comando <code>detalhes</code> para visualização da política completa antes da aceitação.</li>
                         <li>✅ <strong>Automação programática dos direitos do titular</strong> — quatro tools acessíveis pelo próprio canal de uso (WhatsApp/simulador):
@@ -666,7 +673,7 @@
                                 <tr><td>1.1</td><td>02/05/2026</td><td>Implementação de consentimento explícito no onboarding, automação programática dos direitos do titular (<code>view_privacy_policy</code>, <code>export_user_data</code>, <code>revoke_consent</code>, <code>delete_user_data</code>), audit log dedicado (<code>lgpd_audit_log</code>), e runbook formal de resposta a incidentes. Atualização da Seção 11 com canal direto via WhatsApp. Itens da Seção 13 marcados como concluídos.</td></tr>
                                 <tr><td>1.2</td><td>14/07/2026</td><td>Amplia transparência para receitas, exames e fotos de medicamentos; adiciona armazenamento privado dos originais com SSE-KMS, validação binária, metadados mínimos, retenção de 365 dias, exportação de metadados e exclusão coordenada com os direitos do titular.</td></tr>
                                 <tr><td>1.2 (site)</td><td>16/07/2026</td><td>O site institucional publicou, com o mesmo número 1.2, um texto diferente: alinhamento com o piloto pelo WhatsApp e com a versão registrada pelo backend; substituição de alegações de adesão por confirmações reportadas; atualização das seções de transferência internacional, segurança, retenção e comunicação de incidentes.</td></tr>
-                                <tr><td>1.3</td><td>12/11/2026</td><td>Inclui a finalidade de melhoria da qualidade e da segurança do atendimento, com revisão das conversas sem identificação direta e sem uso para treinar modelos de terceiros. Acrescenta os operadores Anthropic (reserva de IA), 360dialog e Meta (WhatsApp) e a transferência para a União Europeia. Unifica em um único texto, igual no site e no serviço, as duas versões 1.2 (a do serviço, de 14/07/2026, e a do site, de 16/07/2026).</td></tr>
+                                <tr><td>1.3</td><td>12/11/2026</td><td>Inclui a finalidade de melhoria da qualidade e da segurança do atendimento, com revisão das conversas sem identificação direta e sem uso para treinar modelos de terceiros. Acrescenta os operadores Anthropic (reserva de IA), 360dialog e Meta (WhatsApp), Google Workspace (e-mail), ViaCEP, OpenStreetMap Foundation, Google Geocoding e Places, OpenAI e Mercado Pago, e a transferência para a União Europeia e o Reino Unido. Unifica em um único texto, igual no site e no serviço, as duas versões 1.2 (a do serviço, de 14/07/2026, e a do site, de 16/07/2026).</td></tr>
                             </tbody>
                         </table>
                     </div>

@@ -249,6 +249,9 @@ def run_secondary_pages(browser) -> None:
         "/politica-de-privacidade.html": [
             "Versão 1.3 — vigente desde 12/11/2026",
             "360dialog GmbH",
+            "OpenStreetMap Foundation (Nominatim)",
+            "Mercado Pago",
+            "e no Reino Unido",
             "confirmações reportadas",
             "7.1. Compartilhamento opcional com a clínica vinculada",
             "Resolução CD/ANPD nº 19/2024",
