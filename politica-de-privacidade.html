@@ -372,8 +372,8 @@
 
             <header class="pp-header">
                 <h1>Política de Privacidade</h1>
-                <p class="pp-meta"><strong>Versão 1.2 — vigente desde 16/07/2026.</strong></p>
-                <blockquote class="pp-version-note">Esta versão alinha a política ao piloto pelo WhatsApp, diferencia confirmações reportadas de adesão clínica, atualiza a comunicação de incidentes e descreve as medidas de segurança sem promessas absolutas. Histórico completo na Seção 21.</blockquote>
+                <p class="pp-meta"><strong>Versão 1.3 — vigente desde [data de publicação] para novos cadastros; para quem já usa a Tia, a partir de [data de publicação + 15 dias], após o aviso da Seção 18.</strong></p>
+                <blockquote class="pp-version-note">Esta versão inclui a revisão das conversas para melhorar a qualidade e a segurança do atendimento e completa a lista de operadores. Histórico completo na Seção 21.</blockquote>
             </header>
 
             <div class="pp-intro">
@@ -468,6 +468,7 @@
                         <li><strong>Dados de saúde:</strong> organização da rotina informada pelo titular, geração de lembretes, verificação de interações medicamentosas e elaboração de históricos de confirmações reportadas.</li>
                         <li><strong>Imagens de receitas e texto OCR:</strong> extração assistida de medicamentos, posologia e duração, com revisão e confirmação do titular antes do cadastro.</li>
                         <li><strong>Histórico de conversas:</strong> manutenção do contexto para respostas coerentes e continuidade da organização da rotina reportada pelo titular.</li>
+                        <li><strong>Melhoria da qualidade e da segurança do atendimento:</strong> revisão das conversas para encontrar e corrigir falhas da assistente, como respostas erradas, repetidas, fora do assunto ou que deixaram de orientar em situação de risco. A revisão é feita primeiro por sistema automatizado, sobre o texto das conversas <strong>sem nome, telefone ou outro identificador direto</strong>. Quando uma pessoa da equipe precisa ler um trecho para corrigir a falha, lê só o trecho necessário, sem identificação, com acesso restrito e registrado. As conversas <strong>não são usadas para treinar modelos de inteligência artificial de terceiros</strong> nem para publicidade.</li>
                         <li><strong>Dados técnicos:</strong> segurança do serviço, prevenção de fraude, diagnóstico de falhas, auditoria interna.</li>
                     </ul>
                 </section>
@@ -476,7 +477,7 @@
                     <h2>6. Bases legais</h2>
                     <p>O tratamento de dados pessoais realizado é fundamentado nas seguintes bases legais, conforme a finalidade:</p>
                     <ul>
-                        <li><strong>Consentimento</strong> (art. 7º, I, e art. 11, I, da LGPD) — para o tratamento de dados pessoais sensíveis de saúde.</li>
+                        <li><strong>Consentimento</strong> (art. 7º, I, e art. 11, I, da LGPD) — para o tratamento de dados pessoais sensíveis de saúde, <strong>incluindo a revisão das conversas para melhoria da qualidade e da segurança do atendimento</strong>.</li>
                         <li><strong>Execução de contrato</strong> (art. 7º, V, da LGPD) — para envio de lembretes e operação do serviço contratado pelo titular.</li>
                         <li><strong>Legítimo interesse</strong> (art. 7º, IX, da LGPD) — para fins de segurança do serviço, prevenção de fraude e manutenção de logs técnicos, observados os limites e salvaguardas previstos em lei.</li>
                         <li><strong>Cumprimento de obrigação legal ou regulatória</strong> (art. 7º, II, da LGPD) — quando aplicável.</li>
@@ -493,7 +494,10 @@
                             </thead>
                             <tbody>
                                 <tr><td>Google LLC (API Gemini)</td><td>Processamento de inteligência artificial conversacional</td><td>Estados Unidos</td><td>Conteúdo das conversas; contexto de saúde estritamente necessário para a resposta</td></tr>
+                                <tr><td>Anthropic, PBC (API Claude)</td><td>Processamento de inteligência artificial conversacional quando o provedor principal está indisponível</td><td>Estados Unidos</td><td>Conteúdo das conversas; contexto de saúde estritamente necessário para a resposta</td></tr>
                                 <tr><td>Twilio Inc.</td><td>Envio e recebimento de mensagens via WhatsApp e SMS</td><td>Estados Unidos</td><td>Número de telefone; conteúdo das mensagens</td></tr>
+                                <tr><td>360dialog GmbH</td><td>Envio e recebimento de mensagens via WhatsApp para pacientes de clínicas parceiras</td><td>Alemanha, com armazenamento nos Estados Unidos</td><td>Número de telefone; conteúdo das mensagens</td></tr>
+                                <tr><td>Meta Platforms, Inc. (WhatsApp Business)</td><td>Transporte das mensagens de WhatsApp</td><td>Estados Unidos</td><td>Número de telefone; conteúdo das mensagens</td></tr>
                                 <tr><td>Amazon Web Services, Inc.</td><td>Hospedagem de aplicação e banco de dados</td><td>Estados Unidos</td><td>Todos os dados persistidos no sistema</td></tr>
                                 <tr><td>Vercel Inc.</td><td>Hospedagem deste site institucional</td><td>Estados Unidos</td><td>Logs de acesso à landing page e a esta página</td></tr>
                             </tbody>
@@ -504,7 +508,7 @@
 
                 <section id="s8" class="pp-section">
                     <h2>8. Transferência internacional de dados</h2>
-                    <p>Os operadores listados na Seção 7 têm sede nos Estados Unidos e podem tratar dados ou disponibilizar acesso a eles fora do Brasil, conforme a configuração e os termos de cada serviço. Essas operações podem caracterizar transferência internacional de dados.</p>
+                    <p>Os operadores listados na Seção 7 estão sediados nos Estados Unidos e na União Europeia (Alemanha). O tratamento por esses operadores, portanto, envolve transferência internacional de dados, nos termos do art. 33 da LGPD.</p>
                     <p>No piloto, a base declarada para as transferências necessárias é o consentimento específico e destacado do titular, previsto no art. 33, VIII, da LGPD. Essa autorização deve ser solicitada de forma separada e clara no fluxo de cadastro; o simples acesso a este site ou a leitura desta Política não constitui consentimento.</p>
                     <p>A Tia também deve observar os mecanismos e as salvaguardas contratuais aplicáveis a cada operador, nos termos da <a href="https://www.gov.br/anpd/pt-br/acesso-a-informacao/institucional/atos-normativos/regulamentacoes_anpd/resolucao-cd-anpd-no-19-de-23-de-agosto-de-2024">Resolução CD/ANPD nº 19/2024</a>.</p>
                 </section>
@@ -667,6 +671,7 @@
                                 <tr><td>1.0</td><td>24/04/2026</td><td>Publicação inicial.</td></tr>
                                 <tr><td>1.1</td><td>02/05/2026</td><td>Implementação de consentimento explícito no onboarding; automação programática dos direitos do titular (<code>view_privacy_policy</code>, <code>export_user_data</code>, <code>revoke_consent</code>, <code>delete_user_data</code>); audit log dedicado (<code>lgpd_audit_log</code>); runbook formal de resposta a incidentes. Atualização da Seção 11 com canal direto via WhatsApp. Itens da Seção 13 marcados como concluídos.</td></tr>
                                 <tr><td>1.2</td><td>16/07/2026</td><td>Alinhamento com o piloto pelo WhatsApp e com a versão registrada pelo backend; substituição de alegações de adesão por confirmações reportadas; atualização das seções de transferência internacional, segurança, retenção e comunicação de incidentes.</td></tr>
+                                <tr><td>1.3</td><td>[data]</td><td>Inclui a finalidade de melhoria da qualidade e da segurança do atendimento, com revisão das conversas sem identificação direta e sem uso para treinar modelos de terceiros. Acrescenta os operadores Anthropic (reserva de IA), 360dialog e Meta (WhatsApp) e a transferência para a União Europeia.</td></tr>
                             </tbody>
                         </table>
                     </div>

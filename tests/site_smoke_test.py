@@ -247,7 +247,8 @@ def run_reduced_motion(browser) -> None:
 def run_secondary_pages(browser) -> None:
     expectations = {
         "/politica-de-privacidade.html": [
-            "Versão 1.2",
+            "Versão 1.3",
+            "360dialog GmbH",
             "confirmações reportadas",
             "3 (três) dias úteis",
         ],
