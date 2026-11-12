@@ -247,7 +247,7 @@ def run_reduced_motion(browser) -> None:
 def run_secondary_pages(browser) -> None:
     expectations = {
         "/politica-de-privacidade.html": [
-            "Versão 1.3",
+            "Versão 1.3 — vigente desde 12/11/2026",
             "360dialog GmbH",
             "confirmações reportadas",
             "7.1. Compartilhamento opcional com a clínica vinculada",
@@ -270,6 +270,7 @@ def run_secondary_pages(browser) -> None:
         assert body.strip()
         for snippet in snippets:
             assert snippet in body, f"{snippet!r} missing from {path}"
+        assert "[data" not in body, f"marcador de data sem preencher em {path}"
         screenshot_name = "tia-site-" + Path(path).stem + ".png"
         page.screenshot(path=str(TEMP_DIR / screenshot_name), full_page=True)
         page.close()
