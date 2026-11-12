@@ -252,6 +252,7 @@ def run_secondary_pages(browser) -> None:
             "confirmações reportadas",
             "7.1. Compartilhamento opcional com a clínica vinculada",
             "Resolução CD/ANPD nº 19/2024",
+            "3 (três) dias úteis",
         ],
         "/excluir-conta.html": [
             "excluir minha conta",

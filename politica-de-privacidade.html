@@ -566,16 +566,16 @@
 
                 <section id="s12" class="pp-section">
                     <h2>12. Segurança</h2>
-                    <p>A TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.) adota, no estado atual do serviço, as seguintes medidas técnicas e administrativas de segurança:</p>
+                    <p>A TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.) adota medidas técnicas e administrativas proporcionais ao estado atual do serviço. A cobertura pode variar entre componentes e é revisada à medida que o piloto evolui. Entre as medidas atualmente adotadas, conforme aplicável, estão:</p>
                     <ul>
-                        <li><strong>Transmissão de dados criptografada</strong> por HTTPS/TLS em todas as comunicações entre usuário e servidor em produção.</li>
-                        <li><strong>Validação de assinatura criptográfica</strong> das requisições recebidas do provedor de mensageria (Twilio), prevenindo fraude por origem não autorizada.</li>
-                        <li><strong>Limitação de taxa de requisições</strong> (rate limiting) nos servidores de aplicação, mitigando ataques de uso abusivo.</li>
+                        <li><strong>Proteção de conexões</strong> por HTTPS/TLS no site, nas APIs e nas integrações que trafegam pela internet.</li>
+                        <li><strong>Validação de assinatura criptográfica</strong> das requisições recebidas do provedor de mensageria (Twilio), prevenindo fraude por origem não autorizada. Nas requisições recebidas da 360dialog, verificação de token de autenticação no cabeçalho da chamada.</li>
+                        <li><strong>Limitação de taxa de requisições</strong> (rate limiting) em endpoints expostos, mitigando uso abusivo.</li>
                         <li><strong>Sanitização de logs</strong>, com mascaramento automático de dados pessoais identificáveis (como números de telefone) e de termos médicos sensíveis antes do registro.</li>
                         <li><strong>Criptografia em repouso</strong> (AES-256-GCM), aplicada a campos sensíveis de saúde (condições declaradas, alergias, metas) quando a chave de criptografia está configurada no ambiente de produção.</li>
                         <li><strong>Arquivos originais em bucket privado</strong>, sem acesso público, com criptografia SSE-KMS, chave de objeto sem telefone/nome e acesso restrito ao papel da aplicação.</li>
                         <li><strong>Eliminação automática das mídias</strong>, ao final do prazo de retenção ou antes do hard-delete solicitado pelo titular.</li>
-                        <li><strong>Consultas parametrizadas</strong> em todas as interações com o banco de dados, prevenindo vetores de injeção.</li>
+                        <li><strong>Consultas parametrizadas</strong> nas camadas de acesso a dados que suportam esse mecanismo, reduzindo vetores de injeção.</li>
                         <li><strong>Validação técnica de arquivos</strong> enviados pelo titular (verificação de cabeçalhos binários, tipo MIME e limite de tamanho de 5 MB) antes do processamento.</li>
                         <li><strong>Confirmação explícita e registros de auditoria</strong> para operações sensíveis relacionadas aos direitos do titular.</li>
                     </ul>
@@ -632,7 +632,7 @@
 
                 <section id="s17" class="pp-section">
                     <h2>17. Incidentes de segurança</h2>
-                    <p>Em caso de incidente de segurança que possa acarretar risco relevante aos direitos e liberdades dos titulares, a TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.) comunicará o fato à Autoridade Nacional de Proteção de Dados (ANPD) e aos titulares afetados em prazo razoável, nos termos do art. 48 da LGPD.</p>
+                    <p>Em caso de incidente de segurança que possa ocasionar risco ou dano relevante aos titulares, a TIA MEDICA INOVACOES EM SAUDE INOVA SIMPLES (I.S.) comunicará o fato à Autoridade Nacional de Proteção de Dados (ANPD) e aos titulares afetados no prazo de até <strong>3 (três) dias úteis</strong>, ressalvada a existência de prazo específico previsto em legislação, conforme a <a href="https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/comunicado-de-incidente-de-seguranca-cis">Resolução CD/ANPD nº 15/2024</a>.</p>
                     <p>A comunicação aos titulares pode ocorrer pelos canais de contato do próprio serviço (WhatsApp, SMS ou email vinculado à conta) e conterá, no mínimo: descrição da natureza dos dados afetados, informações sobre os titulares envolvidos, medidas técnicas e de segurança adotadas, riscos relacionados e medidas que foram ou podem ser tomadas para mitigar os efeitos.</p>
                 </section>
 
