@@ -247,7 +247,9 @@ def run_reduced_motion(browser) -> None:
 def run_secondary_pages(browser) -> None:
     expectations = {
         "/politica-de-privacidade.html": [
-            "Versão 1.3 — vigente desde 12/11/2026",
+            "Versão 1.4 — vigente desde 14/11/2026.",
+            "PharmaDB (pharmadb.com.br)",
+            "são publicadas nesta página, com a data de vigência",
             "360dialog GmbH",
             "OpenStreetMap Foundation (Nominatim)",
             "Mercado Pago",
@@ -277,6 +279,7 @@ def run_secondary_pages(browser) -> None:
         assert "[data" not in body, f"marcador de data sem preencher em {path}"
         if "politica" in path:
             assert "Logradouro" not in body, "a política ainda cita o logradouro"
+            assert "15 dias depois do aviso" not in body, "a política ainda promete aviso pelo WhatsApp"
         screenshot_name = "tia-site-" + Path(path).stem + ".png"
         page.screenshot(path=str(TEMP_DIR / screenshot_name), full_page=True)
         page.close()
