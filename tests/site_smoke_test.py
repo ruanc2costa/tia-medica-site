@@ -247,8 +247,15 @@ def run_reduced_motion(browser) -> None:
 def run_secondary_pages(browser) -> None:
     expectations = {
         "/politica-de-privacidade.html": [
-            "Versão 1.2",
+            "Versão 1.3 — vigente desde 12/11/2026",
+            "360dialog GmbH",
+            "OpenStreetMap Foundation (Nominatim)",
+            "Mercado Pago",
+            "quando o endereço do CEP não é encontrado",
+            "e no Reino Unido",
             "confirmações reportadas",
+            "7.1. Compartilhamento opcional com a clínica vinculada",
+            "Resolução CD/ANPD nº 19/2024",
             "3 (três) dias úteis",
         ],
         "/excluir-conta.html": [
@@ -267,6 +274,9 @@ def run_secondary_pages(browser) -> None:
         assert body.strip()
         for snippet in snippets:
             assert snippet in body, f"{snippet!r} missing from {path}"
+        assert "[data" not in body, f"marcador de data sem preencher em {path}"
+        if "politica" in path:
+            assert "Logradouro" not in body, "a política ainda cita o logradouro"
         screenshot_name = "tia-site-" + Path(path).stem + ".png"
         page.screenshot(path=str(TEMP_DIR / screenshot_name), full_page=True)
         page.close()
