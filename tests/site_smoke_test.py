@@ -247,7 +247,8 @@ def run_reduced_motion(browser) -> None:
 def run_secondary_pages(browser) -> None:
     expectations = {
         "/politica-de-privacidade.html": [
-            "Versão 1.3 — vigente desde 12/11/2026",
+            "Versão 1.4 — vigente desde",
+            "PharmaDB (pharmadb.com.br)",
             "360dialog GmbH",
             "OpenStreetMap Foundation (Nominatim)",
             "Mercado Pago",
