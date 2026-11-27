@@ -247,7 +247,7 @@ def run_reduced_motion(browser) -> None:
 def run_secondary_pages(browser) -> None:
     expectations = {
         "/politica-de-privacidade.html": [
-            "Versão 1.6 — vigente desde 26/11/2026.",
+            "Versão 1.7 — vigente desde 27/11/2026.",
             "revisão das conversas para encontrar e corrigir falhas da assistente",
             "dias cuidados",
             "PharmaDB (pharmadb.com.br)",
